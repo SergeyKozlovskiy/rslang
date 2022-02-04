@@ -8,6 +8,8 @@ import { Authorization } from './pages/authorization/authorization';
 import { Book } from './pages/book/book';
 import { Games } from './pages/games/games';
 import { Statistics } from './pages/statistics/statistics';
+import { Sprint } from './pages/games/sprint/sprint';
+import { AudioCall } from './pages/games/audioCall/audioCall';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path='/book' element={<Book/>}/>
           <Route path='/games' element={<Games/>}/>
           <Route path='/statistics' element={<Statistics/>}/>
+          <Route path='/sprint' element={<Sprint/>}/>
+          <Route path='/audioCall' element={<AudioCall/>}/>
         </Routes>
       </div>
       <Footer/>
