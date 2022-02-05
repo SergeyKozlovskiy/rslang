@@ -1,4 +1,4 @@
 import { Actions } from "../types/enums";
-import { IAction, ICreateUser } from "../types/types";
+import { IAction, IRespSignIn } from "../types/types";
 
-export const createUserAction = (value: ICreateUser): IAction => ({type: Actions.CREATE_USER, value: value});
+export const createUserAction = (value: IRespSignIn): IAction => ({type: Actions.CREATE_USER, value: value});

@@ -1,5 +1,7 @@
-import { ICreateUser } from "../types/types";
+import { ICreateUser, IRespSignIn } from "../types/types";
+import { postUser } from '../requests/postUser';
 import { createUserAction } from "./actions";
+import { signIn } from "../requests/signIn";
 
 export const createUser = () => {
   const nameInput = document.querySelector('.authorization-name') as HTMLInputElement;
@@ -12,13 +14,10 @@ export const createUser = () => {
     password: passwordInput.value
   }
 
-  return (dispatch: Function) => {
-    fetch('http://localhost:5000/users', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'appLication/json'
-    },
-    body: JSON.stringify(body)
-    }).then((resp: Response) => resp.json()).then((user) => dispatch(createUserAction(user)));  
+  return async (dispatch: Function) => {
+    await postUser(body);
+    signIn({email: body.email, password: body.password})
+    .then((resp: Response) => resp.json())
+    .then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
   }
 };

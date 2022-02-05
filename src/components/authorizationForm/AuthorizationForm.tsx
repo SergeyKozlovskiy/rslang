@@ -8,9 +8,9 @@ const AuthorizationForm: React.FC = () => {
 
   return (
     <div className='authorization-form'>
-      <input className='authorization-name text-default' type="text" name="name" id="name" />
-      <input className='authorization-email text-default' type="email" name="email" id="email" />
-      <input className='authorization-password text-default' type="password" name="password" id="pass" />
+      <input className='authorization-name text-default' type="text" name="name" id="name" placeholder="Имя" />
+      <input className='authorization-email text-default' type="email" name="email" id="email" placeholder="Email" />
+      <input className='authorization-password text-default' type="password" name="password" id="pass" placeholder="Пароль" />
       <div className="authorization-buttons">
         <button className="authorization-login button-default">Войти</button>
         <button onClick={() => dispatch(createUser())} className="authorization-signin button-default">Регестрация</button>

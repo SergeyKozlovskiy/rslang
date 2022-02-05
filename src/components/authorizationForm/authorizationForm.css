@@ -14,8 +14,10 @@
 }
 
 .text-default {
+  padding-left: 5px;
   margin-bottom: 25px;
   width: 280px;
+  height: 35px;
   border: none;
   background-color: #9e9595;
   border-radius: 10px;

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap');
 
 .Footer {
   display: flex;
@@ -22,14 +22,14 @@
 }
 
 .Footer_logo {
-  font-family: "Neonderthaw", cursive;
+  font-family: 'Neonderthaw', cursive;
   font-size: 30px;
   color: white;
 }
 
 .Footer_logo__span {
   color: black;
-  font-family: "Russo One", sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 20px;
 }
 
