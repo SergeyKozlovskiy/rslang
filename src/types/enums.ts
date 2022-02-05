@@ -1,4 +1,5 @@
 export enum Text {
+<<<<<<< HEAD
   DropdownText = 'Уровень',
   HeaderSprintPopUp = 'Спринт',
   SubtitleSprintPopUp = 'Выберите соответсвует ли перевод предложенному слову',
@@ -20,6 +21,24 @@ export enum Text {
   footerGithubLinksItem3 = 'Stellarator85',
   footerLogo = 'RS•Lang',
   footerYearMark = '© 2022г.',
+=======
+    menuOptionStartPage = 'Главная страница',
+    menuOptionLoginPage = 'Авторизация',
+    menuOptionWordList = 'Список слов',
+    menuOptionMiniGames = 'Мини-игры',
+    menuOptionStatPage = 'Статистика',
+    headerAppName = 'RS•',
+    headerAppNameSpan = 'Lang',
+    headerAppNameMotto = 'изучай английский играючи',
+    loginButtonValue = 'Войти',
+    mainStartButtonValue='Старт',
+    footerRsSchool = 'Javascript/Front-end 2021Q3',
+    footerGithubLinksItem1 = 'SergeyKozlovskiy',
+    footerGithubLinksItem2 = 'VoitihovichP',
+    footerGithubLinksItem3 = 'Stellarator85',
+    footerLogo = 'RS•Lang',
+    footerYearMark = '© 2022г.',
+>>>>>>> f9533ae5a8919931d128cae38b0c3fd9f59e49c8
 }
 
 export enum API {
@@ -46,6 +65,9 @@ export enum Classes {
     headerAppNameSpan = 'Header_app-name__span',
     headerAppNameMotto = 'Header_app-name__motto',
     loginButton = 'Log-in-button',
+    main = 'Main',
+    mainStartPage = 'Main Main_start-page',
+    mainStartButton = 'Main_start-page__button',
     footer = 'Footer',
     footerRsSchool = 'Footer_RS-school',
     footerGithubLinks = 'Footer_Github-links',
