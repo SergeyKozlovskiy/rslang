@@ -10,9 +10,8 @@ export const Footer: React.FC = () => {
   return <footer className = {Classes.footer}>
     <a href="https://rs.school/" rel="noreferrer" target='_blank'><div className = {Classes.footerRsSchool}>
       {Text.footerRsSchool}</div></a>
-    RS•Lang© <br></br>
-    2022г.
-    <ul className = {Classes.footerGithubLinks}>
+    <div className={Classes.footerLogo}>{Text.footerLogo}<br></br><span className={Classes.footerLogoSpan}>{Text.footerYearMark}</span></div>
+    <ul className = {Classes.footerGithubLinks}>  
       <a href='https://github.com/SergeyKozlovskiy' rel="noreferrer" target='_blank'><li className = {Classes.footerGithubLinksItem}>{Text.footerGithubLinksItem1}</li></a>
       <a href='https://github.com/VoitihovichP' rel="noreferrer" target='_blank'><li className = {Classes.footerGithubLinksItem}>{Text.footerGithubLinksItem2}</li></a>
       <a href='https://github.com/Stellarator85' rel="noreferrer" target='_blank'><li className = {Classes.footerGithubLinksItem}>{Text.footerGithubLinksItem3}</li></a> 
