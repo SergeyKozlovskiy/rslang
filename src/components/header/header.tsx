@@ -23,7 +23,9 @@ export const Header: React.FC = () => {
     </nav>
     <div className={Classes.headerAppName}>{Text.headerAppName}<span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
       <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span></div>
-    <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
+      <Link to="/authorization">
+      <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
+      </Link>
     </header>
 };
     

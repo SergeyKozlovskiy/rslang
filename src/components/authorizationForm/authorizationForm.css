@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 50px 25px;
+  padding: 50px 25px 12px 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,33 @@
 .authorization-buttons {
   width: 280px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authorization-buttons div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.authorization-text {
+  margin: 10px 0 0 0;
+  text-align: center;
+}
+
+.authorization-text p {
+  margin: 0;
+}
+
+.authorization-text span {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.authorization-text span:hover {
+  color: #696666;
 }
 
 .button-default {
