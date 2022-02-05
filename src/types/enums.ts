@@ -1,22 +1,36 @@
 export enum Text {
-    menuOptionStartPage = 'Главная страница',
-    menuOptionLoginPage = 'Авторизация',
-    menuOptionWordList = 'Список слов',
-    menuOptionMiniGames = 'Мини-игры',
-    menuOptionStatPage = 'Статистика',
-    headerAppName = 'RS•',
-    headerAppNameSpan = 'Lang',
-    headerAppNameMotto = 'изучай английский играючи',
-    loginButtonValue = 'Войти',
-    mainStartButtonValue='Старт',
-    footerRsSchool = 'Javascript/Front-end 2021Q3',
-    footerGithubLinksItem1 = 'SergeyKozlovskiy',
-    footerGithubLinksItem2 = 'VoitihovichP',
-    footerGithubLinksItem3 = 'Stellarator85',
-    footerLogo = 'RS•Lang',
-    footerYearMark = '© 2022г.',
+  DropdownText = 'Уровень',
+  HeaderSprintPopUp = 'Спринт',
+  SubtitleSprintPopUp = 'Выберите соответсвует ли перевод предложенному слову',
+  StartSprintButton = 'Начать',
+  RightAnswerSprintButton = 'Верно',
+  WrongAnswerSprintButton = 'Не верно',
+  menuOptionStartPage = 'Главная страница',
+  menuOptionLoginPage = 'Авторизация',
+  menuOptionWordList = 'Список слов',
+  menuOptionMiniGames = 'Мини-игры',
+  menuOptionStatPage = 'Статистика',
+  headerAppName = 'RS•',
+  headerAppNameSpan = 'Lang',
+  headerAppNameMotto = 'изучай английский играючи',
+  loginButtonValue = 'Войти',
+  footerRsSchool = 'Javascript/Front-end 2021Q3',
+  footerGithubLinksItem1 = 'SergeyKozlovskiy',
+  footerGithubLinksItem2 = 'VoitihovichP',
+  footerGithubLinksItem3 = 'Stellarator85',
+  footerLogo = 'RS•Lang',
+  footerYearMark = '© 2022г.',
+  mainStartButtonValue = 'Старт'
 }
 
+export enum API {
+  URL = 'http://localhost:5000/',
+  Words = 'words'
+}
+
+export enum MagicNumbers {
+  MAX_NUM_OF_QUESTIONS = 20
+}
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
