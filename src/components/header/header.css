@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&family=Neonderthaw&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap");
-
-header {
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+.Header-container {
   height: 10vh;
   display: flex;
   justify-content: space-between;
   padding-right: 1%;
 }
 
-.nav {
+.Menu-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -37,7 +37,7 @@ header {
   transition-duration: 1s;
 }
 
-ul {
+.Menu-list {
   background-color: rgba(113, 126, 142, 0.5);
   border-radius: 4px;
   transition-duration: 0.6s;
@@ -46,26 +46,28 @@ ul {
   margin-left: -150%;
 }
 
-ul,
-.Menu-option {
+.Menu-list,
+.Menu-list_item__option {
   text-decoration: none;
   color: #ff8600;
   text-align: left;
   width: 100%;
 }
 
-li {
+.Menu-list_item {
   vertical-align: middle;
   width: 100%;
+  font-size: 30px;
 }
 
-.Menu-option {
-  font-family: "Bebas Neue", cursive;
-  font-size: 35px;
+.Menu-list_item__option {
+  font-family: "Russo One", sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
 }
 
-li:hover,
-.Menu-option:hover {
+.Menu-list_item:hover,
+.Menu-list_item__option:hover {
   transition-duration: 0.35s;
   color: rgb(255, 255, 255);
 }
@@ -75,7 +77,7 @@ li:hover,
   transition-duration: 0.6s;
 }
 
-.header_app-name {
+.Header_app-name {
   font-size: 60px;
   font-family: "Neonderthaw", cursive;
   display: flex;
@@ -84,15 +86,16 @@ li:hover,
   width: 53%;
 }
 
-header div span:nth-of-type(1) {
+.Header_app-name__span {
   color: #ff8600;
   display: block;
 }
-header div span:nth-of-type(2) {
-  font-size: 25px;
+.Header_app-name__motto {
+  font-size: 19.4px;
   font-family: "Dongle", sans-serif;
   display: block;
   padding-left: 2%;
+  text-transform: none;
 }
 .Log-in-button {
   height: 6vh;
