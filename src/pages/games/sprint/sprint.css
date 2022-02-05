@@ -1,0 +1,89 @@
+.sprint-settings {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dropdown-level {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.sprint-popup {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 700px;
+  height: 200px;
+  margin: 0 auto; 
+  text-align: center;
+  padding: 25px 35px;
+  border: 1px solid black;
+  border-radius: 7px;
+  transition: 0.3s;
+}
+
+.sprint-popup_btn{
+  width: 100px;
+  margin: 0 auto;
+}
+
+.hide-popup{
+  transform: scale(0);
+}
+
+
+.base-timer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
