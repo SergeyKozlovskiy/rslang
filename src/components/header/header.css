@@ -6,6 +6,7 @@
   width: 100%;
   height: 100px;
   display: flex;
+  padding: 1%;
   justify-content: space-between;
   align-items: center;
 }
@@ -96,6 +97,4 @@
   padding-left: 2%;
   text-transform: none;
 }
-.Log-in-button {
-  
-}
+
