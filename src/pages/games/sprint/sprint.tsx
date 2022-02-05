@@ -120,9 +120,6 @@ export const Sprint: React.FC = () => {
     getData();
   }
 
-
-
-
   return <div className="sprint-wrapper">
     <div className="sprint-settings">
       <button><img src={fullScreen} alt={fullScreen}/></button>
