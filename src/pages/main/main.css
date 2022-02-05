@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+.Main {
+  height: 76vh;
+  background-image: url(start-page-background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.Main_start-page {
+  background-image: url(start-page-background.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  background-color: #f4f5f7;
+}
+.Main_start-page__button {
+  border-radius: 13px;
+  display: block;
+  background-color: #ff8600;
+  font-size: 28px;
+  font-family: "Playfair Display", serif;
+  color: white;
+  padding: 0% 2% 0% 2%;
+  position: absolute;
+  margin-top: 27%;
+  margin-left: 72%;
+}
+.Main_start-page__button:active {
+  color: black;
+}
