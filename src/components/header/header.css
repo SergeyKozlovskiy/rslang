@@ -3,28 +3,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
 .Header-container {
-  height: 10vh;
+  width: 100%;
+  height: 100px;
   display: flex;
   justify-content: space-between;
-  padding-right: 1%;
+  align-items: center;
 }
 
 .Menu-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding-top: 1%;
   width: 20%;
-  height: 55vh;
+  height: 100%;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .Menu-button {
   width: 18%;
-  height: 6vh;
-  margin-left: 5%;
-  margin-bottom: 1vh;
+  height: 58px;
   background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 245 245' style='enable-background:new 0 0 245 245;' xml:space='preserve'%3E%3Cg id='XMLID_228_'%3E%3Cpath fill='%23ff8600' id='XMLID_229_' d='M105,82.5h120c11.046,0,20-8.954,20-20s-8.954-20-20-20H105c-11.046,0-20,8.954-20,20 S93.954,82.5,105,82.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_230_' d='M225,102.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,102.5,225,102.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_231_' d='M225,162.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,162.5,225,162.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_232_' d='M30,37.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,46.454,41.046,37.5,30,37.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_233_' d='M30,97.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,106.454,41.046,97.5,30,97.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_235_' d='M30,157.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,166.454,41.046,157.5,30,157.5z'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
-
   background-repeat: no-repeat;
   background-size: contain;
   background-position-x: center;
@@ -43,7 +42,7 @@
   transition-duration: 0.6s;
   font-size: 35px;
   display: block;
-  margin-left: -150%;
+  transform: translate(-200%, 100%);
 }
 
 .Menu-list,
@@ -73,7 +72,7 @@
 }
 
 .Menu-active {
-  margin-left: 5%;
+  transform: translate(-23%, 100%);
   transition-duration: 0.6s;
 }
 
@@ -98,6 +97,5 @@
   text-transform: none;
 }
 .Log-in-button {
-  height: 6vh;
-  margin-top: 1%;
+  
 }
