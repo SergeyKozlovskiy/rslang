@@ -12,6 +12,8 @@ export enum Text {
     footerGithubLinksItem1 = 'SergeyKozlovskiy',
     footerGithubLinksItem2 = 'VoitihovichP',
     footerGithubLinksItem3 = 'Stellarator85',
+    footerLogo = 'RS•Lang',
+    footerYearMark = '© 2022г.',
 }
 
 export enum Classes {
@@ -29,4 +31,6 @@ export enum Classes {
     footerRsSchool = 'Footer_RS-school',
     footerGithubLinks = 'Footer_Github-links',
     footerGithubLinksItem = 'Footer_Github-links__item',
+    footerLogo = 'Footer_logo',
+    footerLogoSpan = 'Footer_logo__span',
 }
