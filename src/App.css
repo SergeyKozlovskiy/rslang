@@ -14,21 +14,21 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--main-white-color);
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--main-blue-color);
 }
 .wrapper-page {
-  height: 706px;
+  height: 540px;
+  background-color: var(--main-white-color);
 }
 
 @keyframes App-logo-spin {
@@ -38,4 +38,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+:root {
+  --main-black-color: black;
+  --main-orange-color: #ff8600;
+  --main-blue-color: #0d6efd;
+  --main-white-color: #f4f5f7;
+
+  --logo-font: "Neonderthaw", cursive;
+  --motto-font: "Dongle", sans-serif;
+  --menu-font: "Russo One", sans-serif;
+  --start-button-font: "Playfair Display", serif;
 }

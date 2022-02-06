@@ -1,5 +1,5 @@
 import { Button, CloseButton, Dropdown, DropdownButton } from 'react-bootstrap';
-import fullScreen from '../../../asset/svg/fullscreen.svg';
+import fullScreen from '../../../assets/svg/fullscreen.svg';
 import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
