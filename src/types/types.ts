@@ -27,3 +27,8 @@ export interface IRespSignIn {
   userId: string,
   name: string
 }
+
+export interface IPopupProps {
+  className: string,
+  text: string
+}
