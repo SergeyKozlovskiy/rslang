@@ -32,3 +32,8 @@ export interface IPopupProps {
   className: string,
   text: string
 }
+
+export interface IReduxState {
+  userInfo: IRespSignIn,
+  IsLogin: boolean
+}

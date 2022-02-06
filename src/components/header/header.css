@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&family=Neonderthaw&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&family=Neonderthaw&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 .Header-container {
   height: 10vh;
   display: flex;
@@ -61,7 +61,7 @@
 }
 
 .Menu-list_item__option {
-  font-family: "Russo One", sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-size: 24px;
   text-transform: uppercase;
 }
@@ -79,7 +79,7 @@
 
 .Header_app-name {
   font-size: 60px;
-  font-family: "Neonderthaw", cursive;
+  font-family: 'Neonderthaw', cursive;
   display: flex;
   align-items: center;
   text-transform: uppercase;
@@ -92,7 +92,7 @@
 }
 .Header_app-name__motto {
   font-size: 19.4px;
-  font-family: "Dongle", sans-serif;
+  font-family: 'Dongle', sans-serif;
   display: block;
   padding-left: 2%;
   text-transform: none;
@@ -100,4 +100,10 @@
 .Log-in-button {
   height: 6vh;
   margin-top: 1%;
+}
+.user-name {
+  margin-top: 25px;
+  font-size: 30px;
+  font-family: 'Dongle', sans-serif;
+  text-transform: uppercase;
 }

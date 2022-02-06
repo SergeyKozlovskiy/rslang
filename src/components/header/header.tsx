@@ -4,12 +4,17 @@ import './header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Text } from '../../types/enums';
-import { Classes } from '../../types/enums'
+import { Classes } from '../../types/enums';
+import { IReduxState } from '../../types/types';
+import { useSelector } from 'react-redux';
 
 export const Header: React.FC = () => {
   const showMenu = () => {
     (document.getElementById("Menu_list") as HTMLFormElement).classList.toggle("Menu-active");
   };
+
+  const state: IReduxState = useSelector((state: IReduxState) => state);
+
   return <header className={Classes.headerContainer }>
     <nav className={Classes.menuContainer } id="Navigation">
       <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu} ></Button>
@@ -23,9 +28,15 @@ export const Header: React.FC = () => {
     </nav>
     <div className={Classes.headerAppName}>{Text.headerAppName}<span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
       <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span></div>
-      <Link to="/authorization">
-      <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
-      </Link>
+      {
+        state.IsLogin === false
+        ? 
+        <Link to="/authorization">
+          <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
+        </Link>
+        :
+        <h3 className='user-name'>{state.userInfo.name}</h3>
+      }
     </header>
 };
     
