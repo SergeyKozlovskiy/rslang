@@ -27,6 +27,7 @@
 .App-link {
   color: #61dafb;
 }
+
 .wrapper-page {
   height: 706px;
 }
@@ -35,7 +36,12 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.wrapper-page {
+  position: relative;
 }

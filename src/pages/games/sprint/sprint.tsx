@@ -175,6 +175,7 @@ export const Sprint: React.FC = () => {
       <Button onClick={start} className='sprint-popup_btn' variant="success">{Text.StartSprintButton}</Button>
     </div>
 
+    <div className="wrapper-question-card">
     <div id="timer" className='hide-popup'></div>
 
     <div className="question-card hide-popup">
@@ -182,6 +183,7 @@ export const Sprint: React.FC = () => {
       <p className="question-card_translate">{questionData.translate}</p>
       <Button className='question-card_btn' onClick={() => {responseСheck(false)}} variant="danger">{Text.WrongAnswerSprintButton}</Button>
       <Button className='question-card_btn' onClick={() => {responseСheck(true)}} variant="success">{Text.RightAnswerSprintButton}</Button>
+    </div>
     </div>
 
     <div className="results hide-popup">
