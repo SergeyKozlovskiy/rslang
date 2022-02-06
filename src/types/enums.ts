@@ -20,7 +20,15 @@ export enum Text {
   footerGithubLinksItem3 = 'Stellarator85',
   footerLogo = 'RS•Lang',
   footerYearMark = '© 2022г.',
-  mainStartButtonValue = 'Старт'
+  mainStartButtonValue = 'Старт',
+  authorizationRegBtn = 'Регестрация',
+  authorizationLogBtn = 'Войти',
+  authorizationBackBtn = 'Назад',
+  authorizationRegText = 'Ещё нет аккаунта? Тогда',
+  authorizationRegLink = 'зарегистрируйтесь!',
+  headerUserExit = 'выйти',
+  noneString = 'none',
+  localStorageParam = 'UserInfo'
 }
 
 export enum API {
@@ -35,6 +43,7 @@ export enum MagicNumbers {
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
+  LOGOUT_USER = 'LOGOUT_USER'
 }
 
 export enum Classes {
@@ -57,4 +66,6 @@ export enum Classes {
     footerGithubLinksItem = 'Footer_Github-links__item',
     footerLogo = 'Footer_logo',
     footerLogoSpan = 'Footer_logo__span',
+    headerUserPanel = 'user-panel',
+    headerUserName = 'user-name'
 }

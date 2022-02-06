@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createUser, signInUser } from '../../store/asyncActions';
 import { IReduxState } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
+import { Text } from '../../types/enums';
 
 const AuthorizationForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,17 +30,17 @@ const AuthorizationForm: React.FC = () => {
       <div className="authorization-buttons">
         {
           login === true ? 
-            <button onClick={() => dispatch(createUser())} className="authorization-signin button-default">Регестрация</button>
+            <button onClick={() => dispatch(createUser())} className="authorization-signin button-default">{Text.authorizationRegBtn}</button>
           :     
-            <button onClick={() => dispatch(signInUser())} className="authorization-login button-default">Войти</button>
+            <button onClick={() => dispatch(signInUser())} className="authorization-login button-default">{Text.authorizationLogBtn}</button>
         }
         <div className="authorization-text">
           {
             login === true 
             ? 
-            <span onClick={() => setLogin(false)}>Назад</span>
+            <span onClick={() => setLogin(false)}>{Text.authorizationBackBtn}</span>
             :
-            <p>Ещё нет аккаунта? Тогда <span onClick={()=> setLogin(true)}>зарегестрируйтесь!</span></p>
+            <p>{Text.authorizationRegText} <span onClick={()=> setLogin(true)}>{Text.authorizationRegLink}</span></p>
           } 
         </div>
       </div>

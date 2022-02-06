@@ -47,16 +47,16 @@ export const Header: React.FC = () => {
           state.userInfo = userInfoFromLocal,
           state.IsLogin = true,
 
-          <div className='user-panel'>
-            <h3 className='user-name'>{userInfoFromLocal.name}</h3>
-            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value="выйти" className={Classes.loginButton} />
+          <div className={Classes.headerUserPanel}>
+            <h3 className={Classes.headerUserName}>{userInfoFromLocal.name}</h3>
+            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
           </div>
           ) : (
-          state.IsLogin === true && state.userInfo.name !== 'none'
+          state.IsLogin === true && state.userInfo.name !== Text.noneString
           ? 
-          <div className='user-panel'>
-            <h3 className='user-name'>{state.userInfo.name}</h3>
-            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value="выйти" className={Classes.loginButton} />
+          <div className={Classes.headerUserPanel}>
+            <h3 className={Classes.headerUserName}>{state.userInfo.name}</h3>
+            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
           </div>
           :
           <Link to="/authorization">
