@@ -1,4 +1,4 @@
-export const timer = (): void => {
+export const timer = (showResult: Function): void => {
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
@@ -17,7 +17,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 59;
+const TIME_LIMIT = 7;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval: NodeJS.Timeout;
@@ -51,11 +51,9 @@ if(timer){
 startTimer();
 }
 
-
-
-
 function onTimesUp() {
   clearInterval(timerInterval);
+  showResult();
 }
 
 function startTimer() {

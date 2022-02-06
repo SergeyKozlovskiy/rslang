@@ -26,33 +26,46 @@ type Word = {
 
 type Answer = {
   word: string,
+  audio: string,
   translate: string,
 }
 
 type Question = {
   word: string,
   translate: string, 
-  answer: boolean
+  answer: boolean,
+  audio: string
+}
+
+interface Answers {
+  rightAnswer: Answer[],
+  wrongAnswer: Answer[]
 }
 
 let dataWords : Word[];
 let rightAnswers : Answer[] = [];
 let numQuestion = 0;
 
+const answers: Answers = {
+  rightAnswer: [],
+  wrongAnswer: []
+}
+
 export const Sprint: React.FC = () => {
   const [questionData, setQuestion] = useState<Question>({
     word: '',
     translate: '', 
-    answer:  true
+    answer:  true, 
+    audio: ''
   });
-
-
+  
   async function getData () {
     try {
       const randomGroup = _.random(0, 5);
       const randomPage = _.random(0, 29);
       const result = await getWords(randomGroup, randomPage).then((value) => value);
       dataWords = result;
+      console.log(result);
       createArrAnswers();
     }
     catch(error){
@@ -60,15 +73,34 @@ export const Sprint: React.FC = () => {
     }
   }
 
+  const closePopUp = () => {
+    const resultPopUp = document.querySelector('.results') as HTMLElement; 
+    const sprintPopUp = document.querySelector('.sprint-popup') as HTMLElement;
+    const questionСard = document.querySelector('.question-card') as HTMLElement;
+    const timerElem = document.getElementById('timer') as HTMLElement;
+    resultPopUp?.classList.add('hide-popup');
+    questionСard?.classList.add('hide-popup');
+    timerElem?.classList.add('hide-popup');
+    sprintPopUp?.classList.remove('hide-popup');
+  }
+
+  const showResult = () => {
+    const resultPopUp = document.querySelector('.results') as HTMLElement;
+    resultPopUp.classList.remove('hide-popup')
+    console.log(answers);
+  }
+
   const responseСheck = (answer: boolean) => {
     const questionCard = document.querySelector('.question-card') as HTMLElement;
     if(questionData.answer === answer && questionCard){
+      answers.rightAnswer.push(questionData);
       console.log('правильно');
       questionCard.classList.add('right-answer');
       setTimeout(() => {
         questionCard.classList.remove('right-answer');
       }, 400)
     }else{
+      answers.wrongAnswer.push(questionData);
       console.log('не правильно')
       questionCard.classList.add('wrong-answer');
       setTimeout(() => {
@@ -82,9 +114,11 @@ export const Sprint: React.FC = () => {
   const createQuestion = () => {
     if(numQuestion < MagicNumbers.MAX_NUM_OF_QUESTIONS) {
       const randomNum = _.random(0, 1);
+
       const question = {
         word : rightAnswers[numQuestion].word,
         translate : rightAnswers[numQuestion + randomNum].translate,
+        audio: rightAnswers[numQuestion].audio,
         answer : randomNum === 0 ? true : false
       }
       numQuestion++;
@@ -98,10 +132,11 @@ export const Sprint: React.FC = () => {
   }
 
   const createArrAnswers = () => {
-    dataWords.forEach((elem, i) => {
+    dataWords.forEach((elem) => {
       const answer = {
         word: elem.word,
-        translate: elem.wordTranslate
+        translate: elem.wordTranslate, 
+        audio: elem.audio
       }
       rightAnswers.push(answer)
     })
@@ -116,7 +151,7 @@ export const Sprint: React.FC = () => {
     popUp?.classList.add('hide-popup');
     questionСard?.classList.remove('hide-popup');
     timerElem?.classList.remove('hide-popup');
-    timer();
+    timer(showResult);
     getData();
   }
 
@@ -149,5 +184,26 @@ export const Sprint: React.FC = () => {
       <Button className='question-card_btn' onClick={() => {responseСheck(true)}} variant="success">{Text.RightAnswerSprintButton}</Button>
     </div>
 
+    <div className="results hide-popup">
+      <h3>Результаты</h3>
+      <p>Вы набрали n очков</p>
+      <div className="results-answers">
+      <strong>Правильные ответы</strong>
+      <div>{answers.rightAnswer.map(answerData => {
+        return <div>
+          <span>{answerData.word} </span>
+          <span>- {answerData.translate}</span>
+        </div>
+      })}</div>
+      <strong>Не правильные ответы</strong>
+      <div>{answers.wrongAnswer.map(answerData => {
+        return <div>
+          <span>{answerData.word} </span>
+          <span>- {answerData.translate}</span>
+        </div>
+      })}</div>
+      </div>
+      <Button onClick={closePopUp} variant="secondary">Выйти</Button>
+    </div>
   </div>
 };

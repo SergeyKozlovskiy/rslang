@@ -1,3 +1,7 @@
+.sprint-wrapper{
+  position: relative;
+  height: 100%;
+}
 .sprint-settings {
   display: flex;
   width: 100%;
@@ -30,7 +34,7 @@
 }
 
 .hide-popup {
-  transform: scale(0);
+  transform: scale(0) !important;
 }
 
 #timer {
@@ -122,4 +126,24 @@
 
 .question-card_btn:nth-child(4) {
   margin-left: 10px;
+}
+
+.results{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  margin: 0 auto;
+  padding: 25px 35px;
+  border: 1px solid black;
+  border-radius: 7px;
+  transition: .3s;
+  background: white;
+  z-index: 100;
+}
+
+.results-answers {
+  height: 400px;
+  overflow-y: auto;
 }
