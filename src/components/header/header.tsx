@@ -6,12 +6,15 @@ import { Button } from 'react-bootstrap';
 import { Text } from '../../types/enums';
 import { Classes } from '../../types/enums';
 import { IReduxState } from '../../types/types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUserAction } from '../../store/actions';
 
 export const Header: React.FC = () => {
   const showMenu = () => {
     (document.getElementById("Menu_list") as HTMLFormElement).classList.toggle("Menu-active");
   };
+
+  const dispatch = useDispatch();
 
   const state: IReduxState = useSelector((state: IReduxState) => state);
 
@@ -29,13 +32,16 @@ export const Header: React.FC = () => {
     <div className={Classes.headerAppName}>{Text.headerAppName}<span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
       <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span></div>
       {
-        state.IsLogin === false
+        state.IsLogin === true && state.userInfo.name !== 'none'
         ? 
+        <div className='user-panel'>
+          <h3 className='user-name'>{state.userInfo.name}</h3>
+          <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value="выйти" className={Classes.loginButton} />
+        </div>
+        :
         <Link to="/authorization">
           <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
         </Link>
-        :
-        <h3 className='user-name'>{state.userInfo.name}</h3>
       }
     </header>
 };

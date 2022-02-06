@@ -101,8 +101,12 @@
   height: 6vh;
   margin-top: 1%;
 }
+.user-panel {
+  display: flex;
+  align-items: center;
+}
 .user-name {
-  margin-top: 25px;
+  margin: 8px 15px 0 0;
   font-size: 30px;
   font-family: 'Dongle', sans-serif;
   text-transform: uppercase;
