@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import './authorizationForm.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../../store/asyncActions';
-import { signInUser } from '../../store/asyncActions';
+import { createUser, signInUser } from '../../store/asyncActions';
+import { IReduxState } from '../../types/types';
+import { useNavigate } from 'react-router-dom';
 
 const AuthorizationForm: React.FC = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
+  const state: IReduxState = useSelector((state: IReduxState) => state);
+
+  const navigate = useNavigate();
+  if(state.IsLogin) {
+    navigate('/')
+  }
 
   const [login, setLogin] = useState(false);
 
   return (
     <div className='authorization-form'>
-      <button onClick={() => console.log(state)}>State</button>
       {
         login === true ? 
           <input className='authorization-name text-default' type="text" name="name" id="name" placeholder="Имя" />
@@ -34,7 +39,7 @@ const AuthorizationForm: React.FC = () => {
             ? 
             <span onClick={() => setLogin(false)}>Назад</span>
             :
-            <p>Ещё нет аккаунта? Тогда <span onClick={()=> setLogin(true)}>зарегестриутесь!</span></p>
+            <p>Ещё нет аккаунта? Тогда <span onClick={()=> setLogin(true)}>зарегестрируйтесь!</span></p>
           } 
         </div>
       </div>

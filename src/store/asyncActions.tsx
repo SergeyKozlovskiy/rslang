@@ -42,13 +42,15 @@ export const signInUser = () => {
 
   return async (dispatch: Function) => {
     signIn(body)
-    .then((resp: Response) => resp.json())
-    .catch(() => {
-      unLogPopup.classList.add('popup-active');
-      setTimeout(() => {
-        unLogPopup.classList.remove('popup-active');
-      }, 2000);
-    })
-    .then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
+    .then((resp: Response) => {
+      if(resp.ok) {
+        resp.json().then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
+      } else {
+        unLogPopup.classList.add('popup-active');
+        setTimeout(() => {
+          unLogPopup.classList.remove('popup-active');
+        }, 2000);
+      }
+    });
   }
 }
