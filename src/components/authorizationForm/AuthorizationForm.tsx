@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createUser, signInUser } from '../../store/asyncActions';
 import { IReduxState } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
-import { Text } from '../../types/enums';
+import { Text, Classes } from '../../types/enums';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const AuthorizationForm: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,33 +20,46 @@ const AuthorizationForm: React.FC = () => {
   const [login, setLogin] = useState(false);
 
   return (
-    <div className='authorization-form'>
+    <Form>
       {
         login === true ? 
-          <input className='authorization-name text-default' type="text" name="name" id="name" placeholder="Имя" />
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>{Text.authorizationName}</Form.Label>
+            <Form.Control className={Classes.nameInput} type="text" placeholder="Имя" />
+          </Form.Group>
         : 
           ''
       }
-      <input className='authorization-email text-default' type="email" name="email" id="email" placeholder="Email" />
-      <input className='authorization-password text-default' type="password" name="password" id="pass" placeholder="Пароль" />
-      <div className="authorization-buttons">
-        {
-          login === true ? 
-            <button onClick={() => dispatch(createUser())} className="authorization-signin button-default">{Text.authorizationRegBtn}</button>
-          :     
-            <button onClick={() => dispatch(signInUser())} className="authorization-login button-default">{Text.authorizationLogBtn}</button>
-        }
-        <div className="authorization-text">
-          {
-            login === true 
-            ? 
-            <span onClick={() => setLogin(false)}>{Text.authorizationBackBtn}</span>
-            :
-            <p>{Text.authorizationRegText} <span onClick={()=> setLogin(true)}>{Text.authorizationRegLink}</span></p>
-          } 
-        </div>
-      </div>
-    </div>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>{Text.authorizationEmail}</Form.Label>
+        <Form.Control className={Classes.emailInput} type="email" placeholder="Email" />
+        <Form.Text className="text-muted">
+          {Text.authorizationEmailSmal}
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>{Text.authorizationPassword}</Form.Label>
+        <Form.Control className={Classes.passInput} type="password" placeholder="Пароль" />
+      </Form.Group>
+      {
+        login === true ? 
+          <Button onClick={() => dispatch(createUser())} variant="primary">
+            {Text.authorizationRegBtn}
+          </Button>
+        :     
+          <Button onClick={() => dispatch(signInUser())} variant="primary">
+            {Text.loginButtonValue}
+          </Button>
+      }
+      {
+        login === true 
+        ? 
+        <p className={Classes.formBack}><span onClick={() => setLogin(false)}>{Text.authorizationBackBtn}</span></p>
+        :
+        <p className={Classes.formReg}>{Text.authorizationRegText} <span onClick={()=> setLogin(true)}>{Text.authorizationRegLink}</span></p>
+      } 
+    </Form>
   )
 }
 

@@ -22,13 +22,16 @@ export enum Text {
   footerYearMark = '© 2022г.',
   mainStartButtonValue = 'Старт',
   authorizationRegBtn = 'Регестрация',
-  authorizationLogBtn = 'Войти',
   authorizationBackBtn = 'Назад',
   authorizationRegText = 'Ещё нет аккаунта? Тогда',
   authorizationRegLink = 'зарегистрируйтесь!',
   headerUserExit = 'выйти',
   noneString = 'none',
-  localStorageParam = 'UserInfo'
+  localStorageParam = 'UserInfo',
+  authorizationPassword = 'Введите пароль',
+  authorizationEmail = 'Введите вашу почту',
+  authorizationName = 'Введите ваше имя',
+  authorizationEmailSmal = 'Мы сохраним вашу почту в безопасности!'
 }
 
 export enum API {
@@ -67,5 +70,13 @@ export enum Classes {
     footerLogo = 'Footer_logo',
     footerLogoSpan = 'Footer_logo__span',
     headerUserPanel = 'user-panel',
-    headerUserName = 'user-name'
+    headerUserName = 'user-name',
+    nameInput = 'name-input',
+    emailInput = 'email-input',
+    passInput = 'password-input',
+    formBack = 'back',
+    formReg = 'registr',
+    regPopup = 'registration-popup',
+    logPopup = 'login-popup',
+    activePopup = 'popup-active'
 }

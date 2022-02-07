@@ -1,72 +1,17 @@
-.authorization-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 50px 25px 12px 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 500px;
-  background-color: #d1cfcf;
-  border-radius: 30px;
-  box-shadow: 10px 13px 20px 2px #8f8e8e;
+.back {
+  margin: 10px 0 20px 34px;
 }
 
-.text-default {
-  padding-left: 5px;
-  margin-bottom: 25px;
-  width: 280px;
-  height: 35px;
-  border: none;
-  background-color: #9e9595;
-  border-radius: 10px;
-  outline: none;
+.registr {
+  margin: 10px 0 20px 0;
 }
 
-.authorization-buttons {
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.authorization-buttons div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.authorization-text {
-  margin: 10px 0 0 0;
-  text-align: center;
-}
-
-.authorization-text p {
-  margin: 0;
-}
-
-.authorization-text span {
+p span {
   text-decoration: underline;
   cursor: pointer;
   transition: 0.3s all;
 }
 
-.authorization-text span:hover {
+p span:hover {
   color: #696666;
-}
-
-.button-default {
-  width: 120px;
-  height: 30px;
-  border: none;
-  font-family: inherit;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: #0d6efd;
-  transition: 0.3s all;
-}
-
-.button-default:hover {
-  background-color: #0956ca;
 }

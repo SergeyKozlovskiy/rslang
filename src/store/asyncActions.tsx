@@ -2,12 +2,13 @@ import { ICreateUser, IRespSignIn, IPostSignIn } from "../types/types";
 import { postUser } from '../requests/postUser';
 import { createUserAction } from "./actions";
 import { signIn } from "../requests/signIn";
+import { Classes } from '../types/enums';
 
 export const createUser = () => {
-  const unRegPopup = document.querySelector('.registration-popup') as HTMLDivElement;
-  const nameInput = document.querySelector('.authorization-name') as HTMLInputElement;
-  const emailInput = document.querySelector('.authorization-email') as HTMLInputElement;
-  const passwordInput = document.querySelector('.authorization-password') as HTMLInputElement;
+  const unRegPopup = document.querySelector(`.${Classes.regPopup}`) as HTMLDivElement;
+  const nameInput = document.querySelector(`.${Classes.nameInput}`) as HTMLInputElement;
+  const emailInput = document.querySelector(`.${Classes.emailInput}`) as HTMLInputElement;
+  const passwordInput = document.querySelector(`.${Classes.passInput}`) as HTMLInputElement;
   const body: ICreateUser = {
     name: nameInput.value,
     email: emailInput.value,
@@ -22,9 +23,9 @@ export const createUser = () => {
         .then((resp: Response) => resp.json())
         .then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
       } else {
-        unRegPopup.classList.add('popup-active');
+        unRegPopup.classList.add(`${Classes.activePopup}`);
         setTimeout(() => {
-          unRegPopup.classList.remove('popup-active');
+          unRegPopup.classList.remove(`${Classes.activePopup}`);
         }, 2000);
       }
     });
@@ -32,9 +33,9 @@ export const createUser = () => {
 };
 
 export const signInUser = () => {
-  const unLogPopup = document.querySelector('.login-popup') as HTMLDivElement;
-  const emailInput = document.querySelector('.authorization-email') as HTMLInputElement;
-  const passwordInput = document.querySelector('.authorization-password') as HTMLInputElement;
+  const unLogPopup = document.querySelector(`.${Classes.logPopup}`) as HTMLDivElement;
+  const emailInput = document.querySelector(`.${Classes.emailInput}`) as HTMLInputElement;
+  const passwordInput = document.querySelector(`.${Classes.passInput}`) as HTMLInputElement;
   const body: IPostSignIn = {
     email: emailInput.value,
     password: passwordInput.value
@@ -46,9 +47,9 @@ export const signInUser = () => {
       if(resp.ok) {
         resp.json().then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
       } else {
-        unLogPopup.classList.add('popup-active');
+        unLogPopup.classList.add(`${Classes.activePopup}`);
         setTimeout(() => {
-          unLogPopup.classList.remove('popup-active');
+          unLogPopup.classList.remove(`${Classes.activePopup}`);
         }, 2000);
       }
     });
