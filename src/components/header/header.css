@@ -98,6 +98,7 @@
   color: var(--main-orange-color);
   display: block;
 }
+
 .header_app-name__motto {
   font-size: 20px;
   font-family: var(--motto-font);
@@ -105,4 +106,14 @@
   padding-left: 2%;
   text-transform: none;
   color: var(--main-black-color);
+}
+.user-panel {
+  display: flex;
+  align-items: center;
+}
+.user-name {
+  margin: 8px 15px 0 0;
+  font-size: 30px;
+  font-family: 'Dongle', sans-serif;
+  text-transform: uppercase;
 }

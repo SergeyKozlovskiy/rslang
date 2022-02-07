@@ -20,12 +20,24 @@ export enum Text {
   footerGithubLinksItem3 = 'Stellarator85',
   footerLogo = 'RS•Lang',
   footerYearMark = '© 2022г.',
-  mainStartButtonValue = 'Старт'
+  mainStartButtonValue = 'Старт',
+  authorizationRegBtn = 'Регестрация',
+  authorizationBackBtn = 'Назад',
+  authorizationRegText = 'Ещё нет аккаунта? Тогда',
+  authorizationRegLink = 'зарегистрируйтесь!',
+  headerUserExit = 'выйти',
+  noneString = 'none',
+  localStorageParam = 'UserInfo',
+  authorizationPassword = 'Введите пароль',
+  authorizationEmail = 'Введите вашу почту',
+  authorizationName = 'Введите ваше имя',
+  authorizationEmailSmal = 'Мы сохраним вашу почту в безопасности!'
 }
 
 export enum API {
   URL = 'http://localhost:5000/',
-  Words = 'words'
+  Words = 'words',
+  Users = 'users',
 }
 
 export enum MagicNumbers {
@@ -34,6 +46,7 @@ export enum MagicNumbers {
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
+  LOGOUT_USER = 'LOGOUT_USER'
 }
 
 
@@ -59,4 +72,14 @@ export enum Classes {
   footerGithubLinksItem = 'footer_github-links__item',
   footerLogo = 'footer_logo',
   footerLogoSpan = 'footer_logo__span',
+  headerUserPanel = 'user-panel',
+  headerUserName = 'user-name',
+  nameInput = 'name-input',
+  emailInput = 'email-input',
+  passInput = 'password-input',
+  formBack = 'back',
+  formReg = 'registr',
+  regPopup = 'registration-popup',
+  logPopup = 'login-popup',
+  activePopup = 'popup-active'
 }
