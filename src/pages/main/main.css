@@ -1,32 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
 
-.Main {
-  height: 76vh;
-  background-image: url(start-page-background.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+.main_start-page {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_start-page_container_button {
+  border-radius: 13px;
+  display: block;
+  background-color: var(--main-orange-color);
+  font-size: 33px;
+  font-family: var(--start-button-font);
+  color: var(--main-black-color);
+  padding: 0.5% 2% 0.5% 2%;
+  transform: translate(-31%, 457%);
+  transition-duration: 0.4s;
+  border: 2.5px solid var(--main-black-color);
+  height: fit-content;
+}
+.main_start-page_container_button:active {
+  color: var(--main-white-color);
+  border: 2.5px solid var(--main-white-color);
+  transition-duration: 0.4s;
 }
 
-.Main_start-page {
-  background-image: url(start-page-background.png);
+.main_start-page_container {
+  height: 90%;
+  width: 84%;
+  display: flex;
+  justify-content: flex-end;
+  background-image: url(../../assets/main/start-page-background.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-
-  background-color: #f4f5f7;
-}
-.Main_start-page__button {
-  border-radius: 13px;
-  display: block;
-  background-color: #ff8600;
-  font-size: 28px;
-  font-family: "Playfair Display", serif;
-  color: white;
-  padding: 0% 2% 0% 2%;
-  position: absolute;
-  margin-top: 27%;
-  margin-left: 72%;
-}
-.Main_start-page__button:active {
-  color: black;
 }

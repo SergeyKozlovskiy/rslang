@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
+import { CloseButton } from 'react-bootstrap';
 import { Text } from '../../types/enums';
 import { Classes } from '../../types/enums';
 import { IReduxState } from '../../types/types';
@@ -13,7 +14,7 @@ import { IRespSignIn } from '../../types/types';
 
 export const Header: React.FC = () => {
   const showMenu = () => {
-    (document.getElementById("Menu_list") as HTMLFormElement).classList.toggle("Menu-active");
+    (document.getElementById("menu_list") as HTMLFormElement).classList.toggle("menu-active");
   };
 
   const dispatch = useDispatch();
@@ -22,10 +23,11 @@ export const Header: React.FC = () => {
 
   const userInfoFromLocal: IRespSignIn | null = getUserInfo();
 
-  return <header className={Classes.headerContainer }>
+  return <header className={Classes.header}>
     <nav className={Classes.menuContainer } id="Navigation">
       <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu} ></Button>
-      <ul id="Menu_list" className={Classes.menuList}>
+      <ul id="menu_list" className={Classes.menuList}>
+        <CloseButton variant="white" className={Classes.menuListCloseButton} onClick={showMenu}></CloseButton>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/">{Text.menuOptionStartPage}</Link></li>
         {
           state.IsLogin === false
@@ -39,8 +41,10 @@ export const Header: React.FC = () => {
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics">{Text.menuOptionStatPage}</Link></li>
       </ul>
     </nav>
-    <div className={Classes.headerAppName}>{Text.headerAppName}<span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
-      <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span></div>
+    <Link className={Classes.headerAppName} to="/">{Text.headerAppName}
+      <span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
+      <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span>
+    </Link>
       {
         userInfoFromLocal !== null
         ? (
