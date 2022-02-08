@@ -2,16 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Lobster+Two&family=Neonderthaw&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital@1&family=Dongle:wght@700&family=Lobster+Two&family=Neonderthaw&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
-.Header-container {
+.header {
   width: 100%;
   height: 100px;
   display: flex;
   padding: 1%;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--main-white-color);
 }
 
-.Menu-container {
+.menu-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -21,80 +22,98 @@
   z-index: 1000;
 }
 
-.Menu-button {
-  width: 18%;
-  height: 58px;
+.menu-button {
+  width: 25%;
+  height: 80%;
   background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 245 245' style='enable-background:new 0 0 245 245;' xml:space='preserve'%3E%3Cg id='XMLID_228_'%3E%3Cpath fill='%23ff8600' id='XMLID_229_' d='M105,82.5h120c11.046,0,20-8.954,20-20s-8.954-20-20-20H105c-11.046,0-20,8.954-20,20 S93.954,82.5,105,82.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_230_' d='M225,102.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,102.5,225,102.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_231_' d='M225,162.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,162.5,225,162.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_232_' d='M30,37.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,46.454,41.046,37.5,30,37.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_233_' d='M30,97.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,106.454,41.046,97.5,30,97.5z'/%3E%3Cpath fill='%23ff8600' id='XMLID_235_' d='M30,157.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,166.454,41.046,157.5,30,157.5z'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 90% 100%;
   background-position-x: center;
   background-position-y: center;
   transition-duration: 1s;
 }
 
-.Menu-button:hover {
+.menu-button:hover {
   background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 245 245' style='enable-background:new 0 0 245 245;' xml:space='preserve'%3E%3Cg id='XMLID_228_'%3E%3Cpath fill='white' id='XMLID_229_' d='M105,82.5h120c11.046,0,20-8.954,20-20s-8.954-20-20-20H105c-11.046,0-20,8.954-20,20 S93.954,82.5,105,82.5z'/%3E%3Cpath fill='white' id='XMLID_230_' d='M225,102.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,102.5,225,102.5z'/%3E%3Cpath fill='white' id='XMLID_231_' d='M225,162.5H105c-11.046,0-20,8.954-20,20s8.954,20,20,20h120c11.046,0,20-8.954,20-20 S236.046,162.5,225,162.5z'/%3E%3Cpath fill='white' id='XMLID_232_' d='M30,37.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,46.454,41.046,37.5,30,37.5z'/%3E%3Cpath fill='white' id='XMLID_233_' d='M30,97.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,106.454,41.046,97.5,30,97.5z'/%3E%3Cpath fill='white' id='XMLID_235_' d='M30,157.5H20c-11.046,0-20,8.954-20,20v10c0,11.046,8.954,20,20,20h10c11.046,0,20-8.954,20-20v-10 C50,166.454,41.046,157.5,30,157.5z'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
   transition-duration: 1s;
 }
 
-.Menu-list {
-  background-color: rgba(113, 126, 142, 0.5);
-  border-radius: 4px;
+.menu-list {
+  background-color: var(--main-blue-color);
+  border-radius: 5px;
   transition-duration: 0.6s;
-  font-size: 35px;
-  display: block;
-  transform: translate(-200%, 100%);
+  display: flex;
+  flex-direction: column;
+  transform: translate(-400%, 70%);
+  align-items: flex-end;
 }
 
-.Menu-list,
-.Menu-list_item__option {
+.menu-list,
+.menu-list_item__option {
   text-decoration: none;
-  color: #ff8600;
+  color: var(--main-white-color);
   text-align: left;
-  width: 100%;
+  width: 95%;
 }
 
-.Menu-list_item {
+.menu-list-close-button {
+  border: 2px red solid;
+}
+
+.menu-list_item {
   vertical-align: middle;
-  width: 100%;
-  font-size: 30px;
+  width: 95%;
+  font-size: 33px;
 }
 
-.Menu-list_item__option {
-  font-family: "Russo One", sans-serif;
+.menu-list_item__option {
+  font-family: var(--menu-font);
   font-size: 24px;
   text-transform: uppercase;
 }
 
-.Menu-list_item:hover,
-.Menu-list_item__option:hover {
+.menu-list_item:hover,
+.menu-list_item__option:hover {
   transition-duration: 0.35s;
-  color: rgb(255, 255, 255);
+  color: var(--main-orange-color);
 }
 
-.Menu-active {
-  transform: translate(-23%, 100%);
+.menu-active {
+  transform: translate(-26%, 71%);
   transition-duration: 0.6s;
 }
 
-.Header_app-name {
+.header_app-name {
   font-size: 60px;
-  font-family: "Neonderthaw", cursive;
+  font-family: var(--logo-font);
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  width: 53%;
+  width: 57%;
+  text-decoration: none;
+  color: var(--main-blue-color);
 }
 
-.Header_app-name__span {
-  color: #ff8600;
+.header_app-name__span {
+  color: var(--main-orange-color);
   display: block;
 }
-.Header_app-name__motto {
-  font-size: 19.4px;
-  font-family: "Dongle", sans-serif;
+
+.header_app-name__motto {
+  font-size: 20px;
+  font-family: var(--motto-font);
   display: block;
   padding-left: 2%;
   text-transform: none;
+  color: var(--main-black-color);
 }
-
+.user-panel {
+  display: flex;
+  align-items: center;
+}
+.user-name {
+  margin: 8px 15px 0 0;
+  font-size: 30px;
+  font-family: 'Dongle', sans-serif;
+  text-transform: uppercase;
+}

@@ -20,13 +20,25 @@ export enum Text {
   footerGithubLinksItem3 = 'Stellarator85',
   footerLogo = 'RS•Lang',
   footerYearMark = '© 2022г.',
-  mainStartButtonValue = 'Старт', 
-  exit = 'Выйти'
+  exit = 'Выйти',
+  mainStartButtonValue = 'Старт',
+  authorizationRegBtn = 'Регестрация',
+  authorizationBackBtn = 'Назад',
+  authorizationRegText = 'Ещё нет аккаунта? Тогда',
+  authorizationRegLink = 'зарегистрируйтесь!',
+  headerUserExit = 'выйти',
+  noneString = 'none',
+  localStorageParam = 'UserInfo',
+  authorizationPassword = 'Введите пароль',
+  authorizationEmail = 'Введите вашу почту',
+  authorizationName = 'Введите ваше имя',
+  authorizationEmailSmal = 'Мы сохраним вашу почту в безопасности!'
 }
 
 export enum API {
   URL = 'http://localhost:5000/',
-  Words = 'words'
+  Words = 'words',
+  Users = 'users',
 }
 
 export enum MagicNumbers {
@@ -38,26 +50,40 @@ export enum MagicNumbers {
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
+  LOGOUT_USER = 'LOGOUT_USER'
 }
 
+
 export enum Classes {
-    headerContainer = 'Header-container',
-    menuContainer = 'Menu-container',
-    menuButton = 'Menu-button',
-    menuList = 'Menu-list',
-    menuListItem = 'Menu-list_item',
-    menuListItemOption = 'Menu-list_item__option',
-    headerAppName = 'Header_app-name',
-    headerAppNameSpan = 'Header_app-name__span',
-    headerAppNameMotto = 'Header_app-name__motto',
-    loginButton = 'Log-in-button',
-    main = 'Main',
-    mainStartPage = 'Main Main_start-page',
-    mainStartButton = 'Main_start-page__button',
-    footer = 'Footer',
-    footerRsSchool = 'Footer_RS-school',
-    footerGithubLinks = 'Footer_Github-links',
-    footerGithubLinksItem = 'Footer_Github-links__item',
-    footerLogo = 'Footer_logo',
-    footerLogoSpan = 'Footer_logo__span',
+  header = 'header',
+  menuContainer = 'menu-container',
+  menuButton = 'menu-button',
+  menuList = 'menu-list',
+  menuListCloseButton = 'menu-list-close-button',
+  menuListItem = 'menu-list_item',
+  menuListItemOption = 'menu-list_item__option',
+  headerAppName = 'header_app-name',
+  headerAppNameSpan = 'header_app-name__span',
+  headerAppNameMotto = 'header_app-name__motto',
+  loginButton = 'log-in-button',
+  main = 'main',
+  mainStartPage = 'main main_start-page',
+  mainStartPageContainer = 'main_start-page_container',
+  mainStartButton = 'main_start-page_container_button',
+  footer = 'footer',
+  footerRsSchool = 'footer_rs-school',
+  footerGithubLinks = 'footer_github-links',
+  footerGithubLinksItem = 'footer_github-links__item',
+  footerLogo = 'footer_logo',
+  footerLogoSpan = 'footer_logo__span',
+  headerUserPanel = 'user-panel',
+  headerUserName = 'user-name',
+  nameInput = 'name-input',
+  emailInput = 'email-input',
+  passInput = 'password-input',
+  formBack = 'back',
+  formReg = 'registr',
+  regPopup = 'registration-popup',
+  logPopup = 'login-popup',
+  activePopup = 'popup-active'
 }
