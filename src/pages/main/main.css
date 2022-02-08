@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 .main_start-page {
   height: inherit;
@@ -6,32 +6,32 @@
   justify-content: center;
   align-items: center;
 }
-.main_start-page_container_button {
-  border-radius: 13px;
-  display: block;
-  background-color: var(--main-orange-color);
-  font-size: 33px;
-  font-family: var(--start-button-font);
-  color: var(--main-black-color);
-  padding: 0.5% 2% 0.5% 2%;
-  transform: translate(-31%, 457%);
-  transition-duration: 0.4s;
-  border: 2.5px solid var(--main-black-color);
-  height: fit-content;
-}
-.main_start-page_container_button:active {
-  color: var(--main-white-color);
-  border: 2.5px solid var(--main-white-color);
-  transition-duration: 0.4s;
+
+.main-greetings {
+  margin: 30px 0 15px 0;
+  width: 50%;
+  font-size: 60px;
 }
 
-.main_start-page_container {
-  height: 90%;
-  width: 84%;
-  display: flex;
-  justify-content: flex-end;
-  background-image: url(../../assets/main/start-page-background.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+.main-promo {
+  margin: 0;
+  width: 45%;
+  font-size: 20px;
+}
+
+.main-promo span,
+.main-greetings span {
+  color: var(--main-orange-color);
+  text-decoration: none;
+  cursor: text;
+}
+
+.main-promo span:hover {
+  color: var(--main-orange-color);
+}
+
+.main-start-btn {
+  margin-top: 40px;
+  width: 150px;
+  height: 40px;
 }
