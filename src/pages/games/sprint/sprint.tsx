@@ -1,12 +1,18 @@
 import { Button, CloseButton, Dropdown, DropdownButton } from 'react-bootstrap';
 import fullScreen from '../../../asset/svg/fullscreen.svg';
+import fullScreenExit from '../../../asset/svg/fullscreen-exit.svg';
+import audioImg from '../../../asset/svg/audio.svg';
+import muteImg from '../../../asset/svg/mute.svg';
 import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
-import './sprint.css';
 import { API, MagicNumbers, Text } from '../../../types/enums';
-import { useState } from 'react';
-import audio from '../../../asset/svg/audio.svg';
+import { SyntheticEvent, useState } from 'react';
+import './sprint.css';
+import { Link } from 'react-router-dom';
+const correctAnswer = require("../../../asset/audio/correctAnswer.mp3");
+const incorrectAnswer = require("../../../asset/audio/incorrectAnswer.mp3");
+const end = require("../../../asset/audio/end.mp3");
 
 type Word = {
     id: string,
@@ -49,6 +55,7 @@ let numQuestion = 0;
 let seriesOfCorrectAnswers = 0;
 let score = 0;
 let indicatorNumber = 0;
+let mute = true;
 
 const answers: Answers = {
   rightAnswer: [],
@@ -63,8 +70,18 @@ export const Sprint: React.FC = () => {
     audio: ''
   });
 
-  const changeIndicatorNumber = () => {
+  const changeFullScreen = (event: SyntheticEvent) => {
+    const target = event.target as HTMLImageElement;
+   if (document.fullscreenElement) {
+    document.exitFullscreen();
+    target.setAttribute('src', fullScreen);
+   } else {
+    document.documentElement.requestFullscreen();
+    target.setAttribute('src', fullScreenExit);
+   }
+  }
 
+  const changeIndicatorNumber = () => {
     if(indicatorNumber !== 2) {
       indicatorNumber += 1;
     }else{
@@ -72,16 +89,35 @@ export const Sprint: React.FC = () => {
     }
   }
 
-  const startAudio = (name: string) => {
-    const audioObj = new Audio(`${API.URL}${name}`);
+  const changeMute = (event: SyntheticEvent) => {
+    const target = event.target as HTMLImageElement;
+    if(mute){
+      mute = false;
+      target.setAttribute('src', muteImg);
+    }else{
+      mute = true;
+      target.setAttribute('src', audioImg);
+    }
+    
+  }
+
+  const startAudio = (path: string) => {
+    if(mute){
+      const audioObj = new Audio(`${path}`);
+      audioObj.play();
+    }
+  }
+
+  const voice = (path: string) => {
+    const audioObj = new Audio(`${path}`);
     audioObj.play();
   }
 
   async function getData () {
     try {
-      // const randomGroup = _.random(0, 5);
-      // const randomPage = _.random(0, 29);
-      const result = await getWords(1, 1).then((value) => value);
+      const randomGroup = _.random(0, 5);
+      const randomPage = _.random(0, 29);
+      const result = await getWords(randomGroup, randomPage).then((value) => value);
       dataWords = result;
       createArrAnswers();
     }
@@ -102,15 +138,14 @@ export const Sprint: React.FC = () => {
   const changeScore = (answer: boolean) => {
     const indicators = document.querySelectorAll('.question-card_indicators__item');
     if(answer){
-      if(seriesOfCorrectAnswers < 3){
-        score += 10;
+      if(seriesOfCorrectAnswers < MagicNumbers.SERIES_OF_CORRECT_ANSWERS_1){
+        score += MagicNumbers.BASIC_SCORE;
         indicators[indicatorNumber].classList.add('correct-answer_indicator__1');
-      }else if(seriesOfCorrectAnswers >= 3 && seriesOfCorrectAnswers < 6){
-        score += 20;
+      }else if(seriesOfCorrectAnswers >= MagicNumbers.SERIES_OF_CORRECT_ANSWERS_1 && seriesOfCorrectAnswers < MagicNumbers.SERIES_OF_CORRECT_ANSWERS_2){
+        score += MagicNumbers.BONUS_SCORE;
         indicators[indicatorNumber].classList.add('correct-answer_indicator__2');
-      }else if(seriesOfCorrectAnswers >= 6){
-        score += 40;
-        console.log(indicatorNumber);
+      }else if(seriesOfCorrectAnswers >= MagicNumbers.SERIES_OF_CORRECT_ANSWERS_2){
+        score += MagicNumbers.SUPER_BONUS_SCORE;
         indicators[indicatorNumber].classList.add('correct-answer_indicator__3');
       }
       changeIndicatorNumber();
@@ -134,8 +169,9 @@ export const Sprint: React.FC = () => {
   }
 
   const showResult = () => {
+    startAudio(end);
     const resultPopUp = document.querySelector('.results') as HTMLElement;
-    resultPopUp.classList.remove('hide-popup')
+    resultPopUp.classList.remove('hide-popup');
   }
 
   const responseСheck = (answer: boolean) => {
@@ -143,6 +179,7 @@ export const Sprint: React.FC = () => {
     if(questionData.answer === answer && questionCard){
       answers.rightAnswer.push(questionData);
       changeScore(true);
+      startAudio(correctAnswer);
       questionCard.classList.add('right-answer');
       setTimeout(() => {
         questionCard.classList.remove('right-answer');
@@ -150,6 +187,7 @@ export const Sprint: React.FC = () => {
     }else{
       answers.wrongAnswer.push(questionData);
       changeScore(false);
+      startAudio(incorrectAnswer);
       questionCard.classList.add('wrong-answer');
       setTimeout(() => {
         questionCard.classList.remove('wrong-answer');
@@ -205,7 +243,7 @@ export const Sprint: React.FC = () => {
 
   return <div className="sprint-wrapper">
     <div className="sprint-settings">
-      <button><img src={fullScreen} alt={fullScreen}/></button>
+      <button className='sprint-settings__btn'><img onClick={(e) => {changeFullScreen(e)}} src={fullScreen} alt={fullScreen}/></button>
       <DropdownButton className='dropdown-level' title="Уровень ">
         <Dropdown.Item href="">{Text.DropdownText} 1</Dropdown.Item>
         <Dropdown.Item href="">{Text.DropdownText} 2</Dropdown.Item>
@@ -214,7 +252,8 @@ export const Sprint: React.FC = () => {
         <Dropdown.Item href="">{Text.DropdownText} 5</Dropdown.Item>
         <Dropdown.Item href="">{Text.DropdownText} 6</Dropdown.Item>
       </DropdownButton>
-      <CloseButton />
+      <Link to="/"><CloseButton /></Link>
+      
     </div>
 
     <div className="sprint-popup">
@@ -233,7 +272,7 @@ export const Sprint: React.FC = () => {
           <div className='question-card_indicators__item'></div>
           <div className='question-card_indicators__item'></div>
         </div>
-        <img className='results-answers_icon' src={audio} alt="audio-icon" />
+        <img onClick={(e) => {changeMute(e)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
       </div>
 
       <p className="question-card_word">Score: {score}</p>
@@ -251,7 +290,7 @@ export const Sprint: React.FC = () => {
       <strong className='results-answers_subtitle'>Правильные ответы</strong>
       <div>{answers.rightAnswer.map((answerData) => {
         return <div className='results-answers_item' key={answerData.word}>
-          <img onClick={() => {startAudio(answerData.audio)}} className='results-answers_icon' src={audio} alt="audio-icon" />
+          <img onClick={() => {voice(`${API.URL}${answerData.audio}`)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
           <strong className='results-answers_word'>{answerData.word} </strong>
           <span>&nbsp;- {answerData.translate}</span>
         </div>
@@ -259,13 +298,13 @@ export const Sprint: React.FC = () => {
       <strong className='results-answers_subtitle'>Не правильные ответы</strong>
       <div>{answers.wrongAnswer.map((answerData) => {
         return <div className='results-answers_item' key={answerData.word}>
-          <img onClick={() => {startAudio(answerData.audio)}} className='results-answers_icon' src={audio} alt="audio-icon" />
+          <img onClick={() => {voice(`${API.URL}${answerData.audio}`)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
           <strong className='results-answers_word'>{answerData.word} </strong>
           <span>&nbsp;- {answerData.translate}</span>
         </div>
       })}</div>
       </div>
-      <Button onClick={closePopUp} variant="secondary">Выйти</Button>
+      <Button onClick={closePopUp} variant="secondary">{Text.exit}</Button>
     </div>
   </div>
 };

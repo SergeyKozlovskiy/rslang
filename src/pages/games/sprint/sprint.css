@@ -10,6 +10,14 @@
   justify-content: flex-end;
 }
 
+.sprint-settings__btn {
+  width: 45px;
+}
+
+.sprint-settings__btn img {
+  width: 100%;
+}
+
 .dropdown-level {
   margin-right: 20px;
   margin-left: 20px;
@@ -127,6 +135,7 @@
   justify-content: space-between;
 }
 
+
 .question-card_indicators {
   display: flex;
   width: 50px;
@@ -166,6 +175,7 @@
 .question-card_indicators__item {
   transition: 0.3s
 }
+
 .correct-answer_indicator__1 {
   background: green;
 }

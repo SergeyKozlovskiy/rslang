@@ -20,7 +20,8 @@ export enum Text {
   footerGithubLinksItem3 = 'Stellarator85',
   footerLogo = 'RS•Lang',
   footerYearMark = '© 2022г.',
-  mainStartButtonValue = 'Старт'
+  mainStartButtonValue = 'Старт', 
+  exit = 'Выйти'
 }
 
 export enum API {
@@ -29,7 +30,10 @@ export enum API {
 }
 
 export enum MagicNumbers {
-  MAX_NUM_OF_QUESTIONS = 20
+  MAX_NUM_OF_QUESTIONS = 20,
+  SERIES_OF_CORRECT_ANSWERS_1 = 3,
+  SERIES_OF_CORRECT_ANSWERS_2 = 6,
+
 }
 
 export enum Actions {
