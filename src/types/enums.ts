@@ -32,7 +32,15 @@ export enum Text {
   authorizationPassword = 'Введите пароль',
   authorizationEmail = 'Введите вашу почту',
   authorizationName = 'Введите ваше имя',
-  authorizationEmailSmal = 'Мы сохраним вашу почту в безопасности!'
+  authorizationEmailSmal = 'Мы сохраним вашу почту в безопасности!',
+  mainGreetingPartOne = 'Добро пожаловать в',
+  mainGreetingPartTwo = 'Lang',
+  mainRsSpan = 'RS',
+  mainPromoPartOne = 'Уровень твоего',
+  mainPromoPartTwo = 'останавливается на',
+  mainPromoPartThree = '? Не переживай, с нашим приложением ты можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку "Начать"!',
+  mainPromoSpanOne = 'English',
+  mainPromoSpanTwo = 'London is the capital of Great Britan'
 }
 
 export enum API {
@@ -71,7 +79,7 @@ export enum Classes {
   main = 'main',
   mainStartPage = 'main main_start-page',
   mainStartPageContainer = 'main_start-page_container',
-  mainStartButton = 'main_start-page_container_button',
+  mainStartButton = 'main-start-btn',
   footer = 'footer',
   footerRsSchool = 'footer_rs-school',
   footerGithubLinks = 'footer_github-links',
