@@ -45,7 +45,9 @@ export enum MagicNumbers {
   MAX_NUM_OF_QUESTIONS = 20,
   SERIES_OF_CORRECT_ANSWERS_1 = 3,
   SERIES_OF_CORRECT_ANSWERS_2 = 6,
-
+  BASIC_SCORE = 10, 
+  BONUS_SCORE = 20, 
+  SUPER_BONUS_SCORE = 40
 }
 
 export enum Actions {
