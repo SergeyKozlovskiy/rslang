@@ -40,7 +40,10 @@ export enum Text {
   mainPromoPartTwo = 'останавливается на',
   mainPromoPartThree = '? Не переживай, с нашим приложением ты можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку "Начать"!',
   mainPromoSpanOne = 'English',
-  mainPromoSpanTwo = 'London is the capital of Great Britan'
+  mainPromoSpanTwo = 'London is the capital of Great Britan',
+  bookDescrPartOne = 'Электронный учебник предназначен для тех, кому удобнее изучать слова стандартными методами. Тут ты можешь посмотреть на написание слова, послушать как звучит его произношение и увидеть примеры употребления этого слова в предложении. Слово показалось тебе сложным? Не беда, пометь его как',
+  bookDescrPartTwo = 'и вернись к нему позже! Слова идут по возрастанию сложности. Выбирай и учи, Удачи!',
+  bookDescrSpan = 'СЛОЖНОЕ СЛОВО'
 }
 
 export enum API {
@@ -95,5 +98,37 @@ export enum Classes {
   formReg = 'registr',
   regPopup = 'registration-popup',
   logPopup = 'login-popup',
-  activePopup = 'popup-active'
+  activePopup = 'popup-active',
+  bookLevelDefault = 'level-button',
+  bookLevelShort = 'level-short',
+  bookLevelTitle = 'level-title',
+  book = 'electronic-book',
+  bookLevels = 'electronic-levels',
+  bookText = 'electronic-descr',
+  bookImage = 'electronic-img',
+  bookDescr = 'elctronic-text'
+}
+
+export enum BookLevelColor {
+  one = 'level_color-one',
+  two = 'level_color-two',
+  three = 'level_color-three',
+  four = 'level_color-four',
+  five = 'level_color-five',
+  six = 'level_color-six'
+}
+
+export enum EnglishLevels {
+  A1 = 'A1',
+  A2 = 'A2',
+  B1 = 'B1',
+  B2 = 'B2',
+  C1 = 'C1',
+  C2 = 'C2',
+  ELEMENTARY = 'Elementary',
+  PRE_INTERMEDIATE = 'Pre-Intermediate',
+  INTERMEDIATE = 'Intermediate',
+  UPPER_INTERMEDIATE = 'Upper-Intermediate',
+  ADVANCED = 'Advanced',
+  PROFICIENCY = 'Proficiency',
 }

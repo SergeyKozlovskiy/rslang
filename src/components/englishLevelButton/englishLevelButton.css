@@ -6,11 +6,18 @@
   margin: 10px;
   border: none;
   cursor: pointer;
-  background-color: red;
+  color: #ffffff;
+  transition: 0.5s all;
+}
+
+.level-button:hover {
+  background-color: #5e5c5c;
+  box-shadow: none;
 }
 
 .level-short {
   font-size: 50px;
+  margin-right: 10px;
 }
 
 .level-title {
@@ -19,4 +26,34 @@
 
 .level-title {
   margin: 0;
+}
+
+.level_color-one {
+  background-color: #13d4f3;
+  box-shadow: 5px 5px 11px #13d4f3;
+}
+
+.level_color-two {
+  background-color: #1488b5;
+  box-shadow: 5px 5px 11px #1488b5;
+}
+
+.level_color-three {
+  background-color: #0ea766;
+  box-shadow: 5px 5px 11px #0ea766;
+}
+
+.level_color-four {
+  background-color: #086a41;
+  box-shadow: 5px 5px 11px #086a41;
+}
+
+.level_color-five {
+  background-color: #6c9b12;
+  box-shadow: 5px 5px 11px #6c9b12;
+}
+
+.level_color-six {
+  background-color: #49690e;
+  box-shadow: 5px 5px 11px #49690e;
 }

@@ -40,5 +40,6 @@ export interface IReduxState {
 
 export interface ILevelBtnProps {
   level: string,
-  title: string
+  title: string,
+  color: string
 }
