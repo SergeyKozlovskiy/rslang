@@ -1,7 +1,8 @@
-.sprint-wrapper{
+.sprint-wrapper {
   position: relative;
   height: 100%;
 }
+
 .sprint-settings {
   display: flex;
   width: 100%;
@@ -45,6 +46,7 @@
 #timer {
   transition: 0.1s;
 }
+
 .base-timer {
   position: relative;
   width: 100px;
@@ -98,22 +100,45 @@
   justify-content: center;
   font-size: 28px;
 }
-.wrapper-question-card{
+
+.wrapper-question-card {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .question-card {
   padding: 25px 35px;
   display: block;
   margin: 30px auto 0;
   text-align: center;
   width: 400px;
-  height: 185px;
+  height: 240px;
   border: 1px solid black;
   border-radius: 7px;
   transition: 0.3s;
+}
+
+.question-card__settings {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-card_indicators {
+  display: flex;
+  width: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.question-card_indicators__item {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: grey;
 }
 
 .right-answer {
@@ -134,11 +159,30 @@
   width: 100px;
 }
 
-.question-card_btn:nth-child(4) {
+.question-card_btn:nth-child(5) {
   margin-left: 10px;
 }
 
-.results{
+.question-card_indicators__item {
+  transition: 0.3s
+}
+.correct-answer_indicator__1 {
+  background: green;
+}
+
+.correct-answer_indicator__2 {
+  transform: scale(1.2);
+}
+
+.correct-answer_indicator__3 {
+  border: 1px solid gold;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(36, 247, 0, 0.4);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(36, 247, 0, 0.4);
+  box-shadow: 0px 0px 5px 3px rgba(36, 247, 0, 0.4);
+}
+
+
+.results {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -156,4 +200,28 @@
 .results-answers {
   height: 400px;
   overflow-y: auto;
+}
+
+.results-answers_item {
+  display: flex;
+  align-items: center;
+}
+
+.results-answers_icon {
+  width: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.results-answers_icon:hover {
+  transform: scale(1.2)
+}
+
+.results-answers_subtitle {
+  color: orangered;
+}
+
+.results-answers_word {
+  color: brown;
 }

@@ -4,8 +4,9 @@ import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
 import './sprint.css';
-import { MagicNumbers, Text } from '../../../types/enums';
+import { API, MagicNumbers, Text } from '../../../types/enums';
 import { useState } from 'react';
+import audio from '../../../asset/svg/audio.svg';
 
 type Word = {
     id: string,
@@ -45,6 +46,9 @@ interface Answers {
 let dataWords : Word[];
 let rightAnswers : Answer[] = [];
 let numQuestion = 0;
+let seriesOfCorrectAnswers = 0;
+let score = 0;
+let indicatorNumber = 0;
 
 const answers: Answers = {
   rightAnswer: [],
@@ -58,18 +62,63 @@ export const Sprint: React.FC = () => {
     answer:  true, 
     audio: ''
   });
-  
+
+  const changeIndicatorNumber = () => {
+
+    if(indicatorNumber !== 2) {
+      indicatorNumber += 1;
+    }else{
+      indicatorNumber = 0;
+    }
+  }
+
+  const startAudio = (name: string) => {
+    const audioObj = new Audio(`${API.URL}${name}`);
+    audioObj.play();
+  }
+
   async function getData () {
     try {
-      const randomGroup = _.random(0, 5);
-      const randomPage = _.random(0, 29);
-      const result = await getWords(randomGroup, randomPage).then((value) => value);
+      // const randomGroup = _.random(0, 5);
+      // const randomPage = _.random(0, 29);
+      const result = await getWords(1, 1).then((value) => value);
       dataWords = result;
-      console.log(result);
       createArrAnswers();
     }
     catch(error){
       console.log(error);
+    }
+  }
+
+  const clearIndicators = () => {
+    const indicators = document.querySelectorAll('.question-card_indicators__item');
+    indicators.forEach(item => {
+      item.classList.remove('correct-answer_indicator__1');
+      item.classList.remove('correct-answer_indicator__2');
+      item.classList.remove('correct-answer_indicator__3');
+    })
+  }
+
+  const changeScore = (answer: boolean) => {
+    const indicators = document.querySelectorAll('.question-card_indicators__item');
+    if(answer){
+      if(seriesOfCorrectAnswers < 3){
+        score += 10;
+        indicators[indicatorNumber].classList.add('correct-answer_indicator__1');
+      }else if(seriesOfCorrectAnswers >= 3 && seriesOfCorrectAnswers < 6){
+        score += 20;
+        indicators[indicatorNumber].classList.add('correct-answer_indicator__2');
+      }else if(seriesOfCorrectAnswers >= 6){
+        score += 40;
+        console.log(indicatorNumber);
+        indicators[indicatorNumber].classList.add('correct-answer_indicator__3');
+      }
+      changeIndicatorNumber();
+      seriesOfCorrectAnswers += 1;
+    }else{
+      seriesOfCorrectAnswers = 0;
+      indicatorNumber = 0;
+      clearIndicators();
     }
   }
 
@@ -87,27 +136,25 @@ export const Sprint: React.FC = () => {
   const showResult = () => {
     const resultPopUp = document.querySelector('.results') as HTMLElement;
     resultPopUp.classList.remove('hide-popup')
-    console.log(answers);
   }
 
   const responseСheck = (answer: boolean) => {
     const questionCard = document.querySelector('.question-card') as HTMLElement;
     if(questionData.answer === answer && questionCard){
       answers.rightAnswer.push(questionData);
-      console.log('правильно');
+      changeScore(true);
       questionCard.classList.add('right-answer');
       setTimeout(() => {
         questionCard.classList.remove('right-answer');
       }, 400)
     }else{
       answers.wrongAnswer.push(questionData);
-      console.log('не правильно')
+      changeScore(false);
       questionCard.classList.add('wrong-answer');
       setTimeout(() => {
         questionCard.classList.remove('wrong-answer');
       }, 400)
     }
-    console.log(numQuestion);
     createQuestion();
   }
 
@@ -148,6 +195,7 @@ export const Sprint: React.FC = () => {
     const popUp = document.querySelector('.sprint-popup') as HTMLElement;
     const questionСard = document.querySelector('.question-card') as HTMLElement;
     const timerElem = document.getElementById('timer') as HTMLElement;
+    clearIndicators(); 
     popUp?.classList.add('hide-popup');
     questionСard?.classList.remove('hide-popup');
     timerElem?.classList.remove('hide-popup');
@@ -179,6 +227,16 @@ export const Sprint: React.FC = () => {
     <div id="timer" className='hide-popup'></div>
 
     <div className="question-card hide-popup">
+      <div className="question-card__settings">
+        <div className='question-card_indicators'>
+          <div className='question-card_indicators__item'></div>
+          <div className='question-card_indicators__item'></div>
+          <div className='question-card_indicators__item'></div>
+        </div>
+        <img className='results-answers_icon' src={audio} alt="audio-icon" />
+      </div>
+
+      <p className="question-card_word">Score: {score}</p>
       <p className="question-card_word">{questionData.word}</p>
       <p className="question-card_translate">{questionData.translate}</p>
       <Button className='question-card_btn' onClick={() => {responseСheck(false)}} variant="danger">{Text.WrongAnswerSprintButton}</Button>
@@ -188,20 +246,22 @@ export const Sprint: React.FC = () => {
 
     <div className="results hide-popup">
       <h3>Результаты</h3>
-      <p>Вы набрали n очков</p>
+      <p>Вы набрали {score} очков</p>
       <div className="results-answers">
-      <strong>Правильные ответы</strong>
-      <div>{answers.rightAnswer.map(answerData => {
-        return <div>
-          <span>{answerData.word} </span>
-          <span>- {answerData.translate}</span>
+      <strong className='results-answers_subtitle'>Правильные ответы</strong>
+      <div>{answers.rightAnswer.map((answerData) => {
+        return <div className='results-answers_item' key={answerData.word}>
+          <img onClick={() => {startAudio(answerData.audio)}} className='results-answers_icon' src={audio} alt="audio-icon" />
+          <strong className='results-answers_word'>{answerData.word} </strong>
+          <span>&nbsp;- {answerData.translate}</span>
         </div>
       })}</div>
-      <strong>Не правильные ответы</strong>
-      <div>{answers.wrongAnswer.map(answerData => {
-        return <div>
-          <span>{answerData.word} </span>
-          <span>- {answerData.translate}</span>
+      <strong className='results-answers_subtitle'>Не правильные ответы</strong>
+      <div>{answers.wrongAnswer.map((answerData) => {
+        return <div className='results-answers_item' key={answerData.word}>
+          <img onClick={() => {startAudio(answerData.audio)}} className='results-answers_icon' src={audio} alt="audio-icon" />
+          <strong className='results-answers_word'>{answerData.word} </strong>
+          <span>&nbsp;- {answerData.translate}</span>
         </div>
       })}</div>
       </div>

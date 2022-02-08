@@ -17,7 +17,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 7;
+const TIME_LIMIT = 59;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval: NodeJS.Timeout;
