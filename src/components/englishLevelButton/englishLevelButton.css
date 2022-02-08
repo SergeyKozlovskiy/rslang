@@ -1,0 +1,22 @@
+.level-button {
+  display: flex;
+  align-items: baseline;
+  width: 420px;
+  padding: 0 28px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: red;
+}
+
+.level-short {
+  font-size: 50px;
+}
+
+.level-title {
+  font-size: 30px;
+}
+
+.level-title {
+  margin: 0;
+}

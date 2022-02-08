@@ -1,0 +1,10 @@
+.electronic-book {
+  padding: 1%;
+}
+
+.electronic-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+  width: 25%;
+}

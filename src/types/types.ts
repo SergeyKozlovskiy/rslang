@@ -37,3 +37,8 @@ export interface IReduxState {
   userInfo: IRespSignIn,
   IsLogin: boolean
 }
+
+export interface ILevelBtnProps {
+  level: string,
+  title: string
+}

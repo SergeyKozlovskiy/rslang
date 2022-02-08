@@ -7,7 +7,7 @@ export enum Text {
   WrongAnswerSprintButton = 'Не верно',
   menuOptionStartPage = 'Главная страница',
   menuOptionLoginPage = 'Авторизация',
-  menuOptionWordList = 'Список слов',
+  menuOptionElectronicBook = 'Учебник',
   menuOptionMiniGames = 'Мини-игры',
   menuOptionStatPage = 'Статистика',
   headerAppName = 'RS•',
