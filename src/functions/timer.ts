@@ -1,4 +1,4 @@
-export const timer = (): void => {
+export const timer = (showResult: Function): void => {
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
@@ -51,11 +51,9 @@ if(timer){
 startTimer();
 }
 
-
-
-
 function onTimesUp() {
   clearInterval(timerInterval);
+  showResult();
 }
 
 function startTimer() {

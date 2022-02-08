@@ -26,6 +26,7 @@
 .App-link {
   color: var(--main-blue-color);
 }
+
 .wrapper-page {
   height: 540px;
   background-color: var(--main-white-color);
@@ -35,10 +36,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+
+.wrapper-page {
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 :root {
   --main-black-color: black;
   --main-orange-color: #ff8600;
@@ -50,3 +60,4 @@
   --menu-font: "Russo One", sans-serif;
   --start-button-font: "Playfair Display", serif;
 }
+

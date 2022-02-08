@@ -10,9 +10,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 a {
   text-decoration: none !important;
 }
+
 button {
   border: none;
   outline: none;
