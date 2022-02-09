@@ -43,3 +43,17 @@ export interface ILevelBtnProps {
   title: string,
   color: string
 }
+
+export interface IStatistic {
+  learnedWords: number,
+  optional: {
+    sprint?: IStatisticBody,
+    audioChalange?: IStatisticBody,
+  }
+}
+
+export interface IStatisticBody {
+  gameLernedWords: number
+  persent: number,
+  wins: number
+}

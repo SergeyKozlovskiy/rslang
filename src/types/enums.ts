@@ -50,6 +50,8 @@ export enum API {
   URL = 'http://localhost:5000/',
   Words = 'words',
   Users = 'users',
+  Tokens = 'tokens',
+  Statistics = 'statistics'
 }
 
 export enum MagicNumbers {
@@ -131,4 +133,9 @@ export enum EnglishLevels {
   UPPER_INTERMEDIATE = 'Upper-Intermediate',
   ADVANCED = 'Advanced',
   PROFICIENCY = 'Proficiency',
+}
+
+export enum RequestStatistic {
+  sprint = 'sprint',
+  audioChalenge = 'audioChalenge'
 }
