@@ -1,8 +1,8 @@
 import { Button, CloseButton, Dropdown, DropdownButton } from 'react-bootstrap';
-import fullScreen from '../../../asset/svg/fullscreen.svg';
-import fullScreenExit from '../../../asset/svg/fullscreen-exit.svg';
-import audioImg from '../../../asset/svg/audio.svg';
-import muteImg from '../../../asset/svg/mute.svg';
+import fullScreen from '../../../assets/svg/fullscreen.svg';
+import fullScreenExit from '../../../assets/svg/fullscreen-exit.svg';
+import audioImg from '../../../assets/svg/audio.svg';
+import muteImg from '../../../assets/svg/mute.svg';
 import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
@@ -10,9 +10,9 @@ import { API, MagicNumbers, Text } from '../../../types/enums';
 import { SyntheticEvent, useState } from 'react';
 import './sprint.css';
 import { Link } from 'react-router-dom';
-const correctAnswer = require("../../../asset/audio/correctAnswer.mp3");
-const incorrectAnswer = require("../../../asset/audio/incorrectAnswer.mp3");
-const end = require("../../../asset/audio/end.mp3");
+const correctAnswer = require("../../../assets/audio/correctAnswer.mp3");
+const incorrectAnswer = require("../../../assets/audio/incorrectAnswer.mp3");
+const end = require("../../../assets/audio/end.mp3");
 
 type Word = {
     id: string,
