@@ -10,6 +10,7 @@ export enum Text {
   menuOptionWordList = 'Список слов',
   menuOptionMiniGames = 'Мини-игры',
   menuOptionStatPage = 'Статистика',
+  menuOptionAbout = 'О нас',
   headerAppName = 'RS•',
   headerAppNameSpan = 'Lang',
   headerAppNameMotto = 'изучай английский играючи',
@@ -40,7 +41,8 @@ export enum Text {
   mainPromoPartTwo = 'останавливается на',
   mainPromoPartThree = '? Не переживай, с нашим приложением ты можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку "Начать"!',
   mainPromoSpanOne = 'English',
-  mainPromoSpanTwo = 'London is the capital of Great Britan'
+  mainPromoSpanTwo = 'London is the capital of Great Britan',
+  aboutPageTitle = 'Приложение RS•Lang для Вас разработали:'
 }
 
 export enum API {

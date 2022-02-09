@@ -1,0 +1,47 @@
+.main_start-page {
+  font-family: var(--menu-font);
+  font-size: 30px;
+  height: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-black-color);
+}
+.aboutPageContainer {
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 60vh;
+  padding: 2% 10% 0 10%;
+  font-size: 22px;
+}
+.aboutPageDevCard {
+  width: 25%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 110%;
+  color: gray;
+}
+
+.aboutPageDevCardTitle {
+  font-size: 24px;
+  width: 100%;
+  text-align: center;
+  color: var(--main-black-color);
+}
+.aboutPageDevCardImage {
+  height: 27vh;
+  width: 100%;
+}
+.aboutPageDevCardPosition {
+  color: var(--main-blue-color);
+  font-size: 19.5px;
+  width: 100%;
+  text-align: center;
+  margin-top: -2.5%;
+}
