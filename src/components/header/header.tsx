@@ -36,16 +36,10 @@ export const Header: React.FC = () => {
           :
           ''
         }
-<<<<<<< HEAD
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book">{Text.menuOptionElectronicBook}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games">{Text.menuOptionMiniGames}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics">{Text.menuOptionStatPage}</Link></li>
-=======
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionWordList}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionElectronicBook}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}>{Text.menuOptionMiniGames}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}>{Text.menuOptionStatPage}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}>{Text.menuOptionAbout}</Link></li>
->>>>>>> 48c7b25857d01a9f3a8751b9c9eaba7bc4538838
       </ul>
     </nav>
     <Link className={Classes.headerAppName} to="/">{Text.headerAppName}
