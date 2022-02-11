@@ -42,7 +42,34 @@ export enum Text {
   mainPromoPartThree = '? Не переживай, с нашим приложением ты можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку "Начать"!',
   mainPromoSpanOne = 'English',
   mainPromoSpanTwo = 'London is the capital of Great Britan',
-  aboutPageTitle = 'Приложение RS•Lang для Вас разработали:'
+
+  mainStatisticsPageTitle = 'Ваша статистика',
+  mainStatisticsPageTabOneName ='general',
+  mainStatisticsPageTabOneTitle = "Общая",
+  mainStatisticsPageTabTwoName = 'sprint-game',
+  mainStatisticsPageTabTwoTitle = 'Спринт',
+  mainStatisticsPageTabThreeName = 'audiochallenge-game',
+  mainStatisticsPageTabThreeTitle = 'Аудио-вызов',
+  mainStatisticsPageTableHeadCellOneContent = '#',
+  mainStatisticsPageTableHeadCellTwoContent = 'Пользователь',
+  mainStatisticsPageTableHeadCellThreeContent = 'Cыгранных игр',
+  mainStatisticsPageTableHeadCellFourContent = 'Пройденных слов',
+  mainStatisticsPageTableHeadCellFiveContent = 'Правильных ответов',
+  mainStatisticsPageTableHeadCellSixContent = 'Рекорд правильных ответов подряд',
+  mainStatisticsPageTableRowOneCellOneContent = '1',
+  mainStatisticsPageTableRowOneCellTwoContent = 'Имярек',
+  mainStatisticsPageTableRowOneCellThreeContent = '0',
+  mainStatisticsPageTableRowOneCellFourContent = '0',
+  mainStatisticsPageTableRowOneCellFiveContent = '0%',
+  mainStatisticsPageTableRowOneCellSixContent = '0',
+
+  aboutPageTitle = 'Приложение RS•Lang для Вас разработали:',
+  sergeyFullName = 'Сергей Козловский',
+  pavelFullName = 'Павел Войтехович',
+  timurFullName = 'Тимур Щербина',
+  sergeyTasksDescription = 'Ежедневная связь с командой, постановка/контроль тасков, настройка роутинга и получения данных с бекенда через Redux, создание игр "Спринт" и "Аудио-вызов".',
+  pavelTasksDescription = 'Настройка получения/отправки данных на сервер через Redux, реализация регистрации и авторизации пользователя, создание учебника и списка слов.',
+  timurTasksDescription = 'Верстка, графическое оформление, создание бургер-меню.',
 }
 
 export enum API {
@@ -97,5 +124,18 @@ export enum Classes {
   formReg = 'registr',
   regPopup = 'registration-popup',
   logPopup = 'login-popup',
-  activePopup = 'popup-active'
+  activePopup = 'popup-active',
+  mainStatisticsPageTitle = 'main-statistics-page_title',
+  mainStatisticsPageTabs = 'main-statistics-page_tabs',
+  
+
+
+
+  mainAboutPage='main_about-page',
+  aboutPageContainer = 'about-page-container',
+  aboutPageDevCard = 'about-page-container_dev-card',
+  aboutPageDevCardImage = 'about-page-container_dev-card__image',
+  aboutPageDevCardTitle = 'about-page-container_dev-card__title',
+  aboutPageDevCardPosition = 'about-page-container_dev-card__position',
+  aboutPageDevCardGitHub = 'about-page-container_dev-card__github',
 }

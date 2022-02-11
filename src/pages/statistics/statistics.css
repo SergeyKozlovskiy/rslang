@@ -1,0 +1,10 @@
+.main-statistics-page_title {
+  font-family: var(--menu-font);
+  font-size: 39px;
+  color: var(--main-black-color);
+  text-align: left;
+}
+
+.main-statistics-page_tabs {
+  margin-bottom: 1.3%;
+}
