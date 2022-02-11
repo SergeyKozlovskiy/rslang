@@ -1,4 +1,4 @@
-.main_start-page {
+.main_about-page {
   font-family: var(--menu-font);
   font-size: 30px;
   height: inherit;
@@ -8,40 +8,54 @@
   align-items: center;
   color: var(--main-black-color);
 }
-.aboutPageContainer {
+.about-page-container {
   height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   height: 60vh;
-  padding: 2% 10% 0 10%;
+  padding: 1% 10% 0 10%;
   font-size: 22px;
 }
-.aboutPageDevCard {
+.about-page-container_dev-card {
   width: 25%;
   text-align: left;
   display: flex;
   flex-direction: column;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 110%;
-  color: gray;
+  color: var(--main-grey-color);
+  align-items: center;
+  height: 115%;
 }
 
-.aboutPageDevCardTitle {
-  font-size: 24px;
-  width: 100%;
-  text-align: center;
-  color: var(--main-black-color);
-}
-.aboutPageDevCardImage {
+.about-page-container_dev-card__image {
   height: 27vh;
   width: 100%;
 }
-.aboutPageDevCardPosition {
-  color: var(--main-blue-color);
-  font-size: 19.5px;
+
+.about-page-container_dev-card__title {
+  font-size: 22px;
   width: 100%;
   text-align: center;
-  margin-top: -2.5%;
+  color: var(--main-black-color);
+  margin-bottom: 3px;
+}
+
+.about-page-container_dev-card__position {
+  color: var(--main-blue-color);
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+.about-page-container_dev-card__github {
+  width: fit-content;
+  min-height: fit-content;
+  display: flex;
+  justify-content: center;
+  border-radius: 60%;
+  margin-top: 5%;
 }
