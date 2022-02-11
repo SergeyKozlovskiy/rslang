@@ -28,17 +28,24 @@ export const Header: React.FC = () => {
       <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu} ></Button>
       <ul id="menu_list" className={Classes.menuList}>
         <CloseButton variant="white" className={Classes.menuListCloseButton} onClick={showMenu}></CloseButton>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/">{Text.menuOptionStartPage}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}>{Text.menuOptionStartPage}</Link></li>
         {
           state.IsLogin === false
           ?
-          <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization">{Text.menuOptionLoginPage}</Link></li>
+          <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization" onClick={showMenu}>{Text.menuOptionLoginPage}</Link></li>
           :
           ''
         }
+<<<<<<< HEAD
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book">{Text.menuOptionElectronicBook}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games">{Text.menuOptionMiniGames}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics">{Text.menuOptionStatPage}</Link></li>
+=======
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionWordList}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}>{Text.menuOptionMiniGames}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}>{Text.menuOptionStatPage}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}>{Text.menuOptionAbout}</Link></li>
+>>>>>>> 48c7b25857d01a9f3a8751b9c9eaba7bc4538838
       </ul>
     </nav>
     <Link className={Classes.headerAppName} to="/">{Text.headerAppName}

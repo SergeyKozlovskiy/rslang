@@ -10,6 +10,7 @@ export enum Text {
   menuOptionElectronicBook = 'Учебник',
   menuOptionMiniGames = 'Мини-игры',
   menuOptionStatPage = 'Статистика',
+  menuOptionAbout = 'О нас',
   headerAppName = 'RS•',
   headerAppNameSpan = 'Lang',
   headerAppNameMotto = 'изучай английский играючи',
@@ -43,7 +44,33 @@ export enum Text {
   mainPromoSpanTwo = 'London is the capital of Great Britan',
   bookDescrPartOne = 'Электронный учебник предназначен для тех, кому удобнее изучать слова стандартными методами. Тут ты можешь посмотреть на написание слова, послушать как звучит его произношение и увидеть примеры употребления этого слова в предложении. Слово показалось тебе сложным? Не беда, пометь его как',
   bookDescrPartTwo = 'и вернись к нему позже! Слова идут по возрастанию сложности. Выбирай и учи, Удачи!',
-  bookDescrSpan = 'СЛОЖНОЕ СЛОВО'
+  bookDescrSpan = 'СЛОЖНОЕ СЛОВО',
+  mainStatisticsPageTitle = 'Ваша статистика',
+  mainStatisticsPageTabOneName ='general',
+  mainStatisticsPageTabOneTitle = "Общая",
+  mainStatisticsPageTabTwoName = 'sprint-game',
+  mainStatisticsPageTabTwoTitle = 'Спринт',
+  mainStatisticsPageTabThreeName = 'audiochallenge-game',
+  mainStatisticsPageTabThreeTitle = 'Аудио-вызов',
+  mainStatisticsPageTableHeadCellOneContent = '#',
+  mainStatisticsPageTableHeadCellTwoContent = 'Пользователь',
+  mainStatisticsPageTableHeadCellThreeContent = 'Cыгранных игр',
+  mainStatisticsPageTableHeadCellFourContent = 'Пройденных слов',
+  mainStatisticsPageTableHeadCellFiveContent = 'Правильных ответов',
+  mainStatisticsPageTableHeadCellSixContent = 'Рекорд правильных ответов подряд',
+  mainStatisticsPageTableRowOneCellOneContent = '1',
+  mainStatisticsPageTableRowOneCellTwoContent = 'Имярек',
+  mainStatisticsPageTableRowOneCellThreeContent = '0',
+  mainStatisticsPageTableRowOneCellFourContent = '0',
+  mainStatisticsPageTableRowOneCellFiveContent = '0%',
+  mainStatisticsPageTableRowOneCellSixContent = '0',
+  aboutPageTitle = 'Приложение RS•Lang для Вас разработали:',
+  sergeyFullName = 'Сергей Козловский',
+  pavelFullName = 'Павел Войтехович',
+  timurFullName = 'Тимур Щербина',
+  sergeyTasksDescription = 'Ежедневная связь с командой, постановка/контроль тасков, настройка роутинга и получения данных с бекенда через Redux, создание игр "Спринт" и "Аудио-вызов".',
+  pavelTasksDescription = 'Настройка получения/отправки данных на сервер через Redux, реализация регистрации и авторизации пользователя, создание учебника и списка слов.',
+  timurTasksDescription = 'Верстка, графическое оформление, создание бургер-меню.',
 }
 
 export enum API {
@@ -101,6 +128,15 @@ export enum Classes {
   regPopup = 'registration-popup',
   logPopup = 'login-popup',
   activePopup = 'popup-active',
+  mainAboutPage = 'main_about-page',
+  mainStatisticsPageTitle = 'main-statistics-page_title',
+  mainStatisticsPageTabs = 'main-statistics-page_tabs',
+  aboutPageContainer = 'about-page-container',
+  aboutPageDevCard = 'about-page-container_dev-card',
+  aboutPageDevCardImage = 'about-page-container_dev-card__image',
+  aboutPageDevCardTitle = 'about-page-container_dev-card__title',
+  aboutPageDevCardPosition = 'about-page-container_dev-card__position',
+  aboutPageDevCardGitHub = 'about-page-container_dev-card__github',
   bookLevelDefault = 'level-button',
   bookLevelShort = 'level-short',
   bookLevelTitle = 'level-title',
@@ -112,30 +148,30 @@ export enum Classes {
 }
 
 export enum BookLevelColor {
-  one = 'level_color-one',
-  two = 'level_color-two',
-  three = 'level_color-three',
-  four = 'level_color-four',
-  five = 'level_color-five',
-  six = 'level_color-six'
+one = 'level_color-one',
+two = 'level_color-two',
+three = 'level_color-three',
+four = 'level_color-four',
+five = 'level_color-five',
+six = 'level_color-six'
 }
 
 export enum EnglishLevels {
-  A1 = 'A1',
-  A2 = 'A2',
-  B1 = 'B1',
-  B2 = 'B2',
-  C1 = 'C1',
-  C2 = 'C2',
-  ELEMENTARY = 'Elementary',
-  PRE_INTERMEDIATE = 'Pre-Intermediate',
-  INTERMEDIATE = 'Intermediate',
-  UPPER_INTERMEDIATE = 'Upper-Intermediate',
-  ADVANCED = 'Advanced',
-  PROFICIENCY = 'Proficiency',
+A1 = 'A1',
+A2 = 'A2',
+B1 = 'B1',
+B2 = 'B2',
+C1 = 'C1',
+C2 = 'C2',
+ELEMENTARY = 'Elementary',
+PRE_INTERMEDIATE = 'Pre-Intermediate',
+INTERMEDIATE = 'Intermediate',
+UPPER_INTERMEDIATE = 'Upper-Intermediate',
+ADVANCED = 'Advanced',
+PROFICIENCY = 'Proficiency',
 }
 
 export enum RequestStatistic {
-  sprint = 'sprint',
-  audioChalenge = 'audioChalenge'
+sprint = 'sprint',
+audioChalenge = 'audioChalenge'
 }
