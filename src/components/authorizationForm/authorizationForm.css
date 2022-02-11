@@ -1,0 +1,17 @@
+.back {
+  margin: 10px 0 20px 34px;
+}
+
+.registr {
+  margin: 10px 0 20px 0;
+}
+
+p span {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+p span:hover {
+  color: #696666;
+}
