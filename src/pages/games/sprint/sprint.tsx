@@ -7,7 +7,7 @@ import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
 import { API, MagicNumbers, Text } from '../../../types/enums';
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import './sprint.css';
 import { Link } from 'react-router-dom';
 import { Question, WordData, Answers} from '../../../types/types';
@@ -57,8 +57,6 @@ export const Sprint: React.FC = () => {
       statistics.optional.seriesCorrectAnswers = prevValue;
       return prevValue;
     })
-
-    console.log(statistics);
   }
 
   const changeLevel = (level: string) => {
@@ -71,6 +69,10 @@ export const Sprint: React.FC = () => {
     setIndicatorNumber(0);
     setScore(0);
     setSeriesOfCorrectAnswers(0);
+    setResultsAllAnswers({
+      rightAnswer: [],
+      wrongAnswer: []
+    });
   }
 
   const changeFullScreen = (event: SyntheticEvent) => {
@@ -105,10 +107,14 @@ export const Sprint: React.FC = () => {
   }
 
   const startAudio = (path: string) => {
-    if(mute){
-      const audioObj = new Audio(`${path}`);
-      audioObj.play();
-    }
+    setMute(prevMute => {
+      if(prevMute){
+        const audioObj = new Audio(`${path}`);
+        audioObj.play();
+      }
+      return prevMute;
+    })
+    
   }
 
   const voice = (path: string) => {
@@ -144,7 +150,6 @@ export const Sprint: React.FC = () => {
       if(longestSeriesCorrectAnswers < seriesOfCorrectAnswers){
         setLongestSeriesCorrectAnswers(seriesOfCorrectAnswers);
       }
-      console.log(longestSeriesCorrectAnswers);
       setSeriesOfCorrectAnswers(0);
       setIndicatorNumber(0);
       clearIndicators();
@@ -227,18 +232,18 @@ export const Sprint: React.FC = () => {
     }
   }
 
-  async function getData (num?: number) {
-    try {
-      const randomPage = _.random(0, 29);
-      const result = await getWords(num ? num : level, randomPage).then((value) => value);
-      if(result){
-        setWordData(result);
+  const getData = useCallback(async (num?: number) => {
+      try {
+        const randomPage = _.random(0, 29);
+        const result = await getWords(num ? num : level, randomPage).then((value) => value);
+        if(result){
+          setWordData(result);
+        }
       }
+      catch(error){
+        console.log(error);
     }
-    catch(error){
-      console.log(error);
-    }
-  }
+  }, [level]) 
 
   const start = () => {
     getData();
@@ -257,7 +262,7 @@ export const Sprint: React.FC = () => {
 
   useEffect(() => {
     getData();
-  }); 
+  },[getData]); 
 
   return <div className="sprint-wrapper">
     <div className="sprint-settings">
