@@ -125,13 +125,11 @@ export enum Classes {
   regPopup = 'registration-popup',
   logPopup = 'login-popup',
   activePopup = 'popup-active',
+  mainAboutPage = 'main_about-page',
+  
   mainStatisticsPageTitle = 'main-statistics-page_title',
   mainStatisticsPageTabs = 'main-statistics-page_tabs',
-  
 
-
-
-  mainAboutPage='main_about-page',
   aboutPageContainer = 'about-page-container',
   aboutPageDevCard = 'about-page-container_dev-card',
   aboutPageDevCardImage = 'about-page-container_dev-card__image',
