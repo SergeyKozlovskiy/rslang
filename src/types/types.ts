@@ -37,3 +37,46 @@ export interface IReduxState {
   userInfo: IRespSignIn,
   IsLogin: boolean
 }
+
+export type WordData = {
+  id: string,
+  group: number,
+  page: number,
+  word: string,
+  image: string,
+  audio: string,
+  audioMeaning: string,
+  audioExample: string,
+  textMeaning: string,
+  textExample: string,
+  transcription: string,
+  wordTranslate: string,
+  textMeaningTranslate: string,
+  textExampleTranslate: string
+}
+
+export type Word = {
+word: string,
+audio: string,
+translate: string,
+}
+
+export type Question = {
+word: string,
+translate: string, 
+answer: boolean,
+audio: string
+}
+
+export type Answers = {
+rightAnswer: Word[],
+wrongAnswer: Word[]
+}
+
+export type Statistics = {
+  learnedWords: number, 
+  optional: {
+    correctAnswers: number, 
+    seriesCorrectAnswers: number
+  }
+}
