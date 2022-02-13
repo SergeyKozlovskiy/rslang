@@ -35,7 +35,8 @@ export interface IPopupProps {
 
 export interface IReduxState {
   userInfo: IRespSignIn,
-  IsLogin: boolean
+  IsLogin: boolean,
+  isWordsLoad: boolean
 }
 
 export interface ILevelBtnProps {
@@ -76,4 +77,9 @@ export type WordsType = {
   textMeaningTranslate:	string,
   textExampleTranslate:	string,
 
+}
+
+export type WordsActionType = {
+  type: string,
+  value: Array<WordsType>
 }

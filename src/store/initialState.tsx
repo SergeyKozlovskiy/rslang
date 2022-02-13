@@ -6,7 +6,8 @@ const initialState = {
     userId: 'none',
     name: 'none'
   },
-  IsLogin: false
+  IsLogin: false,
+  isWordsLoad: false
 };
 
 export default initialState;

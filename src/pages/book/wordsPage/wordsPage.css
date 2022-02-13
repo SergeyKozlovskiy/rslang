@@ -1,0 +1,38 @@
+.words-wrapper {
+  padding: 25px 0;
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.word-wrapper {
+  width: 160px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px 0 0 10px;
+  background-color: #c5c6ca;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s;
+}
+
+.word-wrapper:hover {
+  box-shadow: 5px 5px 11px #464545;
+}
+
+.word {
+  margin: 0;
+  font-size: 20px;
+}
+
+.word-translate {
+  margin: 0;
+  font-size: 16px;
+}
+
+.active-word {
+  background-color: #65bbf5;
+}

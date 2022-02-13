@@ -2,13 +2,29 @@ import EnglishLevelButton from "../../components/englishLevelButton/EnglishLevel
 import './book.css'
 import BookImg from '../../images/openBook.png';
 import { Text, Classes, BookLevelColor, EnglishLevels } from "../../types/enums";
-import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { IReduxState } from "../../types/types";
+import { WordsPage } from "./wordsPage/WordsPage";
 
 export const Book: React.FC = () => {
+
+  const state: IReduxState = useSelector((state: IReduxState) => state);
+  
   return (
+    !state.isWordsLoad
+    ?
     <div className={Classes.book}>
       <div className={Classes.bookLevels}>
-        <Link to="/WordsPage">
+      
+          <EnglishLevelButton 
+            level={EnglishLevels.A1} 
+            title={EnglishLevels.ELEMENTARY} 
+            color={BookLevelColor.one} 
+            group={0}
+            page={0}
+          />
+        
+        
           <EnglishLevelButton 
             level={EnglishLevels.A2} 
             title={EnglishLevels.PRE_INTERMEDIATE} 
@@ -16,8 +32,8 @@ export const Book: React.FC = () => {
             group={1}
             page={0}
           />
-        </Link>
-        <Link to="/WordsPage">
+        
+        
           <EnglishLevelButton 
             level={EnglishLevels.B1} 
             title={EnglishLevels.INTERMEDIATE} 
@@ -25,8 +41,8 @@ export const Book: React.FC = () => {
             group={2}
             page={0}
           />
-        </Link>
-        <Link to ="/WordsPage">
+        
+        
           <EnglishLevelButton 
             level={EnglishLevels.B2} 
             title={EnglishLevels.UPPER_INTERMEDIATE} 
@@ -34,8 +50,8 @@ export const Book: React.FC = () => {
             group={3}
             page={0}
           />
-        </Link>
-        <Link to ="/WordsPage">
+        
+        
           <EnglishLevelButton 
             level={EnglishLevels.C1} 
             title={EnglishLevels.ADVANCED} 
@@ -43,8 +59,8 @@ export const Book: React.FC = () => {
             group={4}
             page={0}
           />
-        </Link>
-        <Link to ="/WordsPage">
+        
+        
           <EnglishLevelButton 
             level={EnglishLevels.C2} 
             title={EnglishLevels.PROFICIENCY} 
@@ -52,7 +68,7 @@ export const Book: React.FC = () => {
             group={5}
             page={0}
           />
-        </Link>
+        
       </div>
       <div className={Classes.bookText}>
         <img src={BookImg} alt="book-icon" className={Classes.bookImage} />
@@ -61,5 +77,7 @@ export const Book: React.FC = () => {
         </p>
       </div>
     </div>
-  );
+    : 
+    <WordsPage />
+   );
 };
