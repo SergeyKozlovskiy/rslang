@@ -12,9 +12,6 @@ import { logoutUserAction } from '../../store/actions';
 import { getUserInfo } from '../../localStorage/getUserInfo';
 import { IRespSignIn } from '../../types/types';
 
-
-
-
 export const Header: React.FC = () => {
   const showMenu = () => {
     (document.getElementById("menu_list") as HTMLFormElement).classList.toggle("menu-active");

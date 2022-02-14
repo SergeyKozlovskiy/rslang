@@ -27,7 +27,9 @@
   line-height: 110%;
   color: var(--main-grey-color);
   align-items: center;
-  height: 115%;
+  height: 110%;
+  border-bottom: 1px var(--main-black-color) solid;
+  border-top: 1px var(--main-black-color) solid;
 }
 
 .about-page-container_dev-card__image {
@@ -41,6 +43,7 @@
   text-align: center;
   color: var(--main-black-color);
   margin-bottom: 3px;
+  margin-top: 6px;
 }
 
 .about-page-container_dev-card__position {
@@ -52,10 +55,10 @@
 }
 
 .about-page-container_dev-card__github {
-  width: fit-content;
-  min-height: fit-content;
+  width: 15%;
+  height: 15%;
   display: flex;
   justify-content: center;
   border-radius: 60%;
-  margin-top: 5%;
+  margin-top: auto;
 }
