@@ -34,7 +34,7 @@ export const Sprint: React.FC = () => {
   const [score, setScore] = useState(0);
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
- 
+  
   const changeStatistics = () => {
     const statistics = {
       learnedWords: 0, 
@@ -267,14 +267,14 @@ export const Sprint: React.FC = () => {
   return <div className="sprint-wrapper">
     <div className="sprint-settings">
       <button className='sprint-settings__btn'><img onClick={(e) => {changeFullScreen(e)}} src={fullScreen} alt={fullScreen}/></button>
-    <Form.Select className="sprint-settings_level" onChange={(e) => {changeLevel(e.target.value)}}>
-      <option value="0">Начальный</option>
-      <option value="1">Элементарный</option>
-      <option value="2">Слабый средний</option>
-      <option value="3">Средний</option>
-      <option value="4">Выше среднего</option>
-      <option value="5">Продвинутый</option>
-    </Form.Select>
+        <Form.Select className="sprint-settings_level" onChange={(e) => {changeLevel(e.target.value)}}>
+          <option value="0">Начальный</option>
+          <option value="1">Элементарный</option>
+          <option value="2">Слабый средний</option>
+          <option value="3">Средний</option>
+          <option value="4">Выше среднего</option>
+          <option value="5">Продвинутый</option>
+        </Form.Select>
       <Link to="/"><CloseButton /></Link>
       
     </div>

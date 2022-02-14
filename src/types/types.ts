@@ -73,10 +73,3 @@ rightAnswer: Word[],
 wrongAnswer: Word[]
 }
 
-export type Statistics = {
-  learnedWords: number, 
-  optional: {
-    correctAnswers: number, 
-    seriesCorrectAnswers: number
-  }
-}
