@@ -1,6 +1,12 @@
 .words-wrapper {
   padding: 25px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.words-btn_wrapper {
   width: 50%;
+  max-height: 340px;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;

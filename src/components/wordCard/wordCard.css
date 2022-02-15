@@ -1,0 +1,42 @@
+.word-card {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.card-wrapper {
+  padding: 25px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background-color: #14cb7e;
+  box-shadow: 5px 5px 11px #086a41;
+  border-radius: 20px;
+}
+
+.word-image {
+  border-radius: 20px;
+}
+
+.word-exemple {
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+}
+
+.word-transcription {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.word-meaning,
+.word-meaning_translate,
+.word-text {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.word-text_translate {
+  margin: 0;
+  font-size: 1.1rem;
+}

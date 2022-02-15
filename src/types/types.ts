@@ -35,7 +35,6 @@ export interface IPopupProps {
 
 export interface IReduxState {
   userInfo: IRespSignIn,
-<<<<<<< HEAD
   IsLogin: boolean,
   isWordsLoad: boolean
 }
@@ -84,9 +83,6 @@ export type WordsActionType = {
   type: string,
   value: Array<WordsType>
 }
-=======
-  IsLogin: boolean
-}
 
 export type WordData = {
   id: string,
@@ -122,5 +118,3 @@ export type Answers = {
 rightAnswer: Word[],
 wrongAnswer: Word[]
 }
-
->>>>>>> 024a455ea2eee36e546e6e8fc18d64f4c3127aeb
