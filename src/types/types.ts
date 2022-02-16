@@ -118,3 +118,7 @@ export type Answers = {
 rightAnswer: Word[],
 wrongAnswer: Word[]
 }
+
+export type SelectProps = {
+  level: number
+}

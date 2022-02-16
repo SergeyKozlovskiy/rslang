@@ -5,6 +5,7 @@ import { Text, Classes, BookLevelColor, EnglishLevels } from "../../types/enums"
 import { useSelector } from "react-redux";
 import { IReduxState } from "../../types/types";
 import { WordsPage } from "./wordsPage/WordsPage";
+import { levelArr } from "../../constants/arrays";
 
 export const Book: React.FC = () => {
 
@@ -15,7 +16,6 @@ export const Book: React.FC = () => {
     ?
     <div className={Classes.book}>
       <div className={Classes.bookLevels}>
-      
           <EnglishLevelButton 
             level={EnglishLevels.A1} 
             title={EnglishLevels.ELEMENTARY} 
@@ -23,8 +23,6 @@ export const Book: React.FC = () => {
             group={0}
             page={0}
           />
-        
-        
           <EnglishLevelButton 
             level={EnglishLevels.A2} 
             title={EnglishLevels.PRE_INTERMEDIATE} 
@@ -32,8 +30,6 @@ export const Book: React.FC = () => {
             group={1}
             page={0}
           />
-        
-        
           <EnglishLevelButton 
             level={EnglishLevels.B1} 
             title={EnglishLevels.INTERMEDIATE} 
@@ -41,8 +37,6 @@ export const Book: React.FC = () => {
             group={2}
             page={0}
           />
-        
-        
           <EnglishLevelButton 
             level={EnglishLevels.B2} 
             title={EnglishLevels.UPPER_INTERMEDIATE} 
@@ -50,8 +44,6 @@ export const Book: React.FC = () => {
             group={3}
             page={0}
           />
-        
-        
           <EnglishLevelButton 
             level={EnglishLevels.C1} 
             title={EnglishLevels.ADVANCED} 
@@ -59,8 +51,6 @@ export const Book: React.FC = () => {
             group={4}
             page={0}
           />
-        
-        
           <EnglishLevelButton 
             level={EnglishLevels.C2} 
             title={EnglishLevels.PROFICIENCY} 
@@ -68,7 +58,6 @@ export const Book: React.FC = () => {
             group={5}
             page={0}
           />
-        
       </div>
       <div className={Classes.bookText}>
         <img src={BookImg} alt="book-icon" className={Classes.bookImage} />

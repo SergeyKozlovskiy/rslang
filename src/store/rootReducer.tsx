@@ -13,9 +13,9 @@ export const loginReducer = (state = initialState, action: IAction) => {
       deleteUserInfo();
       return {...state, userInfo: {...state.userInfo, ...initialState.userInfo}, IsLogin: false};
     case 'LOAD_WORDS':
-      return {state, userInfo: {...state.userInfo, ...state.userInfo}, IsLogin: state.IsLogin, isWordsLoad: true};
+      return {...state, userInfo: {...state.userInfo, ...state.userInfo}, IsLogin: state.IsLogin, isWordsLoad: true};
     case 'UNLOAD_WORDS':
-      return {state, userInfo: {...state.userInfo, ...state.userInfo}, IsLogin: state.IsLogin, isWordsLoad: false};
+      return {...state, userInfo: {...state.userInfo, ...state.userInfo}, IsLogin: state.IsLogin, isWordsLoad: false};
     default:
       return state;
   }

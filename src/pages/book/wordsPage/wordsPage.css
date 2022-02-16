@@ -42,3 +42,85 @@
 .active-word {
   background-color: #65bbf5;
 }
+
+.select {
+  position: relative;
+  width: 180px;
+  user-select: none;
+  font-family: sans-serif;
+}
+
+.select-btn {
+  padding: 5px;
+  height: 35px;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.select-options {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  color: #333333;
+  list-style: none;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.option:hover {
+  background-color: #d3d1d1;
+}
+
+.buttons-page_wrapper {
+  display: flex;
+  max-width: 400px;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.words-navigation {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.words-home {
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 35px;
+  background: orange;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  transition: 0.3s all;
+}
+
+.words-home:hover {
+  box-shadow: none;
+}
+
+.words-btn_default {
+  height: 35px;
+  background-color: #979595;
+}
+
+.words-prev-page {
+  border-radius: 20px 0 0 20px;
+}
+
+.words-next-page {
+  border-radius: 0 20px 20px 0;
+}

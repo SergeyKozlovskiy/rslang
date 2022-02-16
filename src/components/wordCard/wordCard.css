@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   width: 500px;
+  text-align: center;
   background-color: #14cb7e;
   box-shadow: 5px 5px 11px #086a41;
   border-radius: 20px;
@@ -30,13 +31,21 @@
 }
 
 .word-meaning,
-.word-meaning_translate,
 .word-text {
-  margin-bottom: 15px;
-  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #030303;
+}
+
+.word-meaning_translate {
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+  color: #2c2c2c;
 }
 
 .word-text_translate {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: #2c2c2c;
 }

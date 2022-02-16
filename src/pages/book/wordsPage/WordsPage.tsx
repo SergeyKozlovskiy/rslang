@@ -5,6 +5,9 @@ import { getWordsFromLocal } from '../../../localStorage/getWordsFromLocal';
 import { useDispatch } from 'react-redux';
 import { unLoadWordsAction } from '../../../store/actions';
 import { WordCard } from '../../../components/wordCard/WordCard';
+import { levelArr } from '../../../constants/arrays';
+import { getWords } from '../../../requests/getWords';
+import { setWords } from '../../../localStorage/setWords';
 
 export const WordsPage: React.FC = () => {
 
@@ -16,7 +19,10 @@ export const WordsPage: React.FC = () => {
     {
       allWords: wordsArr !== null ? wordsArr : null,
       word: wordsArr !== null ? wordsArr[0] : null,
-      page: wordsArr !== null ? wordsArr[0].page : null
+      page: wordsArr !== null ? wordsArr[0].page : null,
+      group: wordsArr !== null ? wordsArr[0].group : null,
+      isActive: false,
+      selected: levelArr[wordsArr !== null ? wordsArr[0].group : 0]
     }
   );
 
@@ -27,7 +33,10 @@ export const WordsPage: React.FC = () => {
           {
             allWords: wordsArr,
             word: item,
-            page: item.page
+            page: item.page,
+            group: item.group,
+            isActive: state.isActive,
+            selected: state.selected
           }
         )
       }
@@ -60,10 +69,96 @@ export const WordsPage: React.FC = () => {
     }
   };
 
+  const changeLevel = (e: MouseEvent): void => {
+    const target = e.target as HTMLLIElement;
+    if(target.dataset.group) {
+      getWords(Number(target.dataset.group), 0).then((words: Array<WordsType>) => {
+        if(target.textContent) {
+          setWords(words);
+          setState(
+            {
+              allWords: words,
+              word: words[0],
+              page: words[0].page,
+              group: words[0].group,
+              isActive: false,
+              selected: target.textContent
+            }
+          )
+        }
+      });
+    }
+  }
+
+  const changePage = (e: MouseEvent): void => {
+    const target = e.target as HTMLButtonElement;
+    if(state.group !== null && state.page !== null) {
+      if(target.dataset.prev) {
+        getWords(state.group, state.page - 1).then((words: Array<WordsType>) => {
+          setWords(words);
+          setState(
+            {
+              allWords: words,
+              word: words[0],
+              page: words[0].page,
+              group: words[0].group,
+              isActive: state.isActive,
+              selected: state.selected
+            }
+          )
+        });
+      } else {
+        getWords(state.group, state.page + 1).then((words: Array<WordsType>) => {
+          setWords(words);
+          setState(
+            {
+              allWords: words,
+              word: words[0],
+              page: words[0].page,
+              group: words[0].group,
+              isActive: state.isActive,
+              selected: state.selected
+            }
+          )
+        });
+      }
+    }
+  }
+
   return (
     <div className="words-page">
       <nav className="words-navigation">
-        <button onClick={() => dispatch(unLoadWordsAction())} className="words-home">на главную</button>
+        <button onClick={() => dispatch(unLoadWordsAction())} className="words-home">Закрыть учебник</button>
+        <div className="buttons-page_wrapper">
+          <button onClick={(e) => changePage(e)} className="words-prev-page words-btn_default" data-prev="prev" disabled={state.page === 0 ? true : false}>Назад</button>
+          <div className="select">
+            <div 
+            onClick={() => setState({
+              allWords: state.allWords,
+              word: state.word,
+              page: state.page,
+              group: state.group,
+              isActive: !state.isActive, 
+              selected: state.selected
+            })} 
+            className="select-btn" 
+            dangerouslySetInnerHTML={{__html: state.selected}}></div>
+          {
+            state.isActive && (
+              <ul className="select-options">
+                {
+                  levelArr.map((item: string) =>
+                    <li className="option" data-group={levelArr.indexOf(item)} key={item} onClick={(e) => changeLevel(e)}>
+                      {item}
+                    </li>
+                  )
+                }
+              </ul>
+            )
+          }
+        </div>
+          <button onClick={(e) => changePage(e)} className="words-next-page words-btn_default" data-next="next" disabled={state.page === 29 ? true : false}>Вперёд</button>
+        </div>
       </nav>
       {
         state.allWords !== null
