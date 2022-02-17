@@ -59,6 +59,7 @@ export type Word = {
 word: string,
 audio: string,
 translate: string,
+img?: string
 }
 
 export type Question = {

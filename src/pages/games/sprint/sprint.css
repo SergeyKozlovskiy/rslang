@@ -47,10 +47,6 @@
   margin: 0 auto;
 }
 
-.hide-popup {
-  transform: scale(0) !important;
-}
-
 #timer {
   transition: 0.1s;
 }

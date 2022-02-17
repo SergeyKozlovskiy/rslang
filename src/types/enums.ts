@@ -42,7 +42,6 @@ export enum Text {
   mainPromoPartThree = '? Не переживай, с нашим приложением ты можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку "Начать"!',
   mainPromoSpanOne = 'English',
   mainPromoSpanTwo = 'London is the capital of Great Britan',
-
   mainStatisticsPageTitle = 'Ваша статистика',
   mainStatisticsPageTabOneName ='general',
   mainStatisticsPageTabOneTitle = "Общая",
@@ -62,7 +61,6 @@ export enum Text {
   mainStatisticsPageTableRowOneCellFourContent = '0',
   mainStatisticsPageTableRowOneCellFiveContent = '0%',
   mainStatisticsPageTableRowOneCellSixContent = '0',
-
   aboutPageTitle = 'Приложение RS•Lang для Вас разработали:',
   sergeyFullName = 'Сергей Козловский',
   pavelFullName = 'Павел Войтехович',

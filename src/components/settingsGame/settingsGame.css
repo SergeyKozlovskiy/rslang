@@ -1,0 +1,18 @@
+.game-settings {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-settings_level {
+  width: 92%;
+}
+
+.game-settings__btn {
+  width: 45px;
+}
+
+.game-settings__btn img {
+  width: 100%;
+}
