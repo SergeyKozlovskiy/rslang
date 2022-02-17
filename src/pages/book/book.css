@@ -1,0 +1,41 @@
+.electronic-book {
+  padding: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.electronic-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0;
+  width: 25%;
+}
+
+.electronic-descr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.electronic-img {
+  margin-top: -100px;
+  width: 400px;
+  height: 400px;
+}
+
+.elctronic-text {
+  font-size: 20px;
+}
+
+.elctronic-text span {
+  color: var(--main-orange-color);
+  text-decoration: none;
+  cursor: text;
+}
+
+.elctronic-text span:hover {
+  color: var(--main-orange-color);
+}
