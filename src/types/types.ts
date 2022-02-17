@@ -122,3 +122,9 @@ wrongAnswer: Word[]
 export type SelectProps = {
   level: number
 }
+
+export type AudioBtnPropsType = {
+  audioUrl: string, 
+  audioExempleUrl: string, 
+  audioMeaningUrl: string
+}

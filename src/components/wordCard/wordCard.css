@@ -11,8 +11,8 @@
   align-items: center;
   width: 500px;
   text-align: center;
-  background-color: #14cb7e;
-  box-shadow: 5px 5px 11px #086a41;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 11px #cccccc;
   border-radius: 20px;
 }
 
@@ -30,22 +30,62 @@
   font-size: 1.5rem;
 }
 
+.word-mean,
+.word-sentence {
+  width: 100%;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.word-mean {
+  margin-bottom: 25px;
+}
+
 .word-meaning,
 .word-text {
-  margin-bottom: 8px;
   font-size: 1.2rem;
   font-weight: 500;
   color: #030303;
 }
 
 .word-meaning_translate {
-  margin-bottom: 25px;
   font-size: 1.2rem;
-  color: #2c2c2c;
+  color: #222222;
 }
 
 .word-text_translate {
   margin: 0;
   font-size: 1.2rem;
-  color: #2c2c2c;
+  color: #222222;
+}
+
+.word-sentence {
+  margin-bottom: 30px;
+}
+
+.word-settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.word-hard {
+  background-color: #006bff;
+}
+
+.word-lern {
+  background-color: #00ffa7;
+}
+
+.settings-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.settings-btn_defaul {
+  width: 150px;
+  height: 35px;
+  font-family: sans-serif;
+  border-radius: 15px;
 }

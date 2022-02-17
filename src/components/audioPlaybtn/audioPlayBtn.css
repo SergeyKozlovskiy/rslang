@@ -1,0 +1,11 @@
+.play-audio-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: url(../../assets/svg/audio.svg) center center/cover no-repeat;
+  transition: 0.3s all;
+}
+
+.play-audio-btn:hover {
+  transform: scale(1.2);
+}

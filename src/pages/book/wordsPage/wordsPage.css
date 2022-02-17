@@ -26,6 +26,7 @@
 }
 
 .word-wrapper:hover {
+  transform: scale(1.1);
   box-shadow: 5px 5px 11px #464545;
 }
 
@@ -48,6 +49,7 @@
   width: 180px;
   user-select: none;
   font-family: sans-serif;
+  transition: 0.3s all;
 }
 
 .select-btn {
@@ -91,6 +93,7 @@
 .words-navigation {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 40px;
   margin-bottom: 30px;
 }
@@ -114,7 +117,7 @@
 
 .words-btn_default {
   height: 35px;
-  background-color: #979595;
+  background-color: var(--main-orange-color);
 }
 
 .words-prev-page {
@@ -123,4 +126,8 @@
 
 .words-next-page {
   border-radius: 0 20px 20px 0;
+}
+
+.words-page-counter span {
+  color: var(--main-orange-color);
 }

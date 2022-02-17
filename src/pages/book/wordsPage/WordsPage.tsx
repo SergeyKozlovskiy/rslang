@@ -159,6 +159,9 @@ export const WordsPage: React.FC = () => {
         </div>
           <button onClick={(e) => changePage(e)} className="words-next-page words-btn_default" data-next="next" disabled={state.page === 29 ? true : false}>Вперёд</button>
         </div>
+        <h1 className="words-page-counter">
+          page <span>{Number(state.page) + 1}</span>
+        </h1>
       </nav>
       {
         state.allWords !== null
