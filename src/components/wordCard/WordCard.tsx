@@ -1,5 +1,5 @@
 import React from 'react';
-import { API } from '../../types/enums';
+import { API, Text } from '../../types/enums';
 import { WordsType } from '../../types/types';
 import { AudioPlayBtn } from '../audioPlaybtn/AudioPlayBtn';
 import './wordCard.css';
@@ -21,8 +21,8 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
         </div>
         <div className="word-settings">
           <div className="settings-wrapper">
-            <button className="word-hard settings-btn_defaul">В сложные слова</button>
-            <button className="word-lern settings-btn_defaul">В изученые слова</button>
+            <button className="word-hard settings-btn_defaul">{Text.wordCardHardBtn}</button>
+            <button className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
           </div>
           <AudioPlayBtn 
           audioUrl={props.audio}

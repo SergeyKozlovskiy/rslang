@@ -1,5 +1,5 @@
 import React from 'react';
-import { API } from '../../types/enums';
+import { API, MagicNumbers } from '../../types/enums';
 import './audioPlayBtn.css';
 import { AudioBtnPropsType } from '../../types/types';
 
@@ -15,7 +15,7 @@ export const AudioPlayBtn: React.FC<AudioBtnPropsType> = (props: AudioBtnPropsTy
     let currAudio: number = num;
     const audio: HTMLAudioElement = new Audio(audioPathArray[currAudio]);
     audio.play();
-    currAudio += 1;
+    currAudio += MagicNumbers.STEP;
     if (currAudio < audioPathArray.length) {
       audio.onended = () => {
         startAudio(currAudio);
@@ -24,7 +24,7 @@ export const AudioPlayBtn: React.FC<AudioBtnPropsType> = (props: AudioBtnPropsTy
   }
   
   return (
-    <button onClick={() => startAudio(0)} 
+    <button onClick={() => startAudio(MagicNumbers.ZER0_VALUE)} 
     className="play-audio-btn">
     </button>
   )

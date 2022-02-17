@@ -8,6 +8,7 @@ import { WordCard } from '../../../components/wordCard/WordCard';
 import { levelArr } from '../../../constants/arrays';
 import { getWords } from '../../../requests/getWords';
 import { setWords } from '../../../localStorage/setWords';
+import { MagicNumbers, Text } from '../../../types/enums';
 
 export const WordsPage: React.FC = () => {
 
@@ -22,7 +23,7 @@ export const WordsPage: React.FC = () => {
       page: wordsArr !== null ? wordsArr[0].page : null,
       group: wordsArr !== null ? wordsArr[0].group : null,
       isActive: false,
-      selected: levelArr[wordsArr !== null ? wordsArr[0].group : 0]
+      selected: levelArr[wordsArr !== null ? wordsArr[0].group : MagicNumbers.ZER0_VALUE]
     }
   );
 
@@ -72,7 +73,7 @@ export const WordsPage: React.FC = () => {
   const changeLevel = (e: MouseEvent): void => {
     const target = e.target as HTMLLIElement;
     if(target.dataset.group) {
-      getWords(Number(target.dataset.group), 0).then((words: Array<WordsType>) => {
+      getWords(Number(target.dataset.group), MagicNumbers.ZER0_VALUE).then((words: Array<WordsType>) => {
         if(target.textContent) {
           setWords(words);
           setState(
@@ -94,7 +95,7 @@ export const WordsPage: React.FC = () => {
     const target = e.target as HTMLButtonElement;
     if(state.group !== null && state.page !== null) {
       if(target.dataset.prev) {
-        getWords(state.group, state.page - 1).then((words: Array<WordsType>) => {
+        getWords(state.group, state.page - MagicNumbers.STEP).then((words: Array<WordsType>) => {
           setWords(words);
           setState(
             {
@@ -108,7 +109,7 @@ export const WordsPage: React.FC = () => {
           )
         });
       } else {
-        getWords(state.group, state.page + 1).then((words: Array<WordsType>) => {
+        getWords(state.group, state.page + MagicNumbers.STEP).then((words: Array<WordsType>) => {
           setWords(words);
           setState(
             {
@@ -128,9 +129,9 @@ export const WordsPage: React.FC = () => {
   return (
     <div className="words-page">
       <nav className="words-navigation">
-        <button onClick={() => dispatch(unLoadWordsAction())} className="words-home">Закрыть учебник</button>
+        <button onClick={() => dispatch(unLoadWordsAction())} className="words-home">{Text.closeBookBtn}</button>
         <div className="buttons-page_wrapper">
-          <button onClick={(e) => changePage(e)} className="words-prev-page words-btn_default" data-prev="prev" disabled={state.page === 0 ? true : false}>Назад</button>
+          <button onClick={(e) => changePage(e)} className="words-prev-page words-btn_default" data-prev="prev" disabled={state.page === MagicNumbers.ZER0_VALUE ? true : false}>{Text.authorizationBackBtn}</button>
           <div className="select">
             <div 
             onClick={() => setState({
@@ -157,10 +158,10 @@ export const WordsPage: React.FC = () => {
             )
           }
         </div>
-          <button onClick={(e) => changePage(e)} className="words-next-page words-btn_default" data-next="next" disabled={state.page === 29 ? true : false}>Вперёд</button>
+          <button onClick={(e) => changePage(e)} className="words-next-page words-btn_default" data-next="next" disabled={state.page === MagicNumbers.MAX_BOOK_PAGE ? true : false}>{Text.nextBookPage}</button>
         </div>
         <h1 className="words-page-counter">
-          page <span>{Number(state.page) + 1}</span>
+          {Text.bookPageCounterText} <span>{Number(state.page) + MagicNumbers.STEP}</span>
         </h1>
       </nav>
       {
@@ -170,7 +171,7 @@ export const WordsPage: React.FC = () => {
           <div className="words-btn_wrapper">
             {
               state.allWords.map((item: WordsType) => 
-              state.allWords?.indexOf(item) === 0
+              state.allWords?.indexOf(item) === MagicNumbers.ZER0_VALUE
               ?
                 <button onClick={(e) => activeWord(e)} className='word-wrapper active-word' data-key={item.id} key={item.id}>
                   <h2 className="word">{item.word}</h2>
@@ -187,8 +188,8 @@ export const WordsPage: React.FC = () => {
           <WordCard 
 
             id={state.word !== null ? state.word.id : ''}
-            group={state.word !== null ? state.word.group : 0}
-            page={state.word !== null ? state.word.page : 0}
+            group={state.word !== null ? state.word.group : MagicNumbers.ZER0_VALUE}
+            page={state.word !== null ? state.word.page : MagicNumbers.ZER0_VALUE}
             word={state.word !== null ? state.word.word : ''}
             image={state.word !== null ? state.word.image : ''}
             audio={state.word !== null ? state.word.audio : ''}
@@ -203,7 +204,7 @@ export const WordsPage: React.FC = () => {
           />
         </div>
         :
-        <p className="words-err">Error: Words not found</p>
+        <p className="words-err">{Text.bookPageError}</p>
       }
     </div>
   )
