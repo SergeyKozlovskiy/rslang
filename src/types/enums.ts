@@ -1,8 +1,11 @@
 export enum Text {
-  DropdownText = 'Уровень',
   HeaderSprintPopUp = 'Спринт',
+  HeaderAudioChallengePopUp = 'Аудио вызов',
   SubtitleSprintPopUp = 'Выберите соответсвует ли перевод предложенному слову',
-  StartSprintButton = 'Начать',
+  SubtitleAudioChallengePopUp = '«Аудиовызов» - это тренировка, которая улучшает восприятие речи на слух.',
+  NextButton = 'Далее',
+  ShowCurrectAnswerButton = 'Не знаю',
+  StartGameButton = 'Начать',
   RightAnswerSprintButton = 'Верно',
   WrongAnswerSprintButton = 'Не верно',
   menuOptionStartPage = 'Главная страница',
@@ -68,6 +71,7 @@ export enum Text {
   sergeyTasksDescription = 'Ежедневная связь с командой, постановка/контроль тасков, настройка роутинга и получения данных с бекенда через Redux, создание игр "Спринт" и "Аудио-вызов".',
   pavelTasksDescription = 'Настройка получения/отправки данных на сервер через Redux, реализация регистрации и авторизации пользователя, создание учебника и списка слов.',
   timurTasksDescription = 'Верстка, графическое оформление, создание бургер-меню.',
+
 }
 
 export enum API {
@@ -82,7 +86,13 @@ export enum MagicNumbers {
   SERIES_OF_CORRECT_ANSWERS_2 = 6,
   BASIC_SCORE = 10, 
   BONUS_SCORE = 20, 
-  SUPER_BONUS_SCORE = 40
+  SUPER_BONUS_SCORE = 40,
+  PERCENT = 100,
+  NUMBER_OF_RESPONSES = 5, 
+  MIN_QUESTION_NUMBER = 0, 
+  MAX_QUESTION_NUMBER = 19, 
+  MIN_PAGE = 0,
+  MAX_PAGE = 19
 }
 
 export enum Actions {

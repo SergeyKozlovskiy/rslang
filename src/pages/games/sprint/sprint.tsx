@@ -47,9 +47,9 @@ export const Sprint: React.FC = () => {
     setResultsAllAnswers(prevAnswer => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
-      
+
       statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * 100;
+      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT;
       return {
         ...prevAnswer
       }

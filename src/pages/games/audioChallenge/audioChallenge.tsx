@@ -8,7 +8,7 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { getWords } from '../../../requests/getWords';
 import { Answers, Word, WordData } from '../../../types/types';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
-import { API } from '../../../types/enums';
+import { API, MagicNumbers, Text } from '../../../types/enums';
 const correctAnswerAudio = require("../../../assets/audio/correctAnswer.mp3");
 const incorrectAnswerAudio = require("../../../assets/audio/incorrectAnswer.mp3");
 const gameOverAudio = require("../../../assets/audio/end.mp3");
@@ -54,7 +54,7 @@ export const AudioChallenge: React.FC = () => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
       statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * 100;
+      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT;
       return {
         ...prevAnswer
       }
@@ -87,7 +87,7 @@ export const AudioChallenge: React.FC = () => {
     const randomAnswers: Word[] = [];
     randomAnswers.push(currectAnswer);
 
-    while(randomAnswers.length < 5){
+    while(randomAnswers.length < MagicNumbers.NUMBER_OF_RESPONSES){
       
       const randIntExcep = (min: number, max: number, exp: number) => {
         let n;
@@ -97,7 +97,7 @@ export const AudioChallenge: React.FC = () => {
         }
       }
 
-      const randomNum = randIntExcep(0, 19, numQuestion);
+      const randomNum = randIntExcep(MagicNumbers.MIN_QUESTION_NUMBER, MagicNumbers.MAX_QUESTION_NUMBER, numQuestion);
  
       const randomAnswer = {
         audio: wordData[randomNum].audio, 
@@ -113,14 +113,14 @@ export const AudioChallenge: React.FC = () => {
 
     }
 
-    if(randomAnswers.length === 5) {
+    if(randomAnswers.length === MagicNumbers.NUMBER_OF_RESPONSES) {
       setAnswers(shuffle(randomAnswers));
     };
   }
 
   const getData = async (num?: number) => {
     try {
-      const randomPage = random(0, 29);
+      const randomPage = random(MagicNumbers.MIN_PAGE, MagicNumbers.MAX_PAGE);
       const result = await getWords(num ? num : 0, randomPage).then((value) => value);
       if(result){
         setWordData(result);
@@ -150,7 +150,7 @@ export const AudioChallenge: React.FC = () => {
     setNumQuestion(prevValue => prevValue + 1);
   }
 
-  const showCurrectAnswer = () => {
+  const showCurrectAnswerButton = () => {
     const answers =  document.querySelectorAll('.audioChallenge-question__answers-item');
     const button =  document.querySelector('.audioChallenge-question__button') as HTMLButtonElement;
     answers.forEach(elem => {
@@ -158,7 +158,7 @@ export const AudioChallenge: React.FC = () => {
        elem.classList.add('wrong-answers');
       }
     });
-    button.textContent = 'Далее';
+    button.textContent = Text.NextButton;
   }
 
   const playSound = (path: string) => {
@@ -175,7 +175,7 @@ export const AudioChallenge: React.FC = () => {
       translate: target.textContent ? target.textContent : ''
     }
 
-    if(target && answer && currectAnswer && target.textContent === currectAnswer.translate && numQuestion < 19){
+    if(target && answer && currectAnswer && target.textContent === currectAnswer.translate && numQuestion < MagicNumbers.MAX_QUESTION_NUMBER){
       setResultsAllAnswers(prevAnswer => {
         return {
           ...prevAnswer,
@@ -184,7 +184,7 @@ export const AudioChallenge: React.FC = () => {
       });
       setSeriesOfCorrectAnswers(prev => prev + 1);
       playSound(correctAnswerAudio);
-      setScore(prevScore => prevScore + 10);
+      setScore(prevScore => prevScore + MagicNumbers.BASIC_SCORE);
       increaseQuestionNumber();
       getCurrectAnswer();
     }else if(target.textContent !== currectAnswer.translate){
@@ -200,22 +200,22 @@ export const AudioChallenge: React.FC = () => {
       });
       changeImg();
       playSound(incorrectAnswerAudio);
-      showCurrectAnswer();
+      showCurrectAnswerButton();
     }
 
-    if(numQuestion === 19){
+    if(numQuestion === MagicNumbers.MAX_QUESTION_NUMBER){
       showResult();
     }
   }
 
   const changeImg = () => {
     const img = document.querySelector('.audioChallenge-question__img') as HTMLImageElement;
-    if(img.getAttribute('alt') === 'dynamic'){
+    if(img.getAttribute('alt') === Text.IconAttributeAudioChallenge){
       img.setAttribute('src', `${API.URL + currectAnswer.img}`);
       img.setAttribute('alt', `${currectAnswer.word}`);
     }else{
       img.setAttribute('src', dynamic);
-      img.setAttribute('alt', 'dynamic');
+      img.setAttribute('alt', Text.IconAttributeAudioChallenge);
     }
   }
 
@@ -256,12 +256,12 @@ export const AudioChallenge: React.FC = () => {
       translate: target.textContent ? target.textContent : ''
     }
 
-    if(target.textContent === 'Не знаю'){
+    if(target.textContent === Text.ShowCurrectAnswerButton){
       if(longestSeriesCorrectAnswers < seriesOfCorrectAnswers){
         setLongestSeriesCorrectAnswers(seriesOfCorrectAnswers);
       }
       setSeriesOfCorrectAnswers(0);
-      showCurrectAnswer();
+      showCurrectAnswerButton();
       setResultsAllAnswers(prevAnswer => {
         return {
           ...prevAnswer,
@@ -269,18 +269,18 @@ export const AudioChallenge: React.FC = () => {
         }
       });
       changeImg();
-    }else if(target.textContent !== 'Не знаю' && numQuestion < 19){
+    }else if(target.textContent !== Text.ShowCurrectAnswerButton && numQuestion < MagicNumbers.MAX_QUESTION_NUMBER){
       const wrongAnswers = document.querySelectorAll('.wrong-answers');
       if(wrongAnswers){
         wrongAnswers.forEach(elem => {
           elem.classList.remove('wrong-answers');
         })
       }
-      target.textContent = 'Не знаю';
+      target.textContent = Text.ShowCurrectAnswerButton;
       increaseQuestionNumber();
       getCurrectAnswer();
       changeImg();
-    }else if(target.textContent !== 'Не знаю' && numQuestion === 19){
+    }else if(target.textContent !== Text.ShowCurrectAnswerButton && numQuestion === MagicNumbers.MAX_QUESTION_NUMBER){
       showResult();
     }
   }
@@ -291,17 +291,17 @@ export const AudioChallenge: React.FC = () => {
 
   return <div className='audioChallenge-wrapper'>
             <SettingGame changeLevel ={changeLevel}/>
-            <StartGame header='Аудио вызов' subtitle='«Аудиовызов» - это тренировка, которая улучшает восприятие речи на слух.' callback={startGame} />
+            <StartGame header={Text.HeaderAudioChallengePopUp} subtitle={Text.SubtitleAudioChallengePopUp} callback={startGame} />
             
             <div className="audioChallenge-question hide-popup">
               <div className="audioChallenge-question__numQuestion">{numQuestion + 1}/20</div>
-              <img onClick={soundWord} className="audioChallenge-question__img" src={dynamic} alt="dynamic" />
+              <img onClick={soundWord} className="audioChallenge-question__img" src={dynamic} alt={Text.IconAttributeAudioChallenge} />
               <div className="audioChallenge-question__answers">
                 {answers.map(elem => {
                   return  <div key={elem.word} onClick={(e) => {answerCheck(e)}} className="audioChallenge-question__answers-item">{elem.translate}</div>
                 })}
               </div>
-              <Button className='audioChallenge-question__button' onClick={(e) => {handleQuestionButton(e)}} variant="secondary">Не знаю</Button>
+              <Button className='audioChallenge-question__button' onClick={(e) => {handleQuestionButton(e)}} variant="secondary">{Text.ShowCurrectAnswerButton}</Button>
             </div>
 
             <ResultGamePopup score={score} resultsAllAnswers={resultsAllAnswers} closePopUp={closeResults}/>
