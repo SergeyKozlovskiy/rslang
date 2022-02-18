@@ -1,16 +1,16 @@
-import { Button, CloseButton, Form} from 'react-bootstrap';
-import fullScreen from '../../../assets/svg/fullscreen.svg';
-import fullScreenExit from '../../../assets/svg/fullscreen-exit.svg';
+import { Button} from 'react-bootstrap';
 import audioImg from '../../../assets/svg/audio.svg';
 import muteImg from '../../../assets/svg/mute.svg';
 import { timer } from '../../../functions/timer';
 import _ from 'lodash';
 import { getWords } from '../../../requests/getWords';
-import { API, MagicNumbers, Text } from '../../../types/enums';
+import { MagicNumbers, Text } from '../../../types/enums';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import './sprint.css';
-import { Link } from 'react-router-dom';
 import { Question, WordData, Answers} from '../../../types/types';
+import { StartGame } from '../../../components/startGamePopup/startGame';
+import { SettingGame } from '../../../components/settingsGame/settingsGame';
+import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
 const correctAnswer = require("../../../assets/audio/correctAnswer.mp3");
 const incorrectAnswer = require("../../../assets/audio/incorrectAnswer.mp3");
 const end = require("../../../assets/audio/end.mp3");
@@ -35,7 +35,8 @@ export const Sprint: React.FC = () => {
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
   
-  const changeStatistics = () => {
+  const getStatistics = () => {
+
     const statistics = {
       learnedWords: 0, 
       optional: {
@@ -46,8 +47,9 @@ export const Sprint: React.FC = () => {
     setResultsAllAnswers(prevAnswer => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
+
       statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * 100;
+      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT;
       return {
         ...prevAnswer
       }
@@ -73,17 +75,6 @@ export const Sprint: React.FC = () => {
       rightAnswer: [],
       wrongAnswer: []
     });
-  }
-
-  const changeFullScreen = (event: SyntheticEvent) => {
-    const target = event.target as HTMLImageElement;
-   if (document.fullscreenElement) {
-    document.exitFullscreen();
-    target.setAttribute('src', fullScreen);
-   } else {
-    document.documentElement.requestFullscreen();
-    target.setAttribute('src', fullScreenExit);
-   }
   }
 
   const changeIndicatorNumber = () => {
@@ -115,11 +106,6 @@ export const Sprint: React.FC = () => {
       return prevMute;
     })
     
-  }
-
-  const voice = (path: string) => {
-    const audioObj = new Audio(`${path}`);
-    audioObj.play();
   }
 
   const clearIndicators = () => {
@@ -158,7 +144,7 @@ export const Sprint: React.FC = () => {
 
   const closePopUp = () => {
     const resultPopUp = document.querySelector('.results') as HTMLElement; 
-    const sprintPopUp = document.querySelector('.sprint-popup') as HTMLElement;
+    const sprintPopUp = document.querySelector('.startGame-popup') as HTMLElement;
     const questionСard = document.querySelector('.question-card') as HTMLElement;
     const timerElem = document.getElementById('timer') as HTMLElement;
     resultPopUp?.classList.add('hide-popup');
@@ -170,10 +156,10 @@ export const Sprint: React.FC = () => {
 
   const showResult = () => {
     const resultPopUp = document.querySelector('.results') as HTMLElement;
-    const selectLevel = document.querySelector('.sprint-settings_level') as HTMLElement;
+    const selectLevel = document.querySelector('.game-settings_level') as HTMLElement;
     resultPopUp.classList.remove('hide-popup');
     selectLevel.removeAttribute('disabled');
-    changeStatistics();
+    getStatistics();
     startAudio(end);
   }
 
@@ -247,10 +233,10 @@ export const Sprint: React.FC = () => {
 
   const start = () => {
     getData();
-    const popUp = document.querySelector('.sprint-popup') as HTMLElement;
+    const popUp = document.querySelector('.startGame-popup') as HTMLElement;
     const questionСard = document.querySelector('.question-card') as HTMLElement;
     const timerElem = document.getElementById('timer') as HTMLElement;
-    const selectLevel = document.querySelector('.sprint-settings_level') as HTMLElement;
+    const selectLevel = document.querySelector('.game-settings_level') as HTMLElement;
     popUp?.classList.add('hide-popup');
     questionСard?.classList.remove('hide-popup');
     timerElem?.classList.remove('hide-popup');
@@ -265,29 +251,11 @@ export const Sprint: React.FC = () => {
   },[getData]); 
 
   return <div className="sprint-wrapper">
-    <div className="sprint-settings">
-      <button className='sprint-settings__btn'><img onClick={(e) => {changeFullScreen(e)}} src={fullScreen} alt={fullScreen}/></button>
-        <Form.Select className="sprint-settings_level" onChange={(e) => {changeLevel(e.target.value)}}>
-          <option value="0">Начальный</option>
-          <option value="1">Элементарный</option>
-          <option value="2">Слабый средний</option>
-          <option value="3">Средний</option>
-          <option value="4">Выше среднего</option>
-          <option value="5">Продвинутый</option>
-        </Form.Select>
-      <Link to="/"><CloseButton /></Link>
-      
-    </div>
-
-    <div className="sprint-popup">
-      <h3>{Text.HeaderSprintPopUp}</h3>
-      <p>{Text.SubtitleSprintPopUp}</p>
-      <Button onClick={start} className='sprint-popup_btn' variant="success">{Text.StartSprintButton}</Button>
-    </div>
+    <SettingGame changeLevel={changeLevel}/>
+    <StartGame header={Text.HeaderSprintPopUp} subtitle={Text.SubtitleSprintPopUp} callback={start}/>
 
     <div className="wrapper-question-card">
     <div id="timer" className='hide-popup'></div>
-
     <div className="question-card hide-popup">
       <div className="question-card__settings">
         <div className='question-card_indicators'>
@@ -306,28 +274,6 @@ export const Sprint: React.FC = () => {
     </div>
     </div>
 
-    <div className="results hide-popup">
-      <h3>Результаты</h3>
-      <p>Вы набрали {score} очков</p>
-      <div className="results-answers">
-      <strong className='results-answers_subtitle'>Правильные ответы</strong>
-      <div>{resultsAllAnswers.rightAnswer.map((answerData) => {
-        return <div className='results-answers_item' key={answerData.word}>
-          <img onClick={() => {voice(`${API.URL}${answerData.audio}`)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
-          <strong className='results-answers_word'>{answerData.word} </strong>
-          <span>&nbsp;- {answerData.translate}</span>
-        </div>
-      })}</div>
-      <strong className='results-answers_subtitle'>Не правильные ответы</strong>
-      <div>{resultsAllAnswers.wrongAnswer.map((answerData) => {
-        return <div className='results-answers_item' key={answerData.word}>
-          <img onClick={() => {voice(`${API.URL}${answerData.audio}`)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
-          <strong className='results-answers_word'>{answerData.word} </strong>
-          <span>&nbsp;- {answerData.translate}</span>
-        </div>
-      })}</div>
-      </div>
-      <Button onClick={closePopUp} variant="secondary">{Text.exit}</Button>
-    </div>
+    <ResultGamePopup score={score} resultsAllAnswers={resultsAllAnswers} closePopUp={closePopUp}/>
   </div>
 };

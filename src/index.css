@@ -20,7 +20,12 @@ button {
   outline: none;
   background: none;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.hide-popup {
+  transform: scale(0) !important;
 }

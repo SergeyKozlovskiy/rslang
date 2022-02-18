@@ -1,3 +1,5 @@
+
+
 export const timer = (showResult: Function): void => {
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
@@ -58,17 +60,20 @@ function onTimesUp() {
 
 function startTimer() {
   timerInterval = setInterval(() => {
-    timePassed = timePassed += 1;
-    timeLeft = TIME_LIMIT - timePassed;
-    const label = document.getElementById("base-timer-label") as HTMLElement;
-    label.innerHTML = formatTime(
-      timeLeft
-    );
-    setCircleDasharray();
-    setRemainingPathColor(timeLeft);
-
-    if (timeLeft === 0) {
-      onTimesUp();
+    if(window.location.href.includes('sprint')){
+      timePassed = timePassed += 1;
+      timeLeft = TIME_LIMIT - timePassed;
+      const label = document.getElementById("base-timer-label") as HTMLElement;
+      label.innerHTML = formatTime(
+        timeLeft
+      );
+      setCircleDasharray();
+      setRemainingPathColor(timeLeft);
+      if (timeLeft === 0) {
+        onTimesUp();
+      }
+    }else{
+      clearInterval(timerInterval);
     }
   }, 1000);
 }
