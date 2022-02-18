@@ -5,6 +5,7 @@ export enum Text {
   SubtitleAudioChallengePopUp = '«Аудиовызов» - это тренировка, которая улучшает восприятие речи на слух.',
   NextButton = 'Далее',
   ShowCurrectAnswerButton = 'Не знаю',
+  IconAttributeAudioChallenge = 'dynamic',
   StartGameButton = 'Начать',
   RightAnswerSprintButton = 'Верно',
   WrongAnswerSprintButton = 'Не верно',

@@ -30,6 +30,7 @@ export const AudioChallenge: React.FC = () => {
   const [answers, setAnswers] = useState<Word[]>([]);
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
+  
 
   const resetGame = () => {
     setNumQuestion(0);
@@ -130,7 +131,7 @@ export const AudioChallenge: React.FC = () => {
     catch(error){
       console.log(error);
   }
-}
+  }
 
   const startGame = () => {
     const startGame = document.querySelector('.startGame-popup') as HTMLElement;
@@ -284,10 +285,11 @@ export const AudioChallenge: React.FC = () => {
       showResult();
     }
   }
-
+  
   useEffect(() => {
     getData();
   },[]); 
+
 
   return <div className='audioChallenge-wrapper'>
             <SettingGame changeLevel ={changeLevel}/>
