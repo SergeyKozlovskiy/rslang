@@ -15,6 +15,16 @@ import { IRespSignIn } from '../../types/types';
 export const Header: React.FC = () => {
   const showMenu = () => {
     (document.getElementById("menu_list") as HTMLFormElement).classList.toggle("menu-active");
+    hideMenu();
+  };
+
+  const hideMenu = () => { 
+    return document.addEventListener("click", function (event) {
+      if ((event.target !== document.getElementById("menu_list") as HTMLFormElement) &&
+        (event.target !== document.querySelector("Button") as HTMLFormElement) &&
+        (document.getElementById("menu_list") as HTMLFormElement).classList.contains("menu-active")) 
+        return (document.getElementById("menu_list") as HTMLFormElement).classList.remove("menu-active");
+  })
   };
 
   const dispatch = useDispatch();
@@ -25,7 +35,7 @@ export const Header: React.FC = () => {
 
   return <header className={Classes.header}>
     <nav className={Classes.menuContainer } id="Navigation">
-      <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu} ></Button>
+      <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu}></Button>
       <ul id="menu_list" className={Classes.menuList}>
         <CloseButton variant="white" className={Classes.menuListCloseButton} onClick={showMenu}></CloseButton>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}>{Text.menuOptionStartPage}</Link></li>
@@ -36,7 +46,7 @@ export const Header: React.FC = () => {
           :
           ''
         }
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionWordList}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionElectronicBook}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}>{Text.menuOptionMiniGames}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}>{Text.menuOptionStatPage}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}>{Text.menuOptionAbout}</Link></li>
@@ -71,5 +81,3 @@ export const Header: React.FC = () => {
       }
     </header>
 };
-    
-    

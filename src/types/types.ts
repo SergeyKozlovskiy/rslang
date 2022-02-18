@@ -35,7 +35,53 @@ export interface IPopupProps {
 
 export interface IReduxState {
   userInfo: IRespSignIn,
-  IsLogin: boolean
+  IsLogin: boolean,
+  isWordsLoad: boolean
+}
+
+export interface ILevelBtnProps {
+  level: string,
+  title: string,
+  color: string,
+  page: number,
+  group: number
+}
+
+export interface IStatistic {
+  learnedWords: number,
+  optional: {
+    sprint?: IStatisticBody,
+    audioChalange?: IStatisticBody,
+  }
+}
+
+export interface IStatisticBody {
+  gameLernedWords: number
+  persent: number,
+  wins: number
+}
+
+export type WordsType = {
+  id: string,
+  group:	number,
+  page:	number,
+  word:	string,
+  image:	string,
+  audio:	string,
+  audioMeaning:	string,
+  audioExample:	string,
+  textMeaning:	string,
+  textExample:	string,
+  transcription:	string,
+  wordTranslate:	string,
+  textMeaningTranslate:	string,
+  textExampleTranslate:	string,
+
+}
+
+export type WordsActionType = {
+  type: string,
+  value: Array<WordsType>
 }
 
 export type WordData = {
@@ -74,3 +120,12 @@ rightAnswer: Word[],
 wrongAnswer: Word[]
 }
 
+export type SelectProps = {
+  level: number
+}
+
+export type AudioBtnPropsType = {
+  audioUrl: string, 
+  audioExempleUrl: string, 
+  audioMeaningUrl: string
+}
