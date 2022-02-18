@@ -131,3 +131,27 @@
 .words-page-counter span {
   color: var(--main-orange-color);
 }
+
+.words-game-link {
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+
+.link-item {
+  padding: 5px 10px;
+  background-color: #dad6d6;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: #030303;
+  transition: 0.3s all;
+  text-transform: uppercase;
+}
+
+.link-item:hover {
+  border-radius: 0;
+  background-color: var(--main-orange-color);
+  box-shadow: 5px 5px 11px #464545;
+  transform: scale(1.1);
+}
