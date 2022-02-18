@@ -8,7 +8,8 @@ import { WordCard } from '../../../components/wordCard/WordCard';
 import { levelArr } from '../../../constants/arrays';
 import { getWords } from '../../../requests/getWords';
 import { setWords } from '../../../localStorage/setWords';
-import { MagicNumbers, Text } from '../../../types/enums';
+import { MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
+import { Link } from 'react-router-dom'; 
 
 export const WordsPage: React.FC = () => {
 
@@ -164,6 +165,18 @@ export const WordsPage: React.FC = () => {
           {Text.bookPageCounterText} <span>{Number(state.page) + MagicNumbers.STEP}</span>
         </h1>
       </nav>
+      <ul className="words-game-link">
+          <Link to="/sprint">
+            <li className="link-item" key={RequestStatistic.sprint}>
+              {RequestStatistic.sprint}
+            </li>
+          </Link>
+          <Link to="/audioCall">
+            <li className="link-item" key={RequestStatistic.audioChalenge}>
+              {RequestStatistic.audioChalenge}
+            </li>
+          </Link>
+      </ul>
       {
         state.allWords !== null
         ?
