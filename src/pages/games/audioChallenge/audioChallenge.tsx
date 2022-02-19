@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { SettingGame } from '../../../components/settingsGame/settingsGame';
 import { StartGame } from '../../../components/startGamePopup/startGame';
-import dynamic from '../../../assets/svg/audio.svg';
+import dynamic from '../../../assets/game-page/speak.png';
 import './audioChallenge.css';
 import { random, shuffle } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';
@@ -158,6 +158,7 @@ export const AudioChallenge: React.FC = () => {
       if(elem.textContent !== currectAnswer.translate){
        elem.classList.add('wrong-answers');
       }
+      elem.setAttribute('disabled', 'true');
     });
     button.textContent = Text.NextButton;
   }
@@ -254,7 +255,7 @@ export const AudioChallenge: React.FC = () => {
     const answer: Word = {
       audio: currectAnswer.audio,
       word: currectAnswer.word,
-      translate: target.textContent ? target.textContent : ''
+      translate: currectAnswer.translate
     }
 
     if(target.textContent === Text.ShowCurrectAnswerButton){
@@ -271,12 +272,16 @@ export const AudioChallenge: React.FC = () => {
       });
       changeImg();
     }else if(target.textContent !== Text.ShowCurrectAnswerButton && numQuestion < MagicNumbers.MAX_QUESTION_NUMBER){
+      const answers =  document.querySelectorAll('.audioChallenge-question__answers-item');
       const wrongAnswers = document.querySelectorAll('.wrong-answers');
       if(wrongAnswers){
         wrongAnswers.forEach(elem => {
           elem.classList.remove('wrong-answers');
         })
       }
+      answers.forEach(elem => {
+        elem.removeAttribute('disabled');
+      });
       target.textContent = Text.ShowCurrectAnswerButton;
       increaseQuestionNumber();
       getCurrectAnswer();
@@ -296,11 +301,11 @@ export const AudioChallenge: React.FC = () => {
             <StartGame header={Text.HeaderAudioChallengePopUp} subtitle={Text.SubtitleAudioChallengePopUp} callback={startGame} />
             
             <div className="audioChallenge-question hide-popup">
-              <div className="audioChallenge-question__numQuestion">{numQuestion + 1}/20</div>
+              <div className="audioChallenge-question__numQuestion">{numQuestion + 1} / 20</div>
               <img onClick={soundWord} className="audioChallenge-question__img" src={dynamic} alt={Text.IconAttributeAudioChallenge} />
               <div className="audioChallenge-question__answers">
                 {answers.map(elem => {
-                  return  <div key={elem.word} onClick={(e) => {answerCheck(e)}} className="audioChallenge-question__answers-item">{elem.translate}</div>
+                  return  <button key={elem.word} onClick={(e) => {answerCheck(e)}} className="audioChallenge-question__answers-item">{elem.translate}</button>
                 })}
               </div>
               <Button className='audioChallenge-question__button' onClick={(e) => {handleQuestionButton(e)}} variant="secondary">{Text.ShowCurrectAnswerButton}</Button>

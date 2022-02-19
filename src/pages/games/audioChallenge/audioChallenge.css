@@ -2,6 +2,7 @@
   position: relative;
   min-height: calc(90vh - 90px);
 }
+
 .audioChallenge-wrapper:after {
   position: absolute;
   content: '';
@@ -23,9 +24,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 7px;
   transition: .3s;
+  z-index: 110;
+}
+
+.audioChallenge-question__numQuestion {
+  font-size: 35px;
+  font-family: var(--motto-font);
 }
 
 .audioChallenge-question__img {
@@ -35,6 +42,10 @@
   cursor: pointer;
   border-radius: 3px;
   transition: 0.3s;
+}
+
+.audioChallenge-question__img:hover {
+  transform: scale(1.1);
 }
 
 .audioChallenge-question__answers {
@@ -51,17 +62,49 @@
 .audioChallenge-question__answers-item {
   padding: 10px 15px;
   text-align: center;
-  border: 1px solid black;
   border-radius: 3px;
+  background-color: var(--main-orange-color);
+  color: white;
+  font-family: var(--menu-font);
   transition: 0.3s;
 }
 
-.audioChallenge-question__button{
+.audioChallenge-question__answers-item:hover {
+  -webkit-box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  -moz-box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  transform: translateY(-5px);
+}
+
+button:disabled:hover {
+  box-shadow: none;
+  transform: translateY(0px);
+}
+
+.audioChallenge-question__button {
   display: block;
+  border: none;
+  background-color: #BC202F;
+  font-family: var(--menu-font);
   margin: 50px auto 0;
+  transition: 0.3s;
+}
+
+.audioChallenge-question__button:hover {
+  -webkit-box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  -moz-box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  box-shadow: 0px 5px 10px 10px rgba(34, 60, 80, 0.25);
+  transform: translateY(-5px);
+  background-color: #BC202F;
+  border: none;
 }
 
 .wrong-answers {
-  border: 1px solid rgb(195, 192, 192);
+  background-color: grey;
   color: rgb(195, 192, 192);
+}
+
+.wrong-answers:hover {
+  box-shadow: none;
+  transform: translateY(0px);
 }
