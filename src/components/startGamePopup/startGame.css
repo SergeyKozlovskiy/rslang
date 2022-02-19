@@ -11,13 +11,31 @@
   margin: 0 auto;
   text-align: center;
   padding: 25px 35px;
-  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 7px;
   transition: 0.3s;
   z-index: 100;
 }
-
+.startGame-popup h3{
+  font-family: var(--menu-font);
+  font-weight: 900;
+  color: var(--main-orange-color);
+  letter-spacing: 2px;
+}
+.startGame-popup p {
+  font-size: 22px;
+  font-family: var(--motto-font);
+}
 .startGame-popup_btn {
   width: 100px;
   margin: 0 auto;
+  background-color: var(--main-orange-color);
+  font-family: var(--menu-font);
+  border: none;
+  transition: 0.3s;
+}
+
+.startGame-popup_btn:hover {
+  background-color: var(--main-orange-color);
+  opacity: 0.7;
 }
