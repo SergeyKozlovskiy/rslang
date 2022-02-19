@@ -199,7 +199,6 @@ export const WordsPage: React.FC = () => {
             }
           </div>
           <WordCard 
-
             id={state.word !== null ? state.word.id : ''}
             group={state.word !== null ? state.word.group : MagicNumbers.ZER0_VALUE}
             page={state.word !== null ? state.word.page : MagicNumbers.ZER0_VALUE}

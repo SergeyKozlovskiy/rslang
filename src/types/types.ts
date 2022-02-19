@@ -76,6 +76,8 @@ export type WordsType = {
   wordTranslate:	string,
   textMeaningTranslate:	string,
   textExampleTranslate:	string,
+  isAggregated?: boolean,
+  deleteFunc?: Function
 
 }
 
@@ -128,4 +130,36 @@ export type AudioBtnPropsType = {
   audioUrl: string, 
   audioExempleUrl: string, 
   audioMeaningUrl: string
+}
+
+export type WordsHardOrLernType = {
+  difficulty: string,
+  optional: WordsType
+}
+
+export type DictionaryStateType = {
+  paginatedResults: Array<DictionaryWordsType>,
+  totalCount: Array<DictionaryTotalCountType>
+}
+
+type DictionaryTotalCountType = {
+  count: number
+}
+
+type DictionaryWordsType = {
+  audio: string,
+  audioExample: string,
+  audioMeaning: string,
+  group: number,
+  image: string,
+  page: number,
+  textExample: string,
+  textExampleTranslate: string,
+  textMeaning: string,
+  textMeaningTranslate: string,
+  transcription: string,
+  userWord: WordsHardOrLernType,
+  word: string,
+  wordTranslate: string,
+  _id: string,
 }

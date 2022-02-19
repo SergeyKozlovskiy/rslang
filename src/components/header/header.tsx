@@ -47,6 +47,7 @@ export const Header: React.FC = () => {
           ''
         }
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionElectronicBook}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/dictionary" onClick={showMenu}>Словарь</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}>{Text.menuOptionMiniGames}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}>{Text.menuOptionStatPage}</Link></li>
         <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}>{Text.menuOptionAbout}</Link></li>

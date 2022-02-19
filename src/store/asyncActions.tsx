@@ -3,6 +3,8 @@ import { postUser } from '../requests/postUser';
 import { createUserAction } from "./actions";
 import { signIn } from "../requests/signIn";
 import { Classes } from '../types/enums';
+import { getNewToken } from "../requests/getNewToken";
+import { getAggregatedWords } from "../requests/getAggregatedWords";
 
 export const createUser = () => {
   const unRegPopup = document.querySelector(`.${Classes.regPopup}`) as HTMLDivElement;
@@ -32,20 +34,27 @@ export const createUser = () => {
   }
 };
 
-export const signInUser = () => {
+export const signInUser = (params?: {email: string, password: string}) => {
   const unLogPopup = document.querySelector(`.${Classes.logPopup}`) as HTMLDivElement;
-  const emailInput = document.querySelector(`.${Classes.emailInput}`) as HTMLInputElement;
-  const passwordInput = document.querySelector(`.${Classes.passInput}`) as HTMLInputElement;
-  const body: IPostSignIn = {
-    email: emailInput.value,
-    password: passwordInput.value
+  let body: IPostSignIn;
+  if(!params) {
+    const emailInput = document.querySelector(`.${Classes.emailInput}`) as HTMLInputElement;
+    const passwordInput = document.querySelector(`.${Classes.passInput}`) as HTMLInputElement;
+    body = {
+      email: emailInput.value,
+      password: passwordInput.value
+    }
+  } else {
+    body = params;
   }
 
   return async (dispatch: Function) => {
     signIn(body)
     .then((resp: Response) => {
       if(resp.ok) {
-        resp.json().then((userInfo: IRespSignIn) => dispatch(createUserAction(userInfo)));
+        resp.json().then((userInfo: IRespSignIn) => {
+          dispatch(createUserAction(userInfo));
+        });
       } else {
         unLogPopup.classList.add(`${Classes.activePopup}`);
         setTimeout(() => {

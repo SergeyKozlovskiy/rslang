@@ -194,3 +194,8 @@ export enum RequestStatistic {
 sprint = 'sprint',
 audioChalenge = 'audioChalenge'
 }
+
+export enum WordsDifficult {
+  hard = 'hard',
+  lern = 'lern'
+}

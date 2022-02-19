@@ -1,5 +1,7 @@
 import React from 'react';
-import { API, Text } from '../../types/enums';
+import { postWord } from '../../requests/postWord';
+import store from '../../store/store';
+import { API, Text, WordsDifficult } from '../../types/enums';
 import { WordsType } from '../../types/types';
 import { AudioPlayBtn } from '../audioPlaybtn/AudioPlayBtn';
 import './wordCard.css';
@@ -20,10 +22,24 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
           <p className="word-text_translate">{props.textExampleTranslate}</p>
         </div>
         <div className="word-settings">
-          <div className="settings-wrapper">
-            <button className="word-hard settings-btn_defaul">{Text.wordCardHardBtn}</button>
-            <button className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
-          </div>
+          {
+            props.isAggregated
+            ?
+            <div className="settings-wrapper">
+              <button onClick={(e) => {if(props.deleteFunc) {props.deleteFunc(e)}}} className="word-hard settings-btn_defaul" data-key={props.id}>Удалить</button>
+              <button onClick={() => postWord(props, WordsDifficult.lern)} className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
+            </div>
+            :
+            
+            store.getState().IsLogin === true
+            ?
+            <div className="settings-wrapper">
+              <button onClick={() => postWord(props, WordsDifficult.hard)} className="word-hard settings-btn_defaul">{Text.wordCardHardBtn}</button>
+              <button onClick={() => postWord(props, WordsDifficult.lern)} className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
+            </div>
+            :
+            ''
+          }
           <AudioPlayBtn 
           audioUrl={props.audio}
           audioExempleUrl={props.audioExample}
