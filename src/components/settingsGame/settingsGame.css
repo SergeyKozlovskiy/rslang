@@ -16,6 +16,9 @@
   font-family: var(--menu-font);
   font-weight: 400;
 }
+.game-settings_level:disabled {
+ color: rgba(136, 132, 132, 0.7);
+}
 
 .game-settings__btn {
   width: 45px;

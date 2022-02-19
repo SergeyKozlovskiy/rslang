@@ -12,7 +12,7 @@ export const ResultGamePopup: React.FC<{score: number, resultsAllAnswers: Answer
 
   return <div className="results hide-popup">
           <h3>Результаты</h3>
-          <p>Вы набрали {score} очков</p>
+          <p>Вы набрали <span className="results-score">{score}</span> очков</p>
           <div className="results-answers">
           <strong className='results-answers_subtitle'>Правильные ответы</strong>
           <div>{resultsAllAnswers.rightAnswer.map((answerData) => {
@@ -31,6 +31,6 @@ export const ResultGamePopup: React.FC<{score: number, resultsAllAnswers: Answer
             </div>
           })}</div>
           </div>
-          <Button onClick={(e) => {closePopUp(e)}} variant="secondary">{Text.exit}</Button>
+          <Button className="exit-results" onClick={(e) => {closePopUp(e)}} variant="secondary">{Text.exit}</Button>
         </div>
 };
