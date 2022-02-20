@@ -16,6 +16,7 @@ import { Dictionary } from './pages/dictionary/dictionary';
 function App() {
   return (
     <div className="app-wrapper">
+      <div className="app-menu-layer"></div>
       <Header/>
       <div className="wrapper-page">
         <Routes>
@@ -30,7 +31,7 @@ function App() {
           <Route path='/about' element={<About/>}/>
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </div>
 
   );
