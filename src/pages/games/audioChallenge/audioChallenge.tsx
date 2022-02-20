@@ -55,7 +55,7 @@ export const AudioChallenge: React.FC = () => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
       statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT;
+      statistics.optional.correctAnswers = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
       return {
         ...prevAnswer
       }
@@ -125,7 +125,6 @@ export const AudioChallenge: React.FC = () => {
       const result = await getWords(num ? num : 0, randomPage).then((value) => value);
       if(result){
         setWordData(result);
-        console.log(result);
       }
     }
     catch(error){

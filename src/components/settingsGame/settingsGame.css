@@ -1,7 +1,8 @@
 .game-settings {
   position: relative;
   display: flex;
-  width: 100%;
+  width: 92%;
+  margin: 0 auto;
   padding: 15px;
   align-items: center;
   justify-content: space-between;
@@ -9,12 +10,13 @@
 }
 
 .game-settings_level {
-  width: 92%;
+  width: 50%;
   background: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   font-size: 18px;
   font-family: var(--menu-font);
   font-weight: 400;
+  text-align: center;
 }
 .game-settings_level:disabled {
  color: rgba(136, 132, 132, 0.7);
