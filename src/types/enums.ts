@@ -89,12 +89,13 @@ export enum Text {
 }
 
 export enum API {
-  URL = 'http://localhost:5000/',
+  URL = 'https://rss-lernwords.herokuapp.com/',
   Words = 'words',
   Users = 'users',
   Tokens = 'tokens',
   Statistics = 'statistics',
-  AggregatedWords = 'aggregatedWords'
+  AggregatedWords = 'aggregatedWords',
+  SignIn = 'signin'
 }
 
 export enum MagicNumbers {

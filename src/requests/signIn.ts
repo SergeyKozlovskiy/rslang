@@ -1,7 +1,8 @@
-import { IPostSignIn } from "../types/types"
+import { IPostSignIn } from "../types/types";
+import { API } from '../types/enums';
 
 export const signIn = async (body: IPostSignIn): Promise<Response> => {
-  const response: Response = await fetch('http://localhost:5000/signin', {
+  const response: Response = await fetch(`${API.URL}${API.SignIn}`, {
     method: 'POST',
     headers: {
       'Content-type': 'appLication/json'
