@@ -15,3 +15,11 @@ p span {
 p span:hover {
   color: #696666;
 }
+
+.mb-3 {
+  width: 26.5%;
+}
+.log-in-button {
+  font-family: var(--motto-font);
+  height: 4.4vh;
+}

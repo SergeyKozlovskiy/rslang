@@ -44,11 +44,11 @@ const AuthorizationForm: React.FC = () => {
       </Form.Group>
       {
         login === true ? 
-          <Button onClick={() => dispatch(createUser())} variant="primary">
+          <Button className="log-in-button" onClick={() => dispatch(createUser())} variant="primary">
             {Text.authorizationRegBtn}
           </Button>
         :     
-          <Button onClick={() => dispatch(signInUser())} variant="primary">
+          <Button className="log-in-button" onClick={() => dispatch(signInUser())} variant="primary">
             {Text.loginButtonValue}
           </Button>
       }
