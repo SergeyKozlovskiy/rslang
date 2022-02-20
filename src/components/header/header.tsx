@@ -11,6 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserAction } from '../../store/actions';
 import { getUserInfo } from '../../localStorage/getUserInfo';
 import { IRespSignIn } from '../../types/types';
+import HomeIcon from '../../assets/svg/menu-home.svg';
+import LoginIcon from '../../assets/svg/menu-login.svg';
+import VocabularyIcon from '../../assets/svg/menu-vocabulary.svg';
+import GamesIcon from '../../assets/svg/menu-games.svg';
+import StatisticsIcon from '../../assets/svg/menu-statistics.svg';
+import AboutIcon from '../../assets/svg/menu-about.svg';
 
 export const Header: React.FC = () => {
   const showMenu = () => {
@@ -18,13 +24,13 @@ export const Header: React.FC = () => {
     hideMenu();
   };
 
-  const hideMenu = () => { 
+  const hideMenu = () => {
     return document.addEventListener("click", function (event) {
       if ((event.target !== document.getElementById("menu_list") as HTMLFormElement) &&
         (event.target !== document.querySelector("Button") as HTMLFormElement) &&
-        (document.getElementById("menu_list") as HTMLFormElement).classList.contains("menu-active")) 
+        (document.getElementById("menu_list") as HTMLFormElement).classList.contains("menu-active"))
         return (document.getElementById("menu_list") as HTMLFormElement).classList.remove("menu-active");
-  })
+    })
   };
 
   const dispatch = useDispatch();
@@ -34,30 +40,30 @@ export const Header: React.FC = () => {
   const userInfoFromLocal: IRespSignIn | null = getUserInfo();
 
   return <header className={Classes.header}>
-    <nav className={Classes.menuContainer } id="Navigation">
+    <nav className={Classes.menuContainer} id="Navigation">
       <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu}></Button>
       <ul id="menu_list" className={Classes.menuList}>
         <CloseButton variant="white" className={Classes.menuListCloseButton} onClick={showMenu}></CloseButton>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}>{Text.menuOptionStartPage}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}><img alt="home" src={HomeIcon}></img>{Text.menuOptionStartPage}</Link></li>
         {
           state.IsLogin === false
-          ?
-          <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization" onClick={showMenu}>{Text.menuOptionLoginPage}</Link></li>
-          :
-          ''
+            ?
+            <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization" onClick={showMenu}><img alt="Login" src={LoginIcon}></img>{Text.menuOptionLoginPage}</Link></li>
+            :
+            ''
         }
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}>{Text.menuOptionElectronicBook}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}>{Text.menuOptionMiniGames}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}>{Text.menuOptionStatPage}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}>{Text.menuOptionAbout}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}><img alt="Vocabulary" src={VocabularyIcon}></img>{Text.menuOptionElectronicBook}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}><img alt="Games" src={GamesIcon}></img>{Text.menuOptionMiniGames}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}><img alt="Statistics" src={StatisticsIcon}></img>{Text.menuOptionStatPage}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}><img alt="About" src={AboutIcon}></img>{Text.menuOptionAbout}</Link></li>
       </ul>
-    </nav>
+    </nav >
     <Link className={Classes.headerAppName} to="/">{Text.headerAppName}
       <span className={Classes.headerAppNameSpan}>{Text.headerAppNameSpan}</span>
       <span className={Classes.headerAppNameMotto}>{Text.headerAppNameMotto}</span>
     </Link>
-      {
-        userInfoFromLocal !== null
+    {
+      userInfoFromLocal !== null
         ? (
           state.userInfo = userInfoFromLocal,
           state.IsLogin = true,
@@ -66,18 +72,18 @@ export const Header: React.FC = () => {
             <h3 className={Classes.headerUserName}>{userInfoFromLocal.name}</h3>
             <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
           </div>
-          ) : (
+        ) : (
           state.IsLogin === true && state.userInfo.name !== Text.noneString
-          ? 
-          <div className={Classes.headerUserPanel}>
-            <h3 className={Classes.headerUserName}>{state.userInfo.name}</h3>
-            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
-          </div>
-          :
-          <Link to="/authorization">
-            <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
-          </Link>
-          )
-      }
-    </header>
+            ?
+            <div className={Classes.headerUserPanel}>
+              <h3 className={Classes.headerUserName}>{state.userInfo.name}</h3>
+              <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
+            </div>
+            :
+            <Link to="/authorization">
+              <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
+            </Link>
+        )
+    }
+  </header >
 };

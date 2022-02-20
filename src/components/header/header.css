@@ -44,8 +44,11 @@
   transition-duration: 0.6s;
   display: flex;
   flex-direction: column;
-  transform: translate(-400%, 70%);
+  transform: translate(-400%, 60%);
   align-items: flex-end;
+  justify-content: space-between;
+  list-style: none;
+  min-height: 76.5vh;
 }
 
 .menu-list,
@@ -53,33 +56,30 @@
   text-decoration: none;
   color: var(--main-white-color);
   text-align: left;
-  width: 95%;
-}
-
-.menu-list-close-button {
-  border: 2px red solid;
+  width: 135%;
 }
 
 .menu-list_item {
   vertical-align: middle;
-  width: 95%;
-  font-size: 33px;
+  width: 110%;
 }
 
 .menu-list_item__option {
   font-family: var(--menu-font);
-  font-size: 24px;
+  font-size: 33.5px;
   text-transform: uppercase;
+  padding-left: 2%;
 }
 
 .menu-list_item:hover,
 .menu-list_item__option:hover {
   transition-duration: 0.35s;
   color: var(--main-orange-color);
+  fill: var(--main-orange-color);
 }
 
 .menu-active {
-  transform: translate(-26%, 71%);
+  transform: translate(-19%, 60%);
   transition-duration: 0.6s;
 }
 
@@ -114,6 +114,10 @@
 .user-name {
   margin: 8px 15px 0 0;
   font-size: 30px;
-  font-family: 'Dongle', sans-serif;
+  font-family: "Dongle", sans-serif;
   text-transform: uppercase;
+}
+.log-in-button {
+  font-family: var(--motto-font);
+  height: 4.4vh;
 }
