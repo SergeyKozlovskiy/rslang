@@ -9,7 +9,7 @@ import { Text } from '../../types/enums';
 import { Classes } from '../../types/enums';
 
 export const Statistics: React.FC = () => (
-  <main>
+  <main className={ Classes.mainStatisticsPage }>
     <h2 className={Classes.mainStatisticsPageTitle}>{Text.mainStatisticsPageTitle}</h2> 
   <Tabs defaultActiveKey={Text.mainStatisticsPageTabOneName} className={Classes.mainStatisticsPageTabs}>
     <Tab eventKey={Text.mainStatisticsPageTabOneName} title={Text.mainStatisticsPageTabOneTitle}>

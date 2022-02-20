@@ -9,7 +9,7 @@ export const Main: React.FC = () => (
   <main className={Classes.mainStartPage} >
     <div className="main-text">
       <h1 className="main-greetings">
-        {Text.mainGreetingPartOne} <span>{Text.mainRsSpan}</span>{Text.mainGreetingPartTwo}
+        {Text.mainGreetingPartOne} <span className={Classes.mainGreetingSpanOne}>{Text.mainRsSpan}</span><span className={Classes.mainGreetingSpanTwo}>{Text.mainGreetingPartTwo}</span>
       </h1>
       <p className="main-promo">
         {Text.mainPromoPartOne} <span>{Text.mainPromoSpanOne}</span> {Text.mainPromoPartTwo} <span>{Text.mainPromoSpanTwo}</span> {Text.mainPromoPartThree}

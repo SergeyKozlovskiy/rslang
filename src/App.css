@@ -44,8 +44,6 @@
 
 .wrapper-page {
   position: relative;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 :root {
@@ -54,7 +52,6 @@
   --main-orange-color: #ff8600;
   --main-blue-color: #0d6efd;
   --main-white-color: #f4f5f7;
-
   --logo-font: "Neonderthaw", cursive;
   --motto-font: "Dongle", sans-serif;
   --menu-font: "Russo One", sans-serif;

@@ -28,12 +28,10 @@
   color: var(--main-grey-color);
   align-items: center;
   height: 110%;
-  border-bottom: 1px var(--main-black-color) solid;
-  border-top: 1px var(--main-black-color) solid;
 }
 
 .about-page-container_dev-card__image {
-  height: 27vh;
+  height: 34vh;
   width: 100%;
 }
 
@@ -55,10 +53,9 @@
 }
 
 .about-page-container_dev-card__github {
-  width: 15%;
-  height: 15%;
   display: flex;
-  justify-content: center;
-  border-radius: 60%;
-  margin-top: auto;
+  align-self: flex-start;
+  text-decoration: overline;
+  color: var(--main-orange-color);
+  margin-top: 3%;
 }

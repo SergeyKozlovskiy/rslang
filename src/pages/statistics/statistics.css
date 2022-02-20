@@ -1,10 +1,19 @@
-.main-statistics-page_title {
+.main_statistics-page {
+  min-height: inherit;
+  width: inherit;
+  background-image: url(../../assets/statistics/board-64269.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 33%;
+}
+
+.statistics-page_title {
   font-family: var(--menu-font);
   font-size: 39px;
   color: var(--main-black-color);
   text-align: left;
 }
 
-.main-statistics-page_tabs {
+.statistics-page_tabs {
   margin-bottom: 1.3%;
 }
