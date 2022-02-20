@@ -12,7 +12,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: url(../../../assets/bg/audioChallenge-bg.jpg) no-repeat;
+  background: url(../../../assets/game-page/audioChallenge-bg.jpg) no-repeat;
   background-size: cover;
   filter: blur(3px);
 }
