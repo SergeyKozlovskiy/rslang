@@ -51,7 +51,11 @@
   justify-content: space-between;
   list-style: none;
   min-height: 102.5vh;
-  padding: 4% 4% 4% 4%;
+  padding: 0% 0% 4% 13%;
+}
+
+.menu-list-close-button {
+  margin: 3.5% 3.5% -3%;
 }
 
 .menu-list,
@@ -59,7 +63,7 @@
   text-decoration: none;
   color: var(--main-white-color);
   text-align: left;
-  width: 135%;
+  width: 160%;
 }
 
 .menu-list_item {
@@ -73,9 +77,13 @@
   font-family: var(--menu-font);
   font-size: 33.5px;
   text-transform: uppercase;
-  padding-left: 2%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.menu-list_item__option__text {
+  width: 77%;
 }
 
 .menu-list_item:hover,
@@ -123,11 +131,4 @@
   font-size: 30px;
   font-family: "Dongle", sans-serif;
   text-transform: uppercase;
-}
-.log-in-button {
-  height: 5vh;
-  padding-top: 12.5%;
-  padding-bottom: 10%;
-  font-family: var(--motto-font);
-  font-size: 16px;
 }

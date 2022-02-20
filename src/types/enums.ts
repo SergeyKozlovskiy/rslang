@@ -28,7 +28,7 @@ export enum Text {
   footerYearMark = '© 2022г.',
   exit = 'Выйти',
   mainStartButtonValue = 'Старт',
-  authorizationRegBtn = 'Регестрация',
+  authorizationRegBtn = 'Регистрация',
   authorizationBackBtn = 'Назад',
   authorizationRegText = 'Ещё нет аккаунта? Тогда',
   authorizationRegLink = 'зарегистрируйтесь!',
@@ -131,10 +131,11 @@ export enum Classes {
   menuListCloseButton = 'menu-list-close-button',
   menuListItem = 'menu-list_item',
   menuListItemOption = 'menu-list_item__option',
+  menuListItemOptionText = 'menu-list_item__option__text',
   headerAppName = 'header_app-name',
   headerAppNameSpan = 'header_app-name__span',
   headerAppNameMotto = 'header_app-name__motto',
-  loginButton = 'log-in-button',
+  headerLoginButton = 'header_log-in-button',
   main = 'main',
   mainStartPage = 'main main_start-page',
   mainStartPageContainer = 'main_start-page_container',
@@ -174,7 +175,8 @@ export enum Classes {
   bookLevels = 'electronic-levels',
   bookText = 'electronic-descr',
   bookImage = 'electronic-img',
-  bookDescr = 'elctronic-text'
+  bookDescr = 'elctronic-text',
+  dictionaryWarning = 'dictionary-warning',
 }
 
 export enum BookLevelColor {

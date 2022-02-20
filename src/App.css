@@ -2,13 +2,18 @@
   text-align: center;
 }
 
+.app-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
 .app-menu-layer {
   position: absolute;
   opacity: 0;
   top: 0;
   left: 0;
   width: 100%;
-  height: 104vh;
+  height: 200%;
   background: var(--main-black-color);
   z-index: -10;
   transition: opacity 0.6s ease-in-out;
@@ -68,8 +73,8 @@
   --main-blue-color: #0d6efd;
   --main-white-color: #f4f5f7;
   --logo-font: "Neonderthaw", cursive;
-  --motto-font: "Dongle", sans-serif;
-  --menu-font: "Roboto", sans-serif;
+  --motto-font: "Roboto", sans-serif; /* "Dongle", sans-serif; */
+  --menu-font: "Russo One", sans-serif;
   --start-button-font: "Playfair Display", serif;
 }
 
