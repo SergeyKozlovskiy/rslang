@@ -10,7 +10,7 @@ import { Text, WordsDifficult } from '../../types/enums';
 
 export const Dictionary: React.FC = () => {
 
-  const [localState, setLocalState] = useState<{isLoaded: boolean, wordsArr: Array<DictionaryStateType> | null, difficulty: string}>({
+  const [localState, setLocalState] = useState<{isLoaded: boolean, wordsArr: Array<DictionaryStateType> | null | undefined, difficulty: string}>({
     isLoaded: false,
     wordsArr: null,
     difficulty: ''
@@ -46,8 +46,8 @@ export const Dictionary: React.FC = () => {
       !localState.isLoaded
       ?
       <div className="dictionary-menu">
-        <DictionaryBtn text={Text.dictionaryBtnTextHard} style='1' func={getWords} difficulty={WordsDifficult.hard}/>
-        <DictionaryBtn text={Text.dictionaryBtnTextLern} style='2' func={getWords} difficulty={WordsDifficult.lern}/>
+        <DictionaryBtn text={Text.dictionaryBtnTextHard} styleText={WordsDifficult.hard} func={getWords} difficulty={WordsDifficult.hard}/>
+        <DictionaryBtn text={Text.dictionaryBtnTextLern} styleText={WordsDifficult.lern} func={getWords} difficulty={WordsDifficult.lern}/>
       </div> 
       :
       <div className="dictionary-page">
@@ -58,11 +58,11 @@ export const Dictionary: React.FC = () => {
           difficulty: localState.difficulty
         })} 
         className="dictionary-home">
-          home
+          {Text.dictionaryHomeBtn}
         </button>
         <div className="dictionary-wrapper">
           {
-            localState.wordsArr !== null
+            localState.wordsArr !== null && localState.wordsArr
             ?
             localState.wordsArr[0].paginatedResults.map((el) => {
               return (
