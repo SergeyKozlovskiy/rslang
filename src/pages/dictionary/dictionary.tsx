@@ -6,7 +6,7 @@ import { DictionaryBtn } from '../../components/dictionaryBtn/DictionaryBtn';
 import { getAggregatedWords } from '../../requests/getAggregatedWords';
 import { WordCard } from '../../components/wordCard/WordCard';
 import { deleteUserWord } from '../../requests/deleteUserWord';
-import { WordsDifficult } from '../../types/enums';
+import { Text, WordsDifficult } from '../../types/enums';
 
 export const Dictionary: React.FC = () => {
 
@@ -46,8 +46,8 @@ export const Dictionary: React.FC = () => {
       !localState.isLoaded
       ?
       <div className="dictionary-menu">
-        <DictionaryBtn text='сложные слова' style='1' func={getWords} difficulty={WordsDifficult.hard}/>
-        <DictionaryBtn text='изученые слова' style='2' func={getWords} difficulty={WordsDifficult.lern}/>
+        <DictionaryBtn text={Text.dictionaryBtnTextHard} style='1' func={getWords} difficulty={WordsDifficult.hard}/>
+        <DictionaryBtn text={Text.dictionaryBtnTextLern} style='2' func={getWords} difficulty={WordsDifficult.lern}/>
       </div> 
       :
       <div className="dictionary-page">
@@ -84,15 +84,16 @@ export const Dictionary: React.FC = () => {
                 key={el._id}
                 isAggregated={true}
                 deleteFunc={deleteWord}
+                getWordsFunc={getWords}
               />
               )
             })
             :
-            <div className="p">Err</div>
+            ''
           }
         </div>
       </div>
     :
-    <h2>Для использования словаря нужно войти или зарегистрироваться</h2>
+    <h2>{Text.dictionaryWarning}</h2>
   )
 }

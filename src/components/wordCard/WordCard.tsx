@@ -26,16 +26,37 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
             props.isAggregated
             ?
             <div className="settings-wrapper">
-              <button onClick={(e) => {if(props.deleteFunc) {props.deleteFunc(e)}}} className="word-hard settings-btn_defaul" data-key={props.id}>Удалить</button>
-              <button onClick={() => postWord(props, WordsDifficult.lern)} className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
+              <button onClick={(e) => {if(props.deleteFunc) {props.deleteFunc(e)}}} className="word-hard settings-btn_defaul" data-key={props.id}>{Text.wordCardDeleteBtn}</button>
+              <button onClick={() => {
+                postWord(props, WordsDifficult.lern);
+                if(props.getWordsFunc) {
+                  props.getWordsFunc(WordsDifficult.hard);
+                }
+              }} 
+              className="word-lern settings-btn_defaul" data-key={props.id}>{Text.wordCardLernBtn}</button>
             </div>
             :
-            
+
             store.getState().IsLogin === true
             ?
             <div className="settings-wrapper">
-              <button onClick={() => postWord(props, WordsDifficult.hard)} className="word-hard settings-btn_defaul">{Text.wordCardHardBtn}</button>
-              <button onClick={() => postWord(props, WordsDifficult.lern)} className="word-lern settings-btn_defaul">{Text.wordCardLernBtn}</button>
+              <button 
+              onClick={() => {
+                postWord(props, WordsDifficult.hard);
+              }} 
+              className="word-hard settings-btn_defaul" 
+              data-key={props.id}>
+                {Text.wordCardHardBtn}
+              </button>
+
+              <button 
+              onClick={() => {
+                postWord(props, WordsDifficult.lern);
+              }} 
+              className="word-lern settings-btn_defaul" 
+              data-key={props.id}>
+                {Text.wordCardLernBtn}
+              </button>
             </div>
             :
             ''

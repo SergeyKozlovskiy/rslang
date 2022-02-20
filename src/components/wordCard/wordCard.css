@@ -89,3 +89,11 @@
   font-family: sans-serif;
   border-radius: 15px;
 }
+
+.hard-word {
+  background-color: rgb(250, 87, 87);
+}
+
+.lern-word {
+  background-color: rgb(32, 250, 61);
+}

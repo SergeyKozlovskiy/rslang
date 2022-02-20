@@ -77,8 +77,8 @@ export type WordsType = {
   textMeaningTranslate:	string,
   textExampleTranslate:	string,
   isAggregated?: boolean,
-  deleteFunc?: Function
-
+  deleteFunc?: Function,
+  getWordsFunc?: Function
 }
 
 export type WordsActionType = {
