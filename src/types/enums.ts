@@ -86,14 +86,17 @@ export enum Text {
   dictionaryWarning = 'Для использования словаря нужно войти или зарегистрироваться',
   dictionaryBtnTextHard = 'сложные слова',
   dictionaryBtnTextLern = 'изученые слова',
+  dictionaryHomeBtn = 'Закрыть словарь'
 }
 
 export enum API {
-  URL = 'http://localhost:5000/',
+  URL = 'https://rss-lernwords.herokuapp.com/',
   Words = 'words',
   Users = 'users',
   Tokens = 'tokens',
-  Statistics = 'statistics'
+  Statistics = 'statistics',
+  AggregatedWords = 'aggregatedWords',
+  SignIn = 'signin'
 }
 
 export enum MagicNumbers {

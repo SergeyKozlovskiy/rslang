@@ -49,7 +49,7 @@ export const Sprint: React.FC = () => {
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
 
       statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT;
+      statistics.optional.correctAnswers = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
       return {
         ...prevAnswer
       }
@@ -266,9 +266,9 @@ export const Sprint: React.FC = () => {
         <img onClick={(e) => {changeMute(e)}} className='results-answers_icon' src={audioImg} alt="audio-icon" />
       </div>
 
-      <p className="question-card_word">Score: {score}</p>
-      <p className="question-card_word">{questionData.word}</p>
-      <p className="question-card_translate">{questionData.translate}</p>
+      <p className="question-card__score">Очки: <span>{score}</span></p>
+      <p className="question-card__word">{questionData.word}</p>
+      <p className="question-card__translate">{questionData.translate}</p>
       <Button className='question-card_btn' onClick={() => {responseСheck(false)}} variant="danger">{Text.WrongAnswerSprintButton}</Button>
       <Button className='question-card_btn' onClick={() => {responseСheck(true)}} variant="success">{Text.RightAnswerSprintButton}</Button>
     </div>

@@ -14,7 +14,7 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 7px;
   transition: 0.3s;
-  z-index: 100;
+  z-index: 120;
 }
 .startGame-popup h3{
   font-family: var(--menu-font);
