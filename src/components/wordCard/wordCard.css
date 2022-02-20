@@ -32,7 +32,8 @@
 
 .word-mean,
 .word-sentence {
-  width: 100%;
+  padding: 5px;
+  width: 95%;
   box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
@@ -74,8 +75,16 @@
   background-color: #006bff;
 }
 
+.word-hard:hover {
+  background-color: #0555c5;
+}
+
 .word-lern {
   background-color: #00ffa7;
+}
+
+.word-lern:hover {
+  background-color: #04c984;
 }
 
 .settings-wrapper {
@@ -87,7 +96,18 @@
   width: 150px;
   height: 35px;
   font-family: sans-serif;
-  border-radius: 15px;
+  border-radius: 10px;
+  transition: 0.3s all;
+}
+
+.settings-btn_defaul:hover {
+  box-shadow: 5px 5px 11px #9b9a9a;
+  transform: scale(1.05);
+}
+
+.settings-btn_defaul:active {
+  box-shadow: none;
+  transform: scale(0.9);
 }
 
 .hard-word {
