@@ -6,7 +6,7 @@ import { DictionaryBtn } from '../../components/dictionaryBtn/DictionaryBtn';
 import { getAggregatedWords } from '../../requests/getAggregatedWords';
 import { WordCard } from '../../components/wordCard/WordCard';
 import { deleteUserWord } from '../../requests/deleteUserWord';
-import { Text, WordsDifficult } from '../../types/enums';
+import { Classes, Text, WordsDifficult } from '../../types/enums';
 
 export const Dictionary: React.FC = () => {
 
@@ -94,6 +94,6 @@ export const Dictionary: React.FC = () => {
         </div>
       </div>
     :
-    <h2>{Text.dictionaryWarning}</h2>
+    <h2 className={Classes.dictionaryWarning}>{Text.dictionaryWarning}</h2>
   )
 }

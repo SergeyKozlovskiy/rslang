@@ -28,3 +28,9 @@
 .dictionary-home:hover {
   box-shadow: none;
 }
+
+.dictionary-warning {
+  font-family: var(--menu-font);
+  width: 100%;
+  text-align: center;
+}

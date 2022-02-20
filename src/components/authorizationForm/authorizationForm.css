@@ -1,3 +1,7 @@
+Form.Label {
+  border: 2px red solid;
+}
+
 .back {
   margin: 10px 0 20px 34px;
 }
@@ -21,5 +25,5 @@ p span:hover {
 }
 .log-in-button {
   font-family: var(--motto-font);
-  height: 4.4vh;
+  font-size: 16px;
 }

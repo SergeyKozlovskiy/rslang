@@ -3,6 +3,11 @@
   width: inherit;
   background-image: url(../../assets/authorization-registration/united-3026204.jpg);
   background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 65%;
+  background-position: right bottom;
+  background-size: 70% 90%;
+  padding: 0 15px 0 15px;
+}
+.main_auth-page_title {
+  font-family: var(--menu-font);
+  text-align: center;
 }

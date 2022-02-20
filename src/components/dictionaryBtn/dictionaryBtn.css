@@ -9,6 +9,7 @@
   text-transform: uppercase;
   color: #ffffff;
   transition: 0.5s all;
+  font-family: var(--menu-font);
 }
 
 .style_hard {
@@ -20,12 +21,14 @@
 }
 
 .style_hard:hover {
-  background: url('../../assets/dictionary/hardBtnBg.jpg') center center/cover no-repeat;
+  background: url("../../assets/dictionary/hardBtnBg.jpg") center center/cover
+    no-repeat;
   color: #146d27;
 }
 
 .style_lern:hover {
-  background: url('../../assets/dictionary/lernBtnBg.jpg') center center/cover no-repeat;
+  background: url("../../assets/dictionary/lernBtnBg.jpg") center center/cover
+    no-repeat;
   color: #c9670c;
 }
 

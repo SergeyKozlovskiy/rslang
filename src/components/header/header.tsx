@@ -49,19 +49,19 @@ export const Header: React.FC = () => {
       <Button variant="outline-warning" className={Classes.menuButton} onClick={showMenu}></Button>
       <ul id="menu_list" className={Classes.menuList}>
         <CloseButton variant="white" className={Classes.menuListCloseButton} onClick={showMenu}></CloseButton>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}><img alt="home" src={HomeIcon}></img>&nbsp;{Text.menuOptionStartPage}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/" onClick={showMenu}><img alt="home" src={HomeIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionStartPage}</span></Link></li>
         {
           state.IsLogin === false
             ?
-            <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization" onClick={showMenu}><img alt="Login" src={LoginIcon}></img>&nbsp;{Text.menuOptionLoginPage}</Link></li>
+            <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/authorization" onClick={showMenu}><img alt="Login" src={LoginIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionLoginPage}</span></Link></li>
             :
             ''
         }
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}><img alt="Vocabulary" src={TextbookIcon}></img>&nbsp;{Text.menuOptionTextbook}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/dictionary" onClick={showMenu}><img alt="Vocabulary" src={VocabularyIcon}></img>&nbsp;{Text.menuOptionVocabulary}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}><img alt="Games" src={GamesIcon}></img>&nbsp;{Text.menuOptionMiniGames}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}><img alt="Statistics" src={StatisticsIcon}></img>&nbsp;&nbsp;{Text.menuOptionStatPage}</Link></li>
-        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}><img alt="About" src={AboutIcon}></img>&nbsp;&nbsp;&nbsp;&nbsp;{Text.menuOptionAbout}</Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/book" onClick={showMenu}><img alt="Vocabulary" src={TextbookIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionTextbook}</span></Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/dictionary" onClick={showMenu}><img alt="Vocabulary" src={VocabularyIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionVocabulary}</span></Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/games" onClick={showMenu}><img alt="Games" src={GamesIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionMiniGames}</span></Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/statistics" onClick={showMenu}><img alt="Statistics" src={StatisticsIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionStatPage}</span></Link></li>
+        <li className={Classes.menuListItem}><Link className={Classes.menuListItemOption} to="/about" onClick={showMenu}><img alt="About" src={AboutIcon}></img><span className={Classes.menuListItemOptionText}>{Text.menuOptionAbout}</span></Link></li>
       </ul>
     </nav >
     <Link className={Classes.headerAppName} to="/">{Text.headerAppName}
@@ -76,18 +76,18 @@ export const Header: React.FC = () => {
 
           <div className={Classes.headerUserPanel}>
             <h3 className={Classes.headerUserName}>{userInfoFromLocal.name}</h3>
-            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
+            <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.headerLoginButton} />
           </div>
         ) : (
           state.IsLogin === true && state.userInfo.name !== Text.noneString
             ?
             <div className={Classes.headerUserPanel}>
               <h3 className={Classes.headerUserName}>{state.userInfo.name}</h3>
-              <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.loginButton} />
+              <Button onClick={() => dispatch(logoutUserAction())} as="input" type="button" value={Text.headerUserExit} className={Classes.headerLoginButton} />
             </div>
             :
             <Link to="/authorization">
-              <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.loginButton} />
+              <Button as="input" type="button" value={Text.loginButtonValue} className={Classes.headerLoginButton} />
             </Link>
         )
     }
