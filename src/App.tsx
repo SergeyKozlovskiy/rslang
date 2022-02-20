@@ -11,6 +11,7 @@ import { Statistics } from './pages/statistics/statistics';
 import { Sprint } from './pages/games/sprint/sprint';
 import { AudioChallenge } from './pages/games/audioChallenge/audioChallenge';
 import { About } from './pages/about/about';
+import { Dictionary } from './pages/dictionary/dictionary';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/' element={<Main/>}/>
           <Route path='/authorization' element={<Authorization/>}/>
           <Route path='/book' element={<Book/>}/>
+          <Route path='/dictionary' element={<Dictionary/>}/>
           <Route path='/games' element={<Games/>}/>
           <Route path='/statistics' element={<Statistics/>}/>
           <Route path='/sprint' element={<Sprint/>}/>

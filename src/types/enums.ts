@@ -80,7 +80,11 @@ export enum Text {
   bookPageCounterText = 'Page',
   bookPageError = 'Error: Words not found',
   wordCardHardBtn = 'В сложные слова',
-  wordCardLernBtn  = 'В изученые слова'
+  wordCardLernBtn  = 'В изученые слова',
+  wordCardDeleteBtn = 'Удалить',
+  dictionaryWarning = 'Для использования словаря нужно войти или зарегистрироваться',
+  dictionaryBtnTextHard = 'сложные слова',
+  dictionaryBtnTextLern = 'изученые слова',
 }
 
 export enum API {
@@ -196,4 +200,9 @@ PROFICIENCY = 'Proficiency',
 export enum RequestStatistic {
 sprint = 'sprint',
 audioChalenge = 'audioChalenge'
+}
+
+export enum WordsDifficult {
+  hard = 'hard',
+  lern = 'lern'
 }

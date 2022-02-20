@@ -9,7 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 500px;
+  height: 820px;
   text-align: center;
   background-color: #ffffff;
   box-shadow: 5px 5px 11px #cccccc;
@@ -21,12 +23,10 @@
 }
 
 .word-exemple {
-  margin-bottom: 15px;
   font-size: 2.5rem;
 }
 
 .word-transcription {
-  margin-bottom: 15px;
   font-size: 1.5rem;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .word-sentence {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .word-settings {
@@ -88,4 +88,12 @@
   height: 35px;
   font-family: sans-serif;
   border-radius: 15px;
+}
+
+.hard-word {
+  background-color: rgb(250, 87, 87);
+}
+
+.lern-word {
+  background-color: rgb(32, 250, 61);
 }
