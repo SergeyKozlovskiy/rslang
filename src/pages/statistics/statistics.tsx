@@ -27,7 +27,7 @@ export const Statistics: React.FC = () => {
         statistic: data
       })
     })
-  });
+  }, []);
 
   const getStatisticPerssent = () => {
     if(Statistics.statistic?.optional.audioChalange && Statistics.statistic?.optional.sprint) {

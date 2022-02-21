@@ -2,9 +2,9 @@ import { IStatistic, IStatisticBody } from "../types/types";
 import { getStatistic } from "../requests/getStatistic";
 import { RequestStatistic } from "../types/enums";
 
-export const generateBodyForStatistic = async (body: IStatisticBody, game: string) => {
+export const generateBodyForStatistic = async (body: IStatisticBody, game: string, dispatch?: Function) => {
   let requestBody: IStatistic;
-  return getStatistic().then((data: IStatistic | null) => {
+  return getStatistic(dispatch).then((data: IStatistic | null) => {
     if(data === null) {
       if(game === RequestStatistic.sprint) {
         return requestBody = {

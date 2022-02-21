@@ -75,7 +75,7 @@ export const Sprint: React.FC = () => {
     })
     
     if(state.IsLogin === true) {
-      putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
+      putStatistic(statistics, RequestStatistic.sprint, dispatch);
     }
   }
 
