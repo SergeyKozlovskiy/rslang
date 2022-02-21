@@ -28,7 +28,6 @@ export const generateBodyForStatistic = async (body: IStatisticBody, game: strin
 
         if(data.optional.sprint?.lastActivity === body.lastActivity || data.optional.audioChalange?.lastActivity === body.lastActivity) {
           if(data.optional.sprint && data.optional.audioChalange) {
-            console.log('dick')
             return requestBody = {
               learnedWords: data.learnedWords + body.corectAnswers,
               optional: {
@@ -163,7 +162,6 @@ export const generateBodyForStatistic = async (body: IStatisticBody, game: strin
 
         }
       }
-
     }
   });
 }

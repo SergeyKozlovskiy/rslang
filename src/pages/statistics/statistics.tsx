@@ -71,7 +71,6 @@ export const Statistics: React.FC = () => {
                   <tr>
                     <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-                    <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -81,7 +80,6 @@ export const Statistics: React.FC = () => {
                     <tr>
                       <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                       <td>{state.userInfo.name}</td>
-                      <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                       <td>
                         {
                           Statistics.statistic !== null
@@ -120,7 +118,6 @@ export const Statistics: React.FC = () => {
                   <tr>
                     <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-                    <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -130,7 +127,6 @@ export const Statistics: React.FC = () => {
                     <tr>
                       <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                       <td>{state.userInfo.name}</td>
-                      <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                       <td>
                         {
                           Statistics.statistic !== null
@@ -181,7 +177,6 @@ export const Statistics: React.FC = () => {
                   <tr>
                     <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-                    <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
                     <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -191,7 +186,6 @@ export const Statistics: React.FC = () => {
                     <tr>
                       <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                       <td>{state.userInfo.name}</td>
-                      <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                       <td>
                         {
                           Statistics.statistic !== null

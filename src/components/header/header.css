@@ -41,7 +41,6 @@
 }
 
 .menu-list {
-  position: relative;
   background-color: var(--main-blue-color);
   border-radius: 5px;
   transition-duration: 0.6s;
@@ -49,16 +48,14 @@
   flex-direction: column;
   transform: translate(-400%, 45%);
   align-items: flex-end;
-  justify-content: space-around;
+  justify-content: space-between;
   list-style: none;
   min-height: 102.5vh;
   padding: 0% 0% 4% 13%;
 }
 
 .menu-list-close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  margin: 15px 15px -3%;
 }
 
 .menu-list,
@@ -66,7 +63,7 @@
   text-decoration: none;
   color: var(--main-white-color);
   text-align: left;
-  width: 140%;
+  width: 160%;
 }
 
 .menu-list_item {
