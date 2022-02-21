@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Text } from '../../types/enums';
 import { Classes } from '../../types/enums';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const Main: React.FC = () => (
   <main className={Classes.mainStartPage} >
@@ -14,7 +15,7 @@ export const Main: React.FC = () => (
       <p className="main-promo">
         {Text.mainPromoPartOne} <span>{Text.mainPromoSpanOne}</span> {Text.mainPromoPartTwo} <span>{Text.mainPromoSpanTwo}</span> {Text.mainPromoPartThree}
       </p>
-      <Button as="input" type="button" value="Начать" className={Classes.mainStartButton} />
+      <Link to="/games"><Button as="input" type="button" value="Начать" className={Classes.mainStartButton} /></Link>
     </div>
   </main>
  );

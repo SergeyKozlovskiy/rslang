@@ -28,6 +28,6 @@ export const SettingGame: React.FC<{changeLevel: Function}> = ({changeLevel}) =>
       <option value="4">{EnglishLevels.C1} {EnglishLevels.ADVANCED}</option>
       <option value="5">{EnglishLevels.C2} {EnglishLevels.PROFICIENCY}</option>
     </Form.Select>
-  <Link to="/"><CloseButton className="exit-game" /></Link>
+  <Link to="/games"><CloseButton className="exit-game" /></Link>
 </div>
 };
