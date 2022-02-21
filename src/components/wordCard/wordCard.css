@@ -1,0 +1,119 @@
+.word-card {
+  display: flex;
+  justify-content: center;
+  max-width: 570px;
+}
+
+.card-wrapper {
+  padding: 25px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 500px;
+  height: 820px;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 11px #cccccc;
+  border-radius: 20px;
+}
+
+.word-image {
+  border-radius: 20px;
+}
+
+.word-exemple {
+  font-size: 2.5rem;
+}
+
+.word-transcription {
+  font-size: 1.5rem;
+}
+
+.word-mean,
+.word-sentence {
+  padding: 5px;
+  width: 95%;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.word-mean {
+  margin-bottom: 25px;
+}
+
+.word-meaning,
+.word-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #030303;
+}
+
+.word-meaning_translate {
+  font-size: 1.2rem;
+  color: #222222;
+}
+
+.word-text_translate {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #222222;
+}
+
+.word-sentence {
+  margin-bottom: 20px;
+}
+
+.word-settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.word-hard {
+  background-color: #006bff;
+}
+
+.word-hard:hover {
+  background-color: #0555c5;
+}
+
+.word-lern {
+  background-color: #00ffa7;
+}
+
+.word-lern:hover {
+  background-color: #04c984;
+}
+
+.settings-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.settings-btn_defaul {
+  width: 150px;
+  height: 35px;
+  font-family: sans-serif;
+  border-radius: 10px;
+  transition: 0.3s all;
+}
+
+.settings-btn_defaul:hover {
+  box-shadow: 5px 5px 11px #9b9a9a;
+  transform: scale(1.05);
+}
+
+.settings-btn_defaul:active {
+  box-shadow: none;
+  transform: scale(0.9);
+}
+
+.hard-word {
+  background-color: rgb(250, 87, 87);
+}
+
+.lern-word {
+  background-color: rgb(32, 250, 61);
+}

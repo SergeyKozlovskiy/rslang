@@ -1,0 +1,44 @@
+.dictionary-menu-btn {
+  padding: 10px;
+  width: 40vw;
+  height: 74vh;
+  border-radius: 15px;
+  font-family: var(--motto-font);
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: 0.5s all;
+  font-family: var(--menu-font);
+}
+
+.style_hard {
+  background-color: #fd3838;
+}
+
+.style_lern {
+  background-color: #2974ff;
+}
+
+.style_hard:hover {
+  background: url("../../assets/dictionary/hardBtnBg.jpg") center center/cover
+    no-repeat;
+  color: #146d27;
+}
+
+.style_lern:hover {
+  background: url("../../assets/dictionary/lernBtnBg.jpg") center center/cover
+    no-repeat;
+  color: #c9670c;
+}
+
+.style_hard:hover,
+.style_lern:hover {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transform: scale(1.05);
+  text-transform: unset;
+  font-size: 2rem;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.5);
+}

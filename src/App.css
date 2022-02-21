@@ -1,0 +1,87 @@
+.App {
+  text-align: center;
+}
+
+.app-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.app-menu-layer {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: var(--main-black-color);
+  z-index: -10;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.app-menu-layer-active {
+  opacity: 0.65;
+  z-index: 5;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--main-white-color);
+}
+
+.App-link {
+  color: var(--main-blue-color);
+}
+
+.wrapper-page {
+  min-height: calc(90vh - 90px);
+  background-color: var(--main-white-color);
+  z-index: 1;
+  position: relative;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --main-black-color: black;
+  --main-grey-color: grey;
+  --main-orange-color: #ff8600;
+  --main-blue-color: #0d6efd;
+  --main-white-color: #f4f5f7;
+  --logo-font: "Neonderthaw", cursive;
+  --motto-font: "Roboto", sans-serif; /* "Dongle", sans-serif; */
+  --menu-font: "Russo One", sans-serif;
+  --start-button-font: "Playfair Display", serif;
+}
+
+Header {
+  z-index: 1;
+}
+
+Footer {
+  z-index: 1;
+}

@@ -1,0 +1,40 @@
+.dictionary-menu {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.dictionary-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px 0px;
+  margin-bottom: 40px;
+  justify-content: space-around;
+}
+
+.dictionary-home {
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 35px;
+  background: orange;
+  box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  transition: 0.3s all;
+}
+
+.dictionary-home:hover {
+  box-shadow: none;
+}
+
+.dictionary-warning {
+  font-family: var(--menu-font);
+  width: 100%;
+  text-align: center;
+}
+.dictionary-page {
+  padding-bottom: 40px;
+}

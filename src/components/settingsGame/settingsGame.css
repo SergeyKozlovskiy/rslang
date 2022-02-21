@@ -1,0 +1,42 @@
+.game-settings {
+  position: relative;
+  display: flex;
+  width: 92%;
+  margin: 0 auto;
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 101;
+}
+
+.game-settings_level {
+  width: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-size: 18px;
+  font-family: var(--menu-font);
+  font-weight: 400;
+  text-align: center;
+}
+.game-settings_level:disabled {
+ color: rgba(136, 132, 132, 0.7);
+}
+
+.game-settings__btn {
+  width: 45px;
+  transition: 0.3s;
+}
+
+.game-settings__btn:hover {
+  opacity: 0.7;
+}
+
+.game-settings__btn img {
+  width: 100%;
+}
+
+.exit-game {
+  background: url(../../assets/svg/close.svg) no-repeat center center;
+  opacity: 1;
+  transition: 0.3s;
+}

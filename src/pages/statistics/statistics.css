@@ -1,0 +1,20 @@
+.main_statistics-page {
+  min-height: inherit;
+  width: inherit;
+  background-image: url(../../assets/statistics/board-64269.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 33%;
+  padding: 0 15px 0 15px;
+}
+
+.statistics-page_title {
+  font-family: var(--menu-font);
+  font-size: 39px;
+  color: var(--main-black-color);
+  text-align: center;
+}
+
+.statistics-page_tabs {
+  margin-bottom: 1.3%;
+}

@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+
+.main_start-page {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: inherit;
+  width: inherit;
+  background-image: url(../../assets/main_start-page/pngwing.com.png);
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  background-size: 35%;
+  padding: 0 15px 0 15px;
+}
+
+.main-greetings {
+  margin-bottom: 2.5%;
+  width: 50%;
+  font-size: 60px;
+}
+
+.main-greeting-span-one {
+  color: var(--main-blue-color);
+}
+.main-greeting-span-two {
+  color: var(--main-orange-color);
+}
+
+.main-promo {
+  width: 45%;
+  font-size: 20px;
+}
+.main-promo span,
+.main-greetings span {
+  text-decoration: none;
+  cursor: text;
+}
+.main-promo span:hover {
+  color: var(--main-orange-color);
+}
+.main-greeting-span-one {
+  color: var(--main-blue-color);
+}
+.main-greeting-span-two {
+  color: var(--main-orange-color);
+}
+
+.main-start-btn {
+  margin-top: 2.5%;
+  width: 15%;
+  font-family: var(--motto-font);
+  font-size: 22px;
+}
