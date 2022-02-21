@@ -9,6 +9,7 @@
   flex-wrap: wrap;
   gap: 35px 0px;
   margin-bottom: 40px;
+  justify-content: space-around;
 }
 
 .dictionary-home {
