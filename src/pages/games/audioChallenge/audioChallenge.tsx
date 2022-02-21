@@ -88,6 +88,7 @@ export const AudioChallenge: React.FC = () => {
   }
 
   const getCurrectAnswer = () => {
+    soundWord();
    setNumQuestion(prevnum => {
     const currectAnswer = {
       audio: wordData[prevnum].audio, 
@@ -97,7 +98,7 @@ export const AudioChallenge: React.FC = () => {
     }
     setCurrectAnswer(currectAnswer);
     createAllAnswers(currectAnswer);
-    soundWord();
+    
     return prevnum;
    })    
   }
@@ -260,11 +261,16 @@ export const AudioChallenge: React.FC = () => {
   }
 
   const soundWord = () => {
-    setCurrectAnswer(prevAnswer => {
-    const audioObj = new Audio(`${API.URL}${prevAnswer.audio}`);
-    audioObj.play();
-    return prevAnswer;
-    })
+    setTimeout(() => {
+      setCurrectAnswer(prevAnswer => {
+        const audioObj = new Audio(`${API.URL}${prevAnswer.audio}`);
+        if(audioObj.played){
+          audioObj.play();
+        }
+        return prevAnswer;
+        })
+    }, 100)
+    
   }
 
   const handleQuestionButton = (event: SyntheticEvent) => {
