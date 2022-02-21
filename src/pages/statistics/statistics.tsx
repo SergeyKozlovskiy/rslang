@@ -235,6 +235,6 @@ export const Statistics: React.FC = () => {
       :
     <h2>{Text.loadStatistic}</h2>
     :
-    <h1>{Text.statisticLogInWarning}</h1>
+    <h1 className='dictionary-warning'>{Text.statisticLogInWarning}</h1>
   )
 };

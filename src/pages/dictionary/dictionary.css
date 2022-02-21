@@ -14,15 +14,14 @@
 
 .dictionary-home {
   padding-bottom: 5px;
-  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 160px;
   height: 35px;
   background: orange;
+  border-radius: 10px;
   box-shadow: 7px 5px 10px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
   transition: 0.3s all;
 }
 
@@ -36,5 +35,5 @@
   text-align: center;
 }
 .dictionary-page {
-  padding-bottom: 40px;
+  padding: 0 15px 40px 15px;
 }
