@@ -56,7 +56,8 @@ export interface IStatistic {
 }
 
 export interface IStatisticBody {
-  gameLernedWords: number
+  lastActivity: string,
+  corectAnswers: number,
   persent: number,
   wins: number
 }

@@ -6,7 +6,9 @@ export const Games: React.FC = () => {
         <nav className="nav-game" >
           <ul>
             <li className='nav-game__li'><Link className="nav-game_link" to="/sprint"></Link></li>
-            <li className='nav-game__li'><Link className="nav-game_link" to="/audioCall"></Link></li>
+            <li className='nav-game__li'>
+              <Link id='audioChallenge-link' className="nav-game_link" to="/audioCall"></Link>
+            </li>
           </ul>
         </nav>
   </div>
