@@ -2,15 +2,17 @@ import { Button} from 'react-bootstrap';
 import audioImg from '../../../assets/svg/audio.svg';
 import muteImg from '../../../assets/svg/mute.svg';
 import { timer } from '../../../functions/timer';
-import _ from 'lodash';
+import {random} from 'lodash';
 import { getWords } from '../../../requests/getWords';
-import { MagicNumbers, Text } from '../../../types/enums';
+import { MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import './sprint.css';
-import { Question, WordData, Answers} from '../../../types/types';
+import { Question, WordData, Answers, IReduxState} from '../../../types/types';
 import { StartGame } from '../../../components/startGamePopup/startGame';
 import { SettingGame } from '../../../components/settingsGame/settingsGame';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
+import { useDispatch, useSelector } from 'react-redux';
+import { putStatistic } from '../../../requests/putStatistic';
 const correctAnswer = require("../../../assets/audio/correctAnswer.mp3");
 const incorrectAnswer = require("../../../assets/audio/incorrectAnswer.mp3");
 const end = require("../../../assets/audio/end.mp3");
@@ -34,31 +36,47 @@ export const Sprint: React.FC = () => {
   const [score, setScore] = useState(0);
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
+  const state: IReduxState = useSelector((state: IReduxState) => state);
+  const dispatch = useDispatch();
+
+  const getDate = () => {
+    let date = new Date();
+    let day = String(date.getDate());
+    if(day.length < 2) day = '0' + day;
+    let month = String(date.getMonth() + 1);
+    if(month.length < 2) month = '0' + month;
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
   
   const getStatistics = () => {
 
     const statistics = {
-      learnedWords: 0, 
-      optional: {
-        correctAnswers: 0, 
-        seriesCorrectAnswers: 0
-    }}
-
+      lastActivity: '',
+      corectAnswers: 0, 
+      persent: 0, 
+      wins: 0
+    }
+    statistics.lastActivity = getDate();
+    
     setResultsAllAnswers(prevAnswer => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
-
-      statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
+      statistics.corectAnswers = sumAllCurrectAnswers;
+      statistics.persent = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
       return {
         ...prevAnswer
       }
     })
 
     setLongestSeriesCorrectAnswers(prevValue => {
-      statistics.optional.seriesCorrectAnswers = prevValue;
+      statistics.wins = prevValue;
       return prevValue;
     })
+    
+    if(state.IsLogin === true) {
+      putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
+    }
   }
 
   const changeLevel = (level: string) => {
@@ -206,7 +224,7 @@ export const Sprint: React.FC = () => {
     if(numQuestion === 20) {
       
     }else if(wordData && numQuestion < MagicNumbers.MAX_NUM_OF_QUESTIONS){
-      const randomNum = _.random(0, 1);
+      const randomNum = random(0, 1);
       const question = {
         word : wordData[numQuestion].word,
         translate : wordData[numQuestion + randomNum].wordTranslate,
@@ -220,7 +238,7 @@ export const Sprint: React.FC = () => {
 
   const getData = useCallback(async (num?: number) => {
       try {
-        const randomPage = _.random(0, 29);
+        const randomPage = random(0, 29);
         const result = await getWords(num ? num : level, randomPage).then((value) => value);
         if(result){
           setWordData(result);
