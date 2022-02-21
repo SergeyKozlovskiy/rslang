@@ -1,10 +1,10 @@
 import { putWord } from './putWord';
-import { API, WordsDifficult } from "../types/enums";
+import { API, WordsDifficult, RequestResponseCode } from "../types/enums";
 import store from "../store/store";
 import { WordsHardOrLernType, WordsType } from "../types/types";
 import { getNewToken } from './getNewToken';
 
-export const postWord = async (word: WordsType, difficult: string): Promise<void> => {
+export const postWord = async (word: WordsType, difficult: string, dispatch?: Function): Promise<void> => {
 
   let body: WordsHardOrLernType;
 
@@ -28,11 +28,11 @@ export const postWord = async (word: WordsType, difficult: string): Promise<void
     },
     body: JSON.stringify(body),
   })
-  .then((data: Response) => {
-    if(data.status === 417) {
-      putWord(body);
-    } else if(data.status === 401) {
-      getNewToken();
+  .then(async (data: Response) => {
+    if(data.status === RequestResponseCode.DATA_ALREDY_EXISTS) {
+      putWord(body, dispatch);
+    } else if(data.status === RequestResponseCode.ACCESS_TOKEN_IS_MISSING_OR_INVALID) {
+      await getNewToken(dispatch);
       postWord(word, difficult);
     }
   })

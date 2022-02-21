@@ -1,12 +1,12 @@
-import { IStatistic, IStatisticBody } from "../types/types";
+import { IStatisticBody } from "../types/types";
 import store from '../store/store';
 import { getNewToken } from "./getNewToken";
-import { API, RequestStatistic } from '../types/enums';
-import { getStatistic } from "./getStatistic";
+import { API } from '../types/enums';
 import { generateBodyForStatistic } from "../functions/generateBodyForStatistic";
 
-export const putStatistic = async (body: IStatisticBody, game: string): Promise<void> => {
-  generateBodyForStatistic(body, game).then(data => {
+export const putStatistic = async (body: IStatisticBody, game: string, dispatch?: Function): Promise<void> => {
+  let stat: IStatisticBody = body;
+  generateBodyForStatistic(body, game).then(async data => {
     try {
       fetch(`${API.URL}${API.Users}/${store.getState().userInfo.userId}/${API.Statistics}`, {
         method: 'PUT',
@@ -18,8 +18,8 @@ export const putStatistic = async (body: IStatisticBody, game: string): Promise<
       })
       .then(data => data.json());
     } catch {
-      getNewToken();
-      /* putStatistic(stat, game); */
+      await getNewToken(dispatch);
+      putStatistic(stat, game);
     }
   })
 }

@@ -2,6 +2,8 @@ import { saveUserInfo } from '../localStorage/saveUserInfo';
 import store from '../store/store';
 import { API } from '../types/enums';
 import { signInUser } from '../store/asyncActions';
+import { getuserPass } from '../localStorage/getUserPass';
+import { IPostSignIn } from '../types/types';
 
 export const getNewToken = async (dispatch?: Function) => {
   const state = store.getState();
@@ -27,8 +29,10 @@ export const getNewToken = async (dispatch?: Function) => {
     });
   } catch {
     if(dispatch) {
-      console.log('dick');
-      dispatch(signInUser({email: 'gnida@gmail.com', password: '20033009'}));
+      const userPass: IPostSignIn | null = getuserPass();
+      if(userPass) {
+        dispatch(signInUser(userPass));
+      }
     }
   }
 }
