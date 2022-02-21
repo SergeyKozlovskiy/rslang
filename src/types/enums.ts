@@ -87,7 +87,10 @@ export enum Text {
   dictionaryBtnTextHard = 'сложные слова',
   dictionaryBtnTextLern = 'изученые слова',
   dictionaryHomeBtn = 'Закрыть словарь',
-  localStoragePassword = 'Password'
+  localStoragePassword = 'Password',
+  persent = '%',
+  loadStatistic = 'Загрузка статистики...',
+  statisticLogInWarning = 'Для просмотра статистики необходимо войти или зарегистрироваться'
 }
 
 export enum API {

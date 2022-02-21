@@ -164,3 +164,8 @@ type DictionaryWordsType = {
   wordTranslate: string,
   _id: string,
 }
+
+export type StatisticsLocalStateType = {
+  isStatisticLoaded: boolean,
+  statistic: IStatistic | null
+}
