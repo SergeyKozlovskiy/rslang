@@ -5,10 +5,12 @@ import dynamic from '../../../assets/game-page/speak.png';
 import './audioChallenge.css';
 import { random, shuffle } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';
+import { useSelector} from 'react-redux';
 import { getWords } from '../../../requests/getWords';
-import { Answers, Word, WordData } from '../../../types/types';
+import { Answers, IReduxState, Word, WordData } from '../../../types/types';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
-import { API, MagicNumbers, Text } from '../../../types/enums';
+import { API, MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
+import { putStatistic } from '../../../requests/putStatistic';
 const correctAnswerAudio = require("../../../assets/audio/correctAnswer.mp3");
 const incorrectAnswerAudio = require("../../../assets/audio/incorrectAnswer.mp3");
 const gameOverAudio = require("../../../assets/audio/end.mp3");
@@ -30,7 +32,18 @@ export const AudioChallenge: React.FC = () => {
   const [answers, setAnswers] = useState<Word[]>([]);
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
+  const state: IReduxState = useSelector((state: IReduxState) => state);
   
+
+  const getDate = () => {
+    let date = new Date();
+    let day = String(date.getDate());
+    if(day.length < 2) day = '0' + day;
+    let month = String(date.getMonth() + 1);
+    if(month.length < 2) month = '0' + month;
+    let year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
 
   const resetGame = () => {
     setNumQuestion(0);
@@ -45,28 +58,32 @@ export const AudioChallenge: React.FC = () => {
   const getStatistics = () => {
 
     const statistics = {
-      learnedWords: 0, 
-      optional: {
-        correctAnswers: 0, 
-        seriesCorrectAnswers: 0
-    }}
+      lastActivity: '',
+      corectAnswers: 0, 
+      persent: 0, 
+      wins: 0
+    }
+
+    statistics.lastActivity = getDate();
 
     setResultsAllAnswers(prevAnswer => {
       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
-      statistics.learnedWords = prevAnswer.rightAnswer.length;
-      statistics.optional.correctAnswers = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
+      statistics.corectAnswers = sumAllCurrectAnswers;
+      statistics.persent = Math.round((sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT);
       return {
         ...prevAnswer
       }
     })
 
     setLongestSeriesCorrectAnswers(prevValue => {
-      statistics.optional.seriesCorrectAnswers = prevValue;
+      statistics.wins = prevValue;
       return prevValue;
     })
-
-    return statistics;
+    
+    if(state.IsLogin === true) {
+      putStatistic(statistics, RequestStatistic.audioChalenge);
+    }
   }
 
   const getCurrectAnswer = () => {
@@ -163,6 +180,7 @@ export const AudioChallenge: React.FC = () => {
   }
 
   const playSound = (path: string) => {
+    
     const audioObj = new Audio(`${path}`);
     audioObj.play();
   }
@@ -226,7 +244,7 @@ export const AudioChallenge: React.FC = () => {
     const resultPopUp = document.querySelector('.results') as HTMLElement;
     audioChallengeQuestion.classList.add('hide-popup');
     resultPopUp.classList.remove('hide-popup');
-    console.log(getStatistics());
+    getStatistics();
   }
 
   const closeResults = () => {
@@ -292,6 +310,7 @@ export const AudioChallenge: React.FC = () => {
   
   useEffect(() => {
     getData();
+    
   },[]); 
 
 
@@ -313,5 +332,7 @@ export const AudioChallenge: React.FC = () => {
             <ResultGamePopup score={score} resultsAllAnswers={resultsAllAnswers} closePopUp={closeResults}/>
         </div>
 };
+
+
 
 
