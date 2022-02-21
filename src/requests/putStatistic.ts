@@ -6,7 +6,7 @@ import { generateBodyForStatistic } from "../functions/generateBodyForStatistic"
 
 export const putStatistic = async (body: IStatisticBody, game: string, dispatch?: Function): Promise<void> => {
   let stat: IStatisticBody = body;
-  generateBodyForStatistic(body, game).then(async data => {
+  generateBodyForStatistic(body, game, dispatch).then(async data => {
     try {
       fetch(`${API.URL}${API.Users}/${store.getState().userInfo.userId}/${API.Statistics}`, {
         method: 'PUT',
