@@ -5,7 +5,7 @@ import dynamic from '../../../assets/game-page/speak.png';
 import './audioChallenge.css';
 import { random, shuffle } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';
-import { useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { getWords } from '../../../requests/getWords';
 import { Answers, IReduxState, Word, WordData } from '../../../types/types';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
@@ -33,6 +33,7 @@ export const AudioChallenge: React.FC = () => {
   const [seriesOfCorrectAnswers,setSeriesOfCorrectAnswers] = useState(0);
   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
   const state: IReduxState = useSelector((state: IReduxState) => state);
+  const dispatch = useDispatch();
   
 
   const getDate = () => {
@@ -82,7 +83,7 @@ export const AudioChallenge: React.FC = () => {
     })
     
     if(state.IsLogin === true) {
-      putStatistic(statistics, RequestStatistic.audioChalenge);
+      putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
     }
   }
 

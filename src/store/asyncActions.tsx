@@ -3,8 +3,7 @@ import { postUser } from '../requests/postUser';
 import { createUserAction } from "./actions";
 import { signIn } from "../requests/signIn";
 import { Classes } from '../types/enums';
-import { getNewToken } from "../requests/getNewToken";
-import { getAggregatedWords } from "../requests/getAggregatedWords";
+import { saveUserPass } from "../localStorage/saveUserPass";
 
 export const createUser = () => {
   const unRegPopup = document.querySelector(`.${Classes.regPopup}`) as HTMLDivElement;
@@ -16,6 +15,8 @@ export const createUser = () => {
     email: emailInput.value,
     password: passwordInput.value
   }
+
+  saveUserPass({email: body.email, password: body.password});
 
   return async (dispatch: Function) => {
     await postUser(body)
@@ -44,6 +45,7 @@ export const signInUser = (params?: {email: string, password: string}) => {
       email: emailInput.value,
       password: passwordInput.value
     }
+    saveUserPass(body);
   } else {
     body = params;
   }

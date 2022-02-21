@@ -3,7 +3,7 @@ import { WordsHardOrLernType } from './../types/types';
 import { API } from '../types/enums';
 import store from '../store/store';
 
-export const putWord = async (body: WordsHardOrLernType): Promise<void> => {
+export const putWord = async (body: WordsHardOrLernType, dispatch?: Function): Promise<void> => {
   const putBody: WordsHardOrLernType = body;
   try {
     await fetch(`${API.URL}${API.Users}/${store.getState().userInfo.userId}/${API.Words}/${putBody.optional.id}`,{
@@ -16,7 +16,7 @@ export const putWord = async (body: WordsHardOrLernType): Promise<void> => {
     })
     .then((data: Response) => data.json());
   } catch {
-    getNewToken();
+    await getNewToken(dispatch);
     putWord(putBody);
   }
 }

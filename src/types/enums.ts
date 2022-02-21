@@ -86,7 +86,8 @@ export enum Text {
   dictionaryWarning = 'Для использования словаря нужно войти или зарегистрироваться',
   dictionaryBtnTextHard = 'сложные слова',
   dictionaryBtnTextLern = 'изученые слова',
-  dictionaryHomeBtn = 'Закрыть словарь'
+  dictionaryHomeBtn = 'Закрыть словарь',
+  localStoragePassword = 'Password'
 }
 
 export enum API {
@@ -211,4 +212,12 @@ audioChalenge = 'audioChalenge'
 export enum WordsDifficult {
   hard = 'hard',
   lern = 'lern'
+}
+
+export enum RequestResponseCode {
+  USER_WORD_HAS_BEEN_DELETED = 204,
+  NOT_FOUND = 404,
+  ACCESS_TOKEN_IS_MISSING_OR_INVALID = 401,
+  DATA_ALREDY_EXISTS = 417
+
 }

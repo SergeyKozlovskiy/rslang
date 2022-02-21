@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { postWord } from '../../requests/postWord';
 import store from '../../store/store';
 import { API, Text, WordsDifficult } from '../../types/enums';
@@ -7,6 +8,9 @@ import { AudioPlayBtn } from '../audioPlaybtn/AudioPlayBtn';
 import './wordCard.css';
 
 export const WordCard: React.FC<WordsType> = (props: WordsType) => {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="word-card">
       <div className="card-wrapper">
@@ -28,7 +32,7 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
             <div className="settings-wrapper">
               <button onClick={(e) => {if(props.deleteFunc) {props.deleteFunc(e)}}} className="word-hard settings-btn_defaul" data-key={props.id}>{Text.wordCardDeleteBtn}</button>
               <button onClick={() => {
-                postWord(props, WordsDifficult.lern);
+                postWord(props, WordsDifficult.lern, dispatch);
                 if(props.getWordsFunc) {
                   props.getWordsFunc(WordsDifficult.hard);
                 }
@@ -42,7 +46,7 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
             <div className="settings-wrapper">
               <button 
               onClick={() => {
-                postWord(props, WordsDifficult.hard);
+                postWord(props, WordsDifficult.hard, dispatch);
               }} 
               className="word-hard settings-btn_defaul" 
               data-key={props.id}>
@@ -51,7 +55,7 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
 
               <button 
               onClick={() => {
-                postWord(props, WordsDifficult.lern);
+                postWord(props, WordsDifficult.lern, dispatch);
               }} 
               className="word-lern settings-btn_defaul" 
               data-key={props.id}>
