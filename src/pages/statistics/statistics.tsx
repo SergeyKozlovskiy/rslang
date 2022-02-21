@@ -18,7 +18,6 @@ export const Statistics: React.FC = () => (
             <tr>
               <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-              <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -28,7 +27,6 @@ export const Statistics: React.FC = () => (
               <tr>
                 <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellTwoContent}</td>
-                <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFourContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFiveContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellSixContent}</td>
@@ -43,7 +41,6 @@ export const Statistics: React.FC = () => (
             <tr>
               <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-              <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -53,7 +50,6 @@ export const Statistics: React.FC = () => (
               <tr>
                 <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellTwoContent}</td>
-                <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFourContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFiveContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellSixContent}</td>
@@ -68,7 +64,6 @@ export const Statistics: React.FC = () => (
             <tr>
               <th>{Text.mainStatisticsPageTableHeadCellOneContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellTwoContent}</th>
-              <th>{Text.mainStatisticsPageTableHeadCellThreeContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFourContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellFiveContent}</th>
               <th>{Text.mainStatisticsPageTableHeadCellSixContent}</th>
@@ -78,7 +73,6 @@ export const Statistics: React.FC = () => (
               <tr>
                 <td>{Text.mainStatisticsPageTableRowOneCellOneContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellTwoContent}</td>
-                <td>{Text.mainStatisticsPageTableRowOneCellThreeContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFourContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellFiveContent}</td>
                 <td>{Text.mainStatisticsPageTableRowOneCellSixContent}</td>
