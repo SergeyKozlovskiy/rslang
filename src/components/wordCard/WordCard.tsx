@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAggregatedWords } from '../../requests/getAggregatedWords';
 import { postWord } from '../../requests/postWord';
 import store from '../../store/store';
 import { API, Text, WordsDifficult } from '../../types/enums';
-import { WordsDifficultCardBtn, WordsType } from '../../types/types';
+import { IReduxState, WordsDifficultCardBtn, WordsType } from '../../types/types';
 import { AudioPlayBtn } from '../audioPlaybtn/AudioPlayBtn';
 import './wordCard.css';
 
@@ -17,22 +17,31 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
     activeWord: null
   });
   const dispatch = useDispatch();
-  const getHardWords = getAggregatedWords(WordsDifficult.hard, dispatch);
-  const getLernWords = getAggregatedWords(WordsDifficult.lern, dispatch);
-
+  const reduxState: IReduxState = useSelector((state: IReduxState) => state);
 
   useEffect(() => {
-    Promise.all([getHardWords, getLernWords]).then(values => {
-      if(values[0] && values[1]) {
-        setInfo({
-          aggregatedWordsLoaded: true,
-          hardWords: values[0][0].paginatedResults.map(item => item._id),
-          lernWords: values[1][0].paginatedResults.map(item => item._id),
-          activeWord: null
-        });
-      }
-    });
-  },[wordsInfo.activeWord]);
+    if(reduxState.IsLogin === true) {
+      const getHardWords = getAggregatedWords(WordsDifficult.hard, dispatch);
+      const getLernWords = getAggregatedWords(WordsDifficult.lern, dispatch);
+      Promise.all([getHardWords, getLernWords]).then(values => {
+        if(values[0] && values[1]) {
+          setInfo({
+            aggregatedWordsLoaded: true,
+            hardWords: values[0][0].paginatedResults.map(item => item._id),
+            lernWords: values[1][0].paginatedResults.map(item => item._id),
+            activeWord: null
+          });
+        }
+      });
+    } else {
+      setInfo({
+        aggregatedWordsLoaded: true,
+        hardWords: null,
+        lernWords: null,
+        activeWord: null
+      });
+    }
+  },[wordsInfo.activeWord, reduxState.IsLogin ]);
 
   const changeActiveWord = () => {
     setInfo({
