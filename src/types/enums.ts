@@ -123,7 +123,9 @@ export enum MagicNumbers {
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
-  LOGOUT_USER = 'LOGOUT_USER'
+  LOGOUT_USER = 'LOGOUT_USER',
+  LOAD_WORDS = 'LOAD_WORDS',
+  UNLOAD_WORDS = 'UNLOAD_WORDS'
 }
 
 
