@@ -214,7 +214,8 @@ audioChalenge = 'audioChalenge'
 
 export enum WordsDifficult {
   hard = 'hard',
-  lern = 'lern'
+  lern = 'lern',
+  notAggregated = 'no'
 }
 
 export enum RequestResponseCode {

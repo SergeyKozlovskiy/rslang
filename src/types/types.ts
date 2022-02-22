@@ -147,7 +147,7 @@ type DictionaryTotalCountType = {
   count: number
 }
 
-type DictionaryWordsType = {
+export type DictionaryWordsType = {
   audio: string,
   audioExample: string,
   audioMeaning: string,
@@ -168,4 +168,11 @@ type DictionaryWordsType = {
 export type StatisticsLocalStateType = {
   isStatisticLoaded: boolean,
   statistic: IStatistic | null
+}
+
+export type WordsDifficultCardBtn = {
+  aggregatedWordsLoaded: boolean,
+    hardWords: Array<string> | null,
+    lernWords: Array<string> | null,
+    activeWord: string | null
 }
