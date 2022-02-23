@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, useState, useEffect } from 'react';
 import './wordsPage.css';
 import { WordsType } from '../../../types/types';
 import { getWordsFromLocal } from '../../../localStorage/getWordsFromLocal';
@@ -15,6 +15,12 @@ export const WordsPage: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    return () => {
+      dispatch(unLoadWordsAction());
+    }
+  }, []);
+
   const wordsArr: Array<WordsType> | null = getWordsFromLocal();
 
   const [state, setState] = useState(
@@ -28,7 +34,23 @@ export const WordsPage: React.FC = () => {
     }
   );
 
-  const setWordOnState = (key: string) => {
+  const setWordOnState = (key: string, page: number, group: number) => {
+    if(wordsArr === null) {
+      getWords(group, page).then(data => {
+        data.forEach((item: WordsType) => {
+          if(Number(item.id === key)) {
+            setState({
+              allWords: data,
+              word: item,
+              page: item.page,
+              group: item.group,
+              isActive: state.isActive,
+              selected: state.selected
+            })
+          }
+        });
+      })
+    }
     wordsArr?.forEach((item: WordsType) => {
       if(Number(item.id === key)) {
         setState(
@@ -49,6 +71,8 @@ export const WordsPage: React.FC = () => {
     const prevActiveBtn = document.querySelector('.active-word') as HTMLButtonElement;
     const target = e.target as HTMLButtonElement;
     let key: string;
+    let group: number;
+    let page: number;
     
     prevActiveBtn.classList.remove('active-word');
 
@@ -56,7 +80,9 @@ export const WordsPage: React.FC = () => {
 
       if(target.parentElement.dataset.key) {
         key = target.parentElement.dataset.key;
-        setWordOnState(key);
+        group = Number(target.parentElement.dataset.group);
+        page = Number(target.parentElement.dataset.page);
+        setWordOnState(key, page, group);
       }
 
       target.parentElement.classList.add('active-word');
@@ -64,7 +90,9 @@ export const WordsPage: React.FC = () => {
 
       if(target.dataset.key) {
         key = target.dataset.key;
-        setWordOnState(key);
+        group = Number(target.dataset.group);
+        page = Number(target.dataset.page);
+        setWordOnState(key, page, group);
       }
 
       target.classList.add('active-word');
@@ -186,12 +214,12 @@ export const WordsPage: React.FC = () => {
               state.allWords.map((item: WordsType) => 
               state.allWords?.indexOf(item) === MagicNumbers.ZER0_VALUE
               ?
-                <button onClick={(e) => activeWord(e)} className='word-wrapper active-word' data-key={item.id} key={item.id}>
+                <button onClick={(e) => activeWord(e)} className='word-wrapper active-word' data-key={item.id} key={item.id} data-page={item.page} data-group={item.group}>
                   <h2 className="word">{item.word}</h2>
                   <p className="word-translate">{item.wordTranslate}</p>
                 </button>
               :
-                <button onClick={(e) => activeWord(e)} className='word-wrapper' data-key={item.id} key={item.id}>
+                <button onClick={(e) => activeWord(e)} className='word-wrapper' data-key={item.id} key={item.id} data-page={item.page} data-group={item.group}>
                   <h2 className="word">{item.word}</h2>
                   <p className="word-translate">{item.wordTranslate}</p>
                 </button>

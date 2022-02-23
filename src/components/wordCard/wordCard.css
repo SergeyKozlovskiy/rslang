@@ -117,3 +117,8 @@
 .lern-word {
   background-color: rgb(32, 250, 61);
 }
+
+.aggregated-buttons {
+  display: flex;
+  gap: 8px;
+}

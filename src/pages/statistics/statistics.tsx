@@ -21,12 +21,14 @@ export const Statistics: React.FC = () => {
   });
 
   useEffect(() => {
-    getStatistic(dispatch).then((data: IStatistic | null) => {
-      setStatistics({
-        isStatisticLoaded: true,
-        statistic: data
+    if(state.IsLogin === true) {
+      getStatistic(dispatch).then((data: IStatistic | null) => {
+        setStatistics({
+          isStatisticLoaded: true,
+          statistic: data
+        })
       })
-    })
+    }
   }, []);
 
   const getStatisticPerssent = () => {
