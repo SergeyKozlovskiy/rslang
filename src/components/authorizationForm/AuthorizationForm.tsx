@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createUser, signInUser } from '../../store/asyncActions';
 import { IReduxState } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
-import { Text, Classes } from '../../types/enums';
+import { Text, Classes, MagicNumbers } from '../../types/enums';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -18,6 +18,16 @@ const AuthorizationForm: React.FC = () => {
   }
 
   const [login, setLogin] = useState(false);
+  const [isDisabled, setDisabled] = useState(true);
+
+  const checkPasswordLength = () => {
+    const passInput = document.querySelector('.password-input') as HTMLInputElement;
+    if(passInput.value.length >= MagicNumbers.MIN_PASS_LENGTH && passInput.value.length <= MagicNumbers.MAX_PASS_LENGTH) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }
 
   return (
     <Form>
@@ -40,15 +50,15 @@ const AuthorizationForm: React.FC = () => {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>{Text.authorizationPassword}</Form.Label>
-        <Form.Control className={Classes.passInput} type="password" placeholder="Пароль" />
+        <Form.Control onChange={() => checkPasswordLength()} className={Classes.passInput} type="password" placeholder="Пароль (от 8 до 12 символов)" />
       </Form.Group>
       {
         login === true ? 
-          <Button className="log-in-button" onClick={() => dispatch(createUser())} variant="primary">
+          <Button className="log-in-button" onClick={() => dispatch(createUser())} variant="primary" disabled={isDisabled}>
             {Text.authorizationRegBtn}
           </Button>
         :     
-          <Button className="log-in-button" onClick={() => dispatch(signInUser())} variant="primary">
+          <Button className="log-in-button" onClick={() => dispatch(signInUser())} variant="primary" disabled={isDisabled}>
             {Text.loginButtonValue}
           </Button>
       }

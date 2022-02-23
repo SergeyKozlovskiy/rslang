@@ -118,7 +118,9 @@ export enum MagicNumbers {
   MAX_PAGE = 19,
   ZER0_VALUE = 0,
   STEP = 1,
-  MAX_BOOK_PAGE = 29
+  MAX_BOOK_PAGE = 29,
+  MIN_PASS_LENGTH = 8,
+  MAX_PASS_LENGTH = 12,
 }
 
 export enum Actions {
