@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { loadWordsAction } from '../../store/actions';
 
 const EnglishLevelButton: React.FC<ILevelBtnProps> = (props: ILevelBtnProps) => {
-
   const dispacth = useDispatch();
 
   const setWordsOnLocalStorage = (group: number, page: number): void => {
@@ -16,14 +15,17 @@ const EnglishLevelButton: React.FC<ILevelBtnProps> = (props: ILevelBtnProps) => 
       setWords(wordsArr);
       dispacth(loadWordsAction());
     });
-  }
+  };
 
   return (
-    <button onClick={() => setWordsOnLocalStorage(props.group, props.page)} className={`${Classes.bookLevelDefault} ${props.color}`}>
+    <button
+      onClick={() => setWordsOnLocalStorage(props.group, props.page)}
+      className={`${Classes.bookLevelDefault} ${props.color}`}
+    >
       <span className={Classes.bookLevelShort}>{props.level}</span>
       <p className={Classes.bookLevelTitle}>{props.title}</p>
     </button>
-  )
-}
+  );
+};
 
 export default EnglishLevelButton;

@@ -6,5 +6,5 @@ export const levelArr: Array<string> = [
   `${EnglishLevels.B1} ${EnglishLevels.INTERMEDIATE}`,
   `${EnglishLevels.B2} ${EnglishLevels.UPPER_INTERMEDIATE}`,
   `${EnglishLevels.C1} ${EnglishLevels.ADVANCED}`,
-  `${EnglishLevels.C2} ${EnglishLevels.PROFICIENCY}`
+  `${EnglishLevels.C2} ${EnglishLevels.PROFICIENCY}`,
 ];

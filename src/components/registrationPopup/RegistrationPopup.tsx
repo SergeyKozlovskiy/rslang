@@ -8,4 +8,4 @@ export const RegistrationPopup: React.FC<IPopupProps> = (props: IPopupProps) => 
       <p className="popup-text">{props.text}</p>
     </div>
   );
-}
+};

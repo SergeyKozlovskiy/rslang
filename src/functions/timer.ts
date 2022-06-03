@@ -1,33 +1,31 @@
+export const timer = (showResult: () => void): void => {
+  const FULL_DASH_ARRAY = 283;
+  const WARNING_THRESHOLD = 10;
+  const ALERT_THRESHOLD = 5;
 
+  const COLOR_CODES = {
+    info: {
+      color: 'green',
+    },
+    warning: {
+      color: 'orange',
+      threshold: WARNING_THRESHOLD,
+    },
+    alert: {
+      color: 'red',
+      threshold: ALERT_THRESHOLD,
+    },
+  };
 
-export const timer = (showResult: Function): void => {
-const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+  const TIME_LIMIT = 59;
+  let timePassed = 0;
+  let timeLeft = TIME_LIMIT;
+  let timerInterval: NodeJS.Timeout;
+  const remainingPathColor = COLOR_CODES.info.color;
 
-const COLOR_CODES = {
-  info: {
-    color: "green"
-  },
-  warning: {
-    color: "orange",
-    threshold: WARNING_THRESHOLD
-  },
-  alert: {
-    color: "red",
-    threshold: ALERT_THRESHOLD
-  }
-};
-
-const TIME_LIMIT = 59;
-let timePassed = 0;
-let timeLeft = TIME_LIMIT;
-let timerInterval: NodeJS.Timeout;
-let remainingPathColor = COLOR_CODES.info.color;
-
-const timer = document.getElementById("timer") as HTMLElement;
-if(timer){
-  timer.innerHTML = `
+  const timer = document.getElementById('timer') as HTMLElement;
+  if (timer) {
+    timer.innerHTML = `
   <div class="base-timer">
     <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="base-timer__circle">
@@ -45,73 +43,73 @@ if(timer){
         ></path>
       </g>
     </svg>
-    <span id="base-timer-label" class="base-timer__label">${formatTime(
-      timeLeft
-    )}</span>
+    <span id="base-timer-label" class="base-timer__label">${formatTime(timeLeft)}</span>
   </div>
   `;
-startTimer();
-}
+    startTimer();
+  }
 
-function onTimesUp() {
-  clearInterval(timerInterval);
-  showResult();
-}
+  function onTimesUp() {
+    clearInterval(timerInterval);
+    showResult();
+  }
 
-function startTimer() {
-  timerInterval = setInterval(() => {
-    if(window.location.href.includes('sprint')){
-      timePassed = timePassed += 1;
-      timeLeft = TIME_LIMIT - timePassed;
-      const label = document.getElementById("base-timer-label") as HTMLElement;
-      label.innerHTML = formatTime(
-        timeLeft
-      );
-      setCircleDasharray();
-      setRemainingPathColor(timeLeft);
-      if (timeLeft === 0) {
-        onTimesUp();
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      if (window.location.href.includes('sprint')) {
+        timePassed = timePassed += 1;
+        timeLeft = TIME_LIMIT - timePassed;
+        const label = document.getElementById('base-timer-label') as HTMLElement;
+        label.innerHTML = formatTime(timeLeft);
+        setCircleDasharray();
+        setRemainingPathColor(timeLeft);
+        if (timeLeft === 0) {
+          onTimesUp();
+        }
+      } else {
+        clearInterval(timerInterval);
       }
-    }else{
-      clearInterval(timerInterval);
+    }, 1000);
+  }
+
+  function formatTime(time: number) {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    if (seconds < 10) {
+      seconds = Number(`0${seconds}`);
     }
-  }, 1000);
-}
 
-function formatTime(time: number) {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-
-  if (seconds < 10) {
-    seconds = Number(`0${seconds}`);
+    return `${minutes}:${seconds}`;
   }
 
-  return `${minutes}:${seconds}`;
-}
-
-function setRemainingPathColor(timeLeft: number) {
-  const { alert, warning, info } = COLOR_CODES;
-  if (timeLeft <= alert.threshold) {
-    const baseTimerPathRemaining =  document.getElementById("base-timer-path-remaining") as HTMLElement;
-    baseTimerPathRemaining.classList.remove(warning.color);
-    baseTimerPathRemaining.classList.add(alert.color);
-  } else if (timeLeft <= warning.threshold) {
-    const baseTimerPathRemaining =  document.getElementById("base-timer-path-remaining") as HTMLElement;
-    baseTimerPathRemaining.classList.remove(info.color);
-    baseTimerPathRemaining.classList.add(warning.color);
+  function setRemainingPathColor(timeLeft: number) {
+    const { alert, warning, info } = COLOR_CODES;
+    if (timeLeft <= alert.threshold) {
+      const baseTimerPathRemaining = document.getElementById(
+        'base-timer-path-remaining'
+      ) as HTMLElement;
+      baseTimerPathRemaining.classList.remove(warning.color);
+      baseTimerPathRemaining.classList.add(alert.color);
+    } else if (timeLeft <= warning.threshold) {
+      const baseTimerPathRemaining = document.getElementById(
+        'base-timer-path-remaining'
+      ) as HTMLElement;
+      baseTimerPathRemaining.classList.remove(info.color);
+      baseTimerPathRemaining.classList.add(warning.color);
+    }
   }
-}
 
-function calculateTimeFraction() {
-  const rawTimeFraction = timeLeft / TIME_LIMIT;
-  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-}
+  function calculateTimeFraction() {
+    const rawTimeFraction = timeLeft / TIME_LIMIT;
+    return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+  }
 
-function setCircleDasharray() {
-  const circleDasharray = `${(
-    calculateTimeFraction() * FULL_DASH_ARRAY
-  ).toFixed(0)} 283`;
-  const baseTimerPathRemaining =  document.getElementById("base-timer-path-remaining") as HTMLElement;
-  baseTimerPathRemaining.setAttribute("stroke-dasharray", circleDasharray);
-}
-}
+  function setCircleDasharray() {
+    const circleDasharray = `${(calculateTimeFraction() * FULL_DASH_ARRAY).toFixed(0)} 283`;
+    const baseTimerPathRemaining = document.getElementById(
+      'base-timer-path-remaining'
+    ) as HTMLElement;
+    baseTimerPathRemaining.setAttribute('stroke-dasharray', circleDasharray);
+  }
+};

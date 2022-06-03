@@ -4,10 +4,10 @@ const initialState = {
     token: 'none',
     refreshToken: 'none',
     userId: 'none',
-    name: 'none'
+    name: 'none',
   },
   IsLogin: false,
-  isWordsLoad: false
+  isWordsLoad: false,
 };
 
 export default initialState;

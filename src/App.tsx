@@ -17,23 +17,22 @@ function App() {
   return (
     <div className="app-wrapper">
       <div className="app-menu-layer"></div>
-      <Header/>
+      <Header />
       <div className="wrapper-page">
         <Routes>
-          <Route path='/' element={<Main/>}/>
-          <Route path='/authorization' element={<Authorization/>}/>
-          <Route path='/book' element={<Book/>}/>
-          <Route path='/dictionary' element={<Dictionary/>}/>
-          <Route path='/games' element={<Games/>}/>
-          <Route path='/statistics' element={<Statistics/>}/>
-          <Route path='/sprint' element={<Sprint/>}/>
-          <Route path='/audioCall' element={<AudioChallenge />} />
-          <Route path='/about' element={<About/>}/>
+          <Route path="/" element={<Main />} />
+          <Route path="/authorization" element={<Authorization />} />
+          <Route path="/book" element={<Book />} />
+          <Route path="/dictionary" element={<Dictionary />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/sprint" element={<Sprint />} />
+          <Route path="/audioCall" element={<AudioChallenge />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
       <Footer />
     </div>
-
   );
 }
 
