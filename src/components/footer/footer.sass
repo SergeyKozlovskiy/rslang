@@ -1,0 +1,47 @@
+@import '../../index.sass'
+.footer
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding-right: 15px
+  padding-left: 15px
+  height: 15vh
+  &__logo
+    display: block
+    width: 100px
+    &-svg
+      width: 100%
+      height: 100%  
+      transition: $transition
+      g
+        transition: $transition
+      &:hover
+        .logo-fill
+          fill: $main-color
+  &__year
+    @include font-bold
+    font-size: 26px
+  &__links
+    list-style-type: none 
+    @include font-medium
+    li
+      margin-bottom: 3px
+      .gitLink
+        color: black
+        @include transition
+        svg
+          width: 20px
+          height: 20px
+          margin-right: 5px
+      &:hover
+        .gitLink
+          color: $main-color
+        .gitlogo-fill  
+          fill:  $main-color
+
+
+
+.gitlogo-fill  
+  fill: black  
+  @include transition
+   

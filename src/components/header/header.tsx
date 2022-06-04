@@ -18,9 +18,9 @@ import GamesIcon from '../../assets/svg/menu-games.svg';
 import StatisticsIcon from '../../assets/svg/menu-statistics.svg';
 import AboutIcon from '../../assets/svg/menu-about.svg';
 import UnitedKingdom from '../../assets/header/united-kingdom.png';
-import './header.sass';
 import Button from 'antd/lib/button';
 import { LoginOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons/lib/icons';
+import './header.sass';
 
 export const Header: React.FC = () => {
   const [isShowMenu, setIsShowMenu] = useState(false);
