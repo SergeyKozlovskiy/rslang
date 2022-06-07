@@ -1,25 +1,26 @@
+import { CaretRightOutlined } from '@ant-design/icons';
+import Button from 'antd/lib/button';
 import React from 'react';
-import './main.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Text } from '../../types/enums';
-import { Classes } from '../../types/enums';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import './main.sass';
 export const Main: React.FC = () => (
-  <main className={Classes.mainStartPage}>
-    <div className="main-text">
-      <h1 className="main-greetings">
-        {Text.mainGreetingPartOne}{' '}
-        <span className={Classes.mainGreetingSpanOne}>{Text.mainRsSpan}</span>
-        <span className={Classes.mainGreetingSpanTwo}>{Text.mainGreetingPartTwo}</span>
+  <main className="main">
+    <div className="main__text">
+      <h1 className="main__text-header">
+        Добро пожаловать в <br></br>
+        <span className="main__text-header-span1">RS • </span>
+        <span className="main__text-header-span2">Lang</span>
       </h1>
-      <p className="main-promo">
-        {Text.mainPromoPartOne} <span>{Text.mainPromoSpanOne}</span> {Text.mainPromoPartTwo}{' '}
-        <span>{Text.mainPromoSpanTwo}</span> {Text.mainPromoPartThree}
+      <p className="main__text-subtitle">
+        Уровень твоего <span>English</span> останавливается на
+        <span> London is the capital of Great Britan</span> ? Не переживай, с нашим приложением ты
+        можешь изучать язык как в привычном формате словаря, так и играя. Скорее жми кнопку
+        &quot;Начать&quot;!
       </p>
       <Link to="/games">
-        <Button as="input" type="button" value="Начать" className={Classes.mainStartButton} />
+        <Button className="main__btn" icon={<CaretRightOutlined />} type="primary" size={'large'}>
+          Начать
+        </Button>
       </Link>
     </div>
   </main>

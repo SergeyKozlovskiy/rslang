@@ -1,7 +1,5 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
-import LoginIcon from '../../assets/svg/menu-login.svg';
-import AboutIcon from '../../assets/svg/menu-about.svg';
 import './menu.sass';
 
 export const Menu: React.FC = () => {
@@ -50,7 +48,6 @@ export const Menu: React.FC = () => {
               className="menu__list-svg"
               width="30"
               height="30"
-              fill="#000"
               data-name="Layer 2"
               id="Layer_2"
               viewBox="0 0 32 32"

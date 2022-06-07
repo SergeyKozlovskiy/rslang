@@ -1,0 +1,39 @@
+@import '../../index.sass'
+.main
+  display: flex
+  justify-content: center
+  align-items: center
+  background-image: url(../../assets/main_start-page/pngwing.com.png)
+  background-repeat: no-repeat
+  background-position: 90% center
+  background-size: 35%
+  padding: 0 15px 0 15px
+  height: 100%
+  &__text
+    &-header
+      margin-bottom: 2.5%
+      width: 50%
+      font-size: 60px
+      @include font-bold
+      &-span1
+        color: $main-color
+      &-span2
+        color: $main-color_3
+    &-subtitle
+      width: 45%
+      font-size: 20px
+      @include font-medium
+      span
+        text-decoration: none
+        cursor: none
+  &__btn 
+    display: flex !important
+    width: 145px
+    justify-content: center
+    text-transform: uppercase
+    align-items: center
+    margin-top: 20px
+    font-size: 22px
+    @include font-bold 
+    
+
