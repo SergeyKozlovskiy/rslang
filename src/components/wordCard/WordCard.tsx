@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAggregatedWords } from '../../requests/getAggregatedWords';
-import { postWord } from '../../requests/postWord';
-import store from '../../store/store';
 import { API, Text, WordsDifficult } from '../../types/enums';
 import { IReduxState, WordsDifficultCardBtn, WordsType } from '../../types/types';
 import { AudioPlayBtn } from '../audioPlaybtn/AudioPlayBtn';
@@ -18,29 +15,29 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
   const dispatch = useDispatch();
   const reduxState: IReduxState = useSelector((state: IReduxState) => state);
 
-  useEffect(() => {
-    if (reduxState.IsLogin === true) {
-      const getHardWords = getAggregatedWords(WordsDifficult.hard, dispatch);
-      const getLernWords = getAggregatedWords(WordsDifficult.lern, dispatch);
-      Promise.all([getHardWords, getLernWords]).then((values) => {
-        if (values[0] && values[1]) {
-          setInfo({
-            aggregatedWordsLoaded: true,
-            hardWords: values[0][0].paginatedResults.map((item) => item._id),
-            lernWords: values[1][0].paginatedResults.map((item) => item._id),
-            activeWord: null,
-          });
-        }
-      });
-    } else {
-      setInfo({
-        aggregatedWordsLoaded: true,
-        hardWords: null,
-        lernWords: null,
-        activeWord: null,
-      });
-    }
-  }, [wordsInfo.activeWord, reduxState.IsLogin]);
+  // useEffect(() => {
+  //   if (reduxState.IsLogin === true) {
+  //     const getHardWords = getAggregatedWords(WordsDifficult.hard, dispatch);
+  //     const getLernWords = getAggregatedWords(WordsDifficult.lern, dispatch);
+  //     Promise.all([getHardWords, getLernWords]).then((values) => {
+  //       if (values[0] && values[1]) {
+  //         setInfo({
+  //           aggregatedWordsLoaded: true,
+  //           hardWords: values[0][0].paginatedResults.map((item) => item._id),
+  //           lernWords: values[1][0].paginatedResults.map((item) => item._id),
+  //           activeWord: null,
+  //         });
+  //       }
+  //     });
+  //   } else {
+  //     setInfo({
+  //       aggregatedWordsLoaded: true,
+  //       hardWords: null,
+  //       lernWords: null,
+  //       activeWord: null,
+  //     });
+  //   }
+  // }, [wordsInfo.activeWord, reduxState.IsLogin]);
 
   const changeActiveWord = () => {
     setInfo({
@@ -53,7 +50,7 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
 
   return (
     <div className="word-card">
-      <div
+      {/* <div
         className={`card-wrapper ${
           wordsInfo.hardWords?.includes(props.id)
             ? 'hard-word'
@@ -166,7 +163,7 @@ export const WordCard: React.FC<WordsType> = (props: WordsType) => {
             audioMeaningUrl={props.audioMeaning}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

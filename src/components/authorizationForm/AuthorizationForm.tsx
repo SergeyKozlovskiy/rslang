@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './authorizationForm.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser, signInUser } from '../../store/asyncActions';
+// import { createUser, signInUser } from '../../store/asyncActions';
 import { IReduxState } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
 import { Text, Classes, MagicNumbers } from '../../types/enums';
@@ -60,7 +60,7 @@ const AuthorizationForm: React.FC = () => {
       {login === true ? (
         <Button
           className="log-in-button"
-          onClick={() => dispatch(createUser())}
+          // onClick={() => dispatch(createUser())}
           variant="primary"
           disabled={isDisabled}
         >
@@ -69,7 +69,7 @@ const AuthorizationForm: React.FC = () => {
       ) : (
         <Button
           className="log-in-button"
-          onClick={() => dispatch(signInUser())}
+          // onClick={() => dispatch(signInUser())}
           variant="primary"
           disabled={isDisabled}
         >

@@ -3,7 +3,6 @@ import audioImg from '../../../assets/svg/audio.svg';
 import muteImg from '../../../assets/svg/mute.svg';
 import { timer } from '../../../functions/timer';
 import { random } from 'lodash';
-import { getWords } from '../../../requests/getWords';
 import { MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import { Question, WordData, Answers, IReduxState } from '../../../types/types';
@@ -11,7 +10,6 @@ import { StartGame } from '../../../components/startGamePopup/startGame';
 import { SettingGame } from '../../../components/settingsGame/settingsGame';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
 import { useDispatch, useSelector } from 'react-redux';
-import { putStatistic } from '../../../requests/putStatistic';
 import './sprint.css';
 const correctAnswer = '../../../assets/audio/correctAnswer.mp3';
 const incorrectAnswer = '../../../assets/audio/incorrectAnswer.mp3';
@@ -76,7 +74,7 @@ export const Sprint: React.FC = () => {
     });
 
     if (state.IsLogin === true) {
-      putStatistic(statistics, RequestStatistic.sprint, dispatch);
+      // putStatistic(statistics, RequestStatistic.sprint, dispatch);
     }
   };
 
@@ -239,15 +237,15 @@ export const Sprint: React.FC = () => {
 
   const getData = useCallback(
     async (num?: number) => {
-      try {
-        const randomPage = random(0, 29);
-        const result = await getWords(num ? num : level, randomPage).then((value) => value);
-        if (result) {
-          setWordData(result);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   const randomPage = random(0, 29);
+      //   const result = await getWords(num ? num : level, randomPage).then((value) => value);
+      //   if (result) {
+      //     setWordData(result);
+      //   }
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
     [level]
   );

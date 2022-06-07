@@ -6,11 +6,9 @@ import './audioChallenge.css';
 import { random, shuffle } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getWords } from '../../../requests/getWords';
 import { Answers, IReduxState, Word, WordData } from '../../../types/types';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
 import { API, MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
-import { putStatistic } from '../../../requests/putStatistic';
 const correctAnswerAudio = '../../../assets/audio/correctAnswer.mp3';
 const incorrectAnswerAudio = '../../../assets/audio/incorrectAnswer.mp3';
 const gameOverAudio = '../../../assets/audio/end.mp3';
@@ -82,7 +80,7 @@ export const AudioChallenge: React.FC = () => {
     });
 
     if (state.IsLogin === true) {
-      putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
+      // putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
     }
   };
 
@@ -139,15 +137,15 @@ export const AudioChallenge: React.FC = () => {
   };
 
   const getData = async (num?: number) => {
-    try {
-      const randomPage = random(MagicNumbers.MIN_PAGE, MagicNumbers.MAX_PAGE);
-      const result = await getWords(num ? num : 0, randomPage).then((value) => value);
-      if (result) {
-        setWordData(result);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const randomPage = random(MagicNumbers.MIN_PAGE, MagicNumbers.MAX_PAGE);
+    //   const result = await getWords(num ? num : 0, randomPage).then((value) => value);
+    //   if (result) {
+    //     setWordData(result);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const startGame = () => {

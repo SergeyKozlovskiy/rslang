@@ -3,9 +3,7 @@ import './dictionary.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { DictionaryStateType, IReduxState } from '../../types/types';
 import { DictionaryBtn } from '../../components/dictionaryBtn/DictionaryBtn';
-import { getAggregatedWords } from '../../requests/getAggregatedWords';
 import { WordCard } from '../../components/wordCard/WordCard';
-import { deleteUserWord } from '../../requests/deleteUserWord';
 import { Classes, Text, WordsDifficult } from '../../types/enums';
 
 export const Dictionary: React.FC = () => {
@@ -22,20 +20,20 @@ export const Dictionary: React.FC = () => {
   const reduxState: IReduxState = useSelector((state: IReduxState) => state);
 
   const getWords = (difficulty: string): void => {
-    getAggregatedWords(difficulty, dispatch).then((words) => {
-      setLocalState({
-        isLoaded: true,
-        wordsArr: words,
-        difficulty: difficulty,
-      });
-    });
+    // getAggregatedWords(difficulty, dispatch).then((words) => {
+    //   setLocalState({
+    //     isLoaded: true,
+    //     wordsArr: words,
+    //     difficulty: difficulty,
+    //   });
+    // });
   };
 
   const deleteWord = (e: MouseEvent) => {
     const target = e.target as HTMLButtonElement;
     if (target.dataset.key) {
-      deleteUserWord(target.dataset.key, dispatch);
-      getWords(localState.difficulty);
+      // deleteUserWord(target.dataset.key, dispatch);
+      // getWords(localState.difficulty);
     }
   };
 
