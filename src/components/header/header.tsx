@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { CloseButton } from 'react-bootstrap';
-// import { Text } from '../../types/enums';
-// import { Classes } from '../../types/enums';
-// import { IReduxState } from '../../types/types';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { IRespSignIn } from '../../types/types';
 import UnitedKingdom from '../../assets/header/united-kingdom.png';
 import Button from 'antd/lib/button';
-import { LoginOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons/lib/icons';
+import {
+  LoginOutlined,
+  LogoutOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons/lib/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { menuSlice } from '../../store/reducers/menuSlice';
 import './header.sass';
+import { useCookies } from 'react-cookie';
 
 export const Header: React.FC = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  const [cookie, , removeCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
   const { isShowMenu } = useAppSelector((state) => state.menuSlice);
+  const { user } = useAppSelector((state) => state.authSlice);
   const dispatch = useAppDispatch();
   const handleShowMenu = () => {
     dispatch(menuSlice.actions.toggleMenu());
   };
+
+  const authCheck = () => {
+    if (cookie.name && cookie.token && cookie.refreshToken && cookie.userId) {
+      setIsLogin(true);
+    }
+  };
+
+  const logOut = () => {
+    removeCookie('name');
+    removeCookie('token');
+    removeCookie('refreshToken');
+    removeCookie('userId');
+    setIsLogin(false);
+  };
+
+  useEffect(() => {
+    authCheck();
+  });
 
   return (
     <header className="header">
@@ -37,16 +58,33 @@ export const Header: React.FC = () => {
         <span>изучай английский играючи</span>
       </div>
       <div className="header__buttons">
-        <Link to="/authorization">
-          <Button
-            className="header__buttons-btn"
-            type="primary"
-            icon={<LoginOutlined />}
-            size="middle"
-          >
-            Авторизация
-          </Button>
-        </Link>
+        {isLogin && user ? (
+          <>
+            <p>
+              Здравствуйте <span>{user.name}</span>
+            </p>
+            <Button
+              className="header__buttons-btn"
+              type="primary"
+              icon={<LogoutOutlined />}
+              size="middle"
+              onSubmit={logOut}
+            >
+              Выйти
+            </Button>
+          </>
+        ) : (
+          <Link to="/authorization">
+            <Button
+              className="header__buttons-btn"
+              type="primary"
+              icon={<LoginOutlined />}
+              size="middle"
+            >
+              Авторизация
+            </Button>
+          </Link>
+        )}
       </div>
     </header>
   );
