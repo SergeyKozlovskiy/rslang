@@ -1,0 +1,38 @@
+@import '../../index.sass'
+
+.header 
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding-right: 15px
+  padding-left: 15px
+  height: 10vh
+  &__menu_btn
+    display: block
+    outline: none
+    border: none
+    width: 40px
+    height: 40px
+  &__title
+    @include font-medium
+    &-1
+      color: $main-color
+      @include font-bold
+    &-2
+      color: $main-color_3
+      @include font-bold
+    &-logo
+      img
+        margin-right: 20px
+        margin-left: 20px  
+        width: 50px
+        height: 50px
+        transition: 0.4s
+        transition-timing-function: ease-out
+        &:hover
+          border-radius: 100%
+  &__buttons
+    &-btn
+      display: flex !important
+      align-items: center  
+

@@ -1,0 +1,44 @@
+@import '../../index.sass'
+.menu
+  width: 80px
+  position: relative
+  padding-top: 35px
+  background-color: white
+  overflow-x: hidden
+  overflow-y: auto
+  flex-grow: 0
+  flex-shrink: 0
+  @include transition
+  &__list
+    position: relative
+    display: flex
+    flex-direction: column
+    list-style-type: none
+    padding: 0
+    overflow-x: hidden
+    li
+      display: flex
+      align-items: center
+      flex-wrap: nowrap
+      color: $text-color
+      margin-bottom: 30px
+      white-space: nowrap
+      @include transition
+      a
+        svg
+          margin-left: 20px
+          margin-right: 30px
+          @include transition
+      &:hover
+        transform: translateY(-5px)
+         
+.active-menu    
+  width: 200px
+.active-color
+  fill: $main-color
+  color:  $main-color !important
+.default-color
+  fill: $default-color
+  color:  $default-color !important
+
+

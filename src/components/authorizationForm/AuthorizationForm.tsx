@@ -1,66 +1,173 @@
 import React, { useState } from 'react';
-import './authorizationForm.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUser, signInUser } from '../../store/asyncActions';
-import { IReduxState } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
-import { Text, Classes } from '../../types/enums';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Button from 'antd/lib/button';
+import './authorizationForm.sass';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { Input } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { signIn, signUp } from '../../store/asyncReducers/authSlice';
+import preloader from '../../assets/preloader/preloader.svg';
+import { useCookies } from 'react-cookie';
+
+interface IFormInputs {
+  name: string;
+  email: string;
+  password: string;
+  remember: boolean;
+}
 
 const AuthorizationForm: React.FC = () => {
-  const dispatch = useDispatch();
-  const state: IReduxState = useSelector((state: IReduxState) => state);
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  if(state.IsLogin) {
-    navigate('/')
-  }
+  const [cookies, setCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
+  const { isLoading, user } = useAppSelector((state) => state.authSlice);
+  const {
+    handleSubmit,
+    formState: { errors, isValid },
+    control,
+    reset,
+  } = useForm<IFormInputs>({
+    mode: 'onBlur',
+  });
+  const [isRegistration, setIsRegistration] = useState(true);
 
-  const [login, setLogin] = useState(false);
+  const hendleClickEnter = () => {
+    setIsRegistration(!isRegistration);
+  };
+
+  const onSubmit: SubmitHandler<IFormInputs> = async ({ name, email, password }) => {
+    const result = await dispatch(signUp({ name, email, password }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      const result = await dispatch(signIn({ email, password }));
+      if (result.meta.requestStatus === 'fulfilled' && user) {
+        setCookie('name', user.name, { path: '/', maxAge: 14400 });
+        setCookie('token', user.token, { path: '/', maxAge: 14400 });
+        setCookie('refreshToken', user.refreshToken, { path: '/', maxAge: 16200 });
+        setCookie('userId', user.userId, { path: '/', maxAge: 14400 });
+        reset();
+        navigate('/');
+      }
+    }
+  };
 
   return (
-    <Form>
-      {
-        login === true ? 
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Label>{Text.authorizationName}</Form.Label>
-            <Form.Control className={Classes.nameInput} type="text" placeholder="Имя" />
-          </Form.Group>
-        : 
-          ''
-      }
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>{Text.authorizationEmail}</Form.Label>
-        <Form.Control className={Classes.emailInput} type="email" placeholder="Email" />
-        <Form.Text className="text-muted">
-          {Text.authorizationEmailSmal}
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>{Text.authorizationPassword}</Form.Label>
-        <Form.Control className={Classes.passInput} type="password" placeholder="Пароль" />
-      </Form.Group>
-      {
-        login === true ? 
-          <Button className="log-in-button" onClick={() => dispatch(createUser())} variant="primary">
-            {Text.authorizationRegBtn}
-          </Button>
-        :     
-          <Button className="log-in-button" onClick={() => dispatch(signInUser())} variant="primary">
-            {Text.loginButtonValue}
-          </Button>
-      }
-      {
-        login === true 
-        ? 
-        <p className={Classes.formBack}><span onClick={() => setLogin(false)}>{Text.authorizationBackBtn}</span></p>
-        :
-        <p className={Classes.formReg}>{Text.authorizationRegText} <span onClick={()=> setLogin(true)}>{Text.authorizationRegLink}</span></p>
-      } 
-    </Form>
-  )
-}
+    <>
+      <h2 className="title">{isRegistration ? 'Регистрация' : 'Вход'}</h2>
+      <form className="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <Controller
+          name="name"
+          control={control}
+          rules={{
+            required: 'Поле обязательно к заполнению',
+            minLength: {
+              value: 2,
+              message: 'Длинна имени должна быть от 2 до 8 символов',
+            },
+            maxLength: {
+              value: 8,
+              message: 'Длинна имени должна быть от 2 до 8 символов',
+            },
+            pattern: {
+              value: /^([А-Я]{1}[а-яё]{1,}|[A-Z]{1}[a-z]{1,})$/,
+              message:
+                'Имя должно: начинаться с большой буквы, состоять из букв кирриллицы или латинского алфавита, содержать только буквенные символы',
+            },
+          }}
+          render={({ field }) => {
+            return (
+              <label>
+                Имя
+                <Input
+                  placeholder="Введите имя"
+                  {...field}
+                  status={errors.name ? 'error' : undefined}
+                />
+                <div className="form-error">
+                  {errors.name && <span>{errors.name.message || 'Ошибка'}</span>}
+                </div>
+              </label>
+            );
+          }}
+        />
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: 'Поле обязательно к заполнению',
+            minLength: {
+              value: 4,
+              message: 'Длинна почты должна быть от 4 до 8 символов',
+            },
+            maxLength: {
+              value: 24,
+              message: 'Длинна почты должна быть от 2 до 24 символов',
+            },
+            pattern: {
+              value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+              message: 'Некорректная почта',
+            },
+          }}
+          render={({ field }) => {
+            return (
+              <label>
+                Почта
+                <Input
+                  placeholder="Введите вашу почту"
+                  {...field}
+                  status={errors.email ? 'error' : undefined}
+                />
+                <div className="form-error">
+                  {errors.email && <span>{errors.email.message || 'Ошибка'}</span>}
+                </div>
+              </label>
+            );
+          }}
+        />
+        <Controller
+          name="password"
+          control={control}
+          rules={{
+            required: 'Поле обязательно к заполнению',
+            minLength: {
+              value: 8,
+              message: 'Длинна пароля должна быть от 8 до 16 символов',
+            },
+            maxLength: {
+              value: 16,
+              message: 'Длинна пароля должна быть от 8 до 16 символов',
+            },
+            pattern: {
+              value: /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g,
+              message:
+                'Пароль должен содержать: числа, латинские буквы в верхнем и нижнем регистре, спецсимволы',
+            },
+          }}
+          render={({ field }) => {
+            return (
+              <label>
+                Пароль
+                <Input.Password
+                  placeholder="Введите пароль"
+                  {...field}
+                  status={errors.password ? 'error' : undefined}
+                />
+                <div className="form-error">
+                  {errors.password && <span>{errors.password.message || 'Ошибка'}</span>}
+                </div>
+              </label>
+            );
+          }}
+        />
+        <Button type="link" onClick={hendleClickEnter}>
+          {isRegistration ? 'Войти' : 'Зарегестрироваться'}
+        </Button>
+        <Button disabled={!isValid} type="primary" htmlType="submit" className="form-btn">
+          {isRegistration ? 'Зарегестрироваться' : 'Войти'}
+        </Button>
+      </form>
+      {isLoading ? <img className="preloader" src={preloader} alt="Загрузка..."></img> : null}
+    </>
+  );
+};
 
 export default AuthorizationForm;

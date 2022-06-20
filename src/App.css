@@ -2,9 +2,10 @@
   text-align: center;
 }
 
-.app-wrapper {
+.app {
   position: relative;
   overflow: hidden;
+  height: 100vh;
 }
 
 .app-menu-layer {

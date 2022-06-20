@@ -16,7 +16,7 @@ export enum Text {
   menuOptionMiniGames = 'Мини-игры',
   menuOptionStatPage = 'Статистика',
   menuOptionAbout = 'О нас',
-  headerAppName = 'RS•',
+  headerAppName = 'RS •',
   headerAppNameSpan = 'Lang',
   headerAppNameMotto = 'изучай английский играючи',
   loginButtonValue = 'Войти',
@@ -51,8 +51,8 @@ export enum Text {
   bookDescrPartTwo = 'и вернись к нему позже! Слова идут по возрастанию сложности. Выбирай и учи, Удачи!',
   bookDescrSpan = 'СЛОЖНОЕ СЛОВО',
   mainStatisticsPageTitle = 'Ваша статистика',
-  mainStatisticsPageTabOneName ='general',
-  mainStatisticsPageTabOneTitle = "Общая",
+  mainStatisticsPageTabOneName = 'general',
+  mainStatisticsPageTabOneTitle = 'Общая',
   mainStatisticsPageTabTwoName = 'sprint-game',
   mainStatisticsPageTabTwoTitle = 'Спринт',
   mainStatisticsPageTabThreeName = 'audiochallenge-game',
@@ -81,7 +81,7 @@ export enum Text {
   bookPageCounterText = 'Page',
   bookPageError = 'Error: Words not found',
   wordCardHardBtn = 'В сложные слова',
-  wordCardLernBtn  = 'В изученые слова',
+  wordCardLernBtn = 'В изученые слова',
   wordCardDeleteBtn = 'Удалить',
   dictionaryWarning = 'Для использования словаря нужно войти или зарегистрироваться',
   dictionaryBtnTextHard = 'сложные слова',
@@ -90,7 +90,7 @@ export enum Text {
   localStoragePassword = 'Password',
   persent = '%',
   loadStatistic = 'Загрузка статистики...',
-  statisticLogInWarning = 'Для просмотра статистики необходимо войти или зарегистрироваться'
+  statisticLogInWarning = 'Для просмотра статистики необходимо войти или зарегистрироваться',
 }
 
 export enum API {
@@ -100,32 +100,35 @@ export enum API {
   Tokens = 'tokens',
   Statistics = 'statistics',
   AggregatedWords = 'aggregatedWords',
-  SignIn = 'signin'
+  SignIn = 'signin',
 }
 
 export enum MagicNumbers {
   MAX_NUM_OF_QUESTIONS = 20,
   SERIES_OF_CORRECT_ANSWERS_1 = 3,
   SERIES_OF_CORRECT_ANSWERS_2 = 6,
-  BASIC_SCORE = 10, 
-  BONUS_SCORE = 20, 
+  BASIC_SCORE = 10,
+  BONUS_SCORE = 20,
   SUPER_BONUS_SCORE = 40,
   PERCENT = 100,
-  NUMBER_OF_RESPONSES = 5, 
-  MIN_QUESTION_NUMBER = 0, 
-  MAX_QUESTION_NUMBER = 19, 
+  NUMBER_OF_RESPONSES = 5,
+  MIN_QUESTION_NUMBER = 0,
+  MAX_QUESTION_NUMBER = 19,
   MIN_PAGE = 0,
   MAX_PAGE = 19,
   ZER0_VALUE = 0,
   STEP = 1,
-  MAX_BOOK_PAGE = 29
+  MAX_BOOK_PAGE = 29,
+  MIN_PASS_LENGTH = 8,
+  MAX_PASS_LENGTH = 12,
 }
 
 export enum Actions {
   CREATE_USER = 'CREATE_USER',
-  LOGOUT_USER = 'LOGOUT_USER'
+  LOGOUT_USER = 'LOGOUT_USER',
+  LOAD_WORDS = 'LOAD_WORDS',
+  UNLOAD_WORDS = 'UNLOAD_WORDS',
 }
-
 
 export enum Classes {
   header = 'header',
@@ -184,43 +187,43 @@ export enum Classes {
 }
 
 export enum BookLevelColor {
-one = 'level_color-one',
-two = 'level_color-two',
-three = 'level_color-three',
-four = 'level_color-four',
-five = 'level_color-five',
-six = 'level_color-six'
+  one = 'level_color-one',
+  two = 'level_color-two',
+  three = 'level_color-three',
+  four = 'level_color-four',
+  five = 'level_color-five',
+  six = 'level_color-six',
 }
 
 export enum EnglishLevels {
-A1 = 'A1',
-A2 = 'A2',
-B1 = 'B1',
-B2 = 'B2',
-C1 = 'C1',
-C2 = 'C2',
-ELEMENTARY = 'Elementary',
-PRE_INTERMEDIATE = 'Pre-Intermediate',
-INTERMEDIATE = 'Intermediate',
-UPPER_INTERMEDIATE = 'Upper-Intermediate',
-ADVANCED = 'Advanced',
-PROFICIENCY = 'Proficiency',
+  A1 = 'A1',
+  A2 = 'A2',
+  B1 = 'B1',
+  B2 = 'B2',
+  C1 = 'C1',
+  C2 = 'C2',
+  ELEMENTARY = 'Elementary',
+  PRE_INTERMEDIATE = 'Pre-Intermediate',
+  INTERMEDIATE = 'Intermediate',
+  UPPER_INTERMEDIATE = 'Upper-Intermediate',
+  ADVANCED = 'Advanced',
+  PROFICIENCY = 'Proficiency',
 }
 
 export enum RequestStatistic {
-sprint = 'sprint',
-audioChalenge = 'audioChalenge'
+  sprint = 'sprint',
+  audioChalenge = 'audioChalenge',
 }
 
 export enum WordsDifficult {
   hard = 'hard',
-  lern = 'lern'
+  lern = 'lern',
+  notAggregated = 'no',
 }
 
 export enum RequestResponseCode {
   USER_WORD_HAS_BEEN_DELETED = 204,
   NOT_FOUND = 404,
   ACCESS_TOKEN_IS_MISSING_OR_INVALID = 401,
-  DATA_ALREDY_EXISTS = 417
-
+  DATA_ALREDY_EXISTS = 417,
 }
