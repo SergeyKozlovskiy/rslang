@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'antd/lib/button';
-import './authorizationForm.sass';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { Input } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { signIn, signUp } from '../../store/asyncReducers/authSlice';
+import { signIn, signUp, authSlice } from '../../store/asyncReducers/authSlice';
 import preloader from '../../assets/preloader/preloader.svg';
 import { useCookies } from 'react-cookie';
+import { CaretLeftOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import './authorizationForm.sass';
 
 interface IFormInputs {
   name: string;
@@ -19,8 +20,10 @@ interface IFormInputs {
 const AuthorizationForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
-  const { isLoading, user } = useAppSelector((state) => state.authSlice);
+  const [isShowMessage, setIsShowMessage] = useState(false);
+  const [, setCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
+  const { isLoading, user, message } = useAppSelector((state) => state.authSlice);
+  const { clearMessage } = authSlice.actions;
   const {
     handleSubmit,
     formState: { errors, isValid },
@@ -35,6 +38,13 @@ const AuthorizationForm: React.FC = () => {
     setIsRegistration(!isRegistration);
   };
 
+  const closeMessage = () => {
+    setIsShowMessage(false);
+    setTimeout(() => {
+      dispatch(clearMessage());
+    }, 500);
+  };
+
   const onSubmit: SubmitHandler<IFormInputs> = async ({ name, email, password }) => {
     const result = await dispatch(signUp({ name, email, password }));
     if (result.meta.requestStatus === 'fulfilled') {
@@ -46,7 +56,11 @@ const AuthorizationForm: React.FC = () => {
         setCookie('userId', user.userId, { path: '/', maxAge: 14400 });
         reset();
         navigate('/');
+      } else {
+        setIsShowMessage(true);
       }
+    } else {
+      setIsShowMessage(true);
     }
   };
 
@@ -103,7 +117,7 @@ const AuthorizationForm: React.FC = () => {
               message: 'Длинна почты должна быть от 2 до 24 символов',
             },
             pattern: {
-              value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+              value: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,})$/,
               message: 'Некорректная почта',
             },
           }}
@@ -166,6 +180,13 @@ const AuthorizationForm: React.FC = () => {
         </Button>
       </form>
       {isLoading ? <img className="preloader" src={preloader} alt="Загрузка..."></img> : null}
+      <div className={isShowMessage ? 'message-error active' : 'message-error'}>
+        <span>{message}</span>
+        <ExclamationCircleOutlined style={{ fontSize: '19px' }} />
+        <button className="message-error__closeBtn" onClick={closeMessage}>
+          <CaretLeftOutlined style={{ fontSize: '22px' }} />
+        </button>
+      </div>
     </>
   );
 };

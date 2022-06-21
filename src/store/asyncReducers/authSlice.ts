@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 type InitialState = {
   isLoading: boolean;
   user: User | null;
+  message: string | null;
 };
 
 type User = {
@@ -17,6 +18,7 @@ type User = {
 const initialState: InitialState = {
   isLoading: false,
   user: null,
+  message: null,
 };
 
 export const signUp = createAsyncThunk(
@@ -46,6 +48,7 @@ export const signIn = createAsyncThunk(
         email: email,
         password: password,
       });
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -56,7 +59,14 @@ export const signIn = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'authorization',
   initialState,
-  reducers: {},
+  reducers: {
+    clearMessage: (state) => {
+      state.message = null;
+    },
+    logOut: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: {
     [signUp.pending.type]: (state) => {
       state.isLoading = true;
@@ -64,8 +74,12 @@ export const authSlice = createSlice({
     [signUp.fulfilled.type]: (state) => {
       state.isLoading = false;
     },
-    [signUp.rejected.type]: (state) => {
+    [signUp.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
       state.isLoading = false;
+      const error = action.payload.response
+        ? (action.payload.response.data as string)
+        : 'Ошибка :(';
+      state.message = error;
     },
     [signIn.pending.type]: (state) => {
       state.isLoading = true;

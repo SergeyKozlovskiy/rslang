@@ -32,7 +32,16 @@
         &:hover
           border-radius: 100%
   &__buttons
+    display: flex
+    align-items: center
+    p
+      @include font-medium
+      margin: 0px 20px
+      span
+        @include font-bold
+        color: $main-color
     &-btn
       display: flex !important
       align-items: center  
+
 

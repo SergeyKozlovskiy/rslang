@@ -8,7 +8,7 @@
   font-family: 'Raleway', sans-serif
   font-weight: 700   
 @mixin transition
-  transition: 0.4s
+  transition: 0.5s
   animation-timing-function: ease-out
 
 $text-color: black  
@@ -22,6 +22,7 @@ $main-color_3: #ff8600
 
 * 
   scroll-behavior: smooth
+  margin: 0
   box-sizing: border-box
 
 body 
@@ -46,3 +47,36 @@ code
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
+.message-error
+  display: flex
+  position: absolute 
+  align-items: center
+  width: fit-content
+  padding: 15px 25px
+  bottom: 2vh
+  left: 0
+  @include transition
+  background: $default-color
+  border-radius: 0px 5px 5px 0px
+  @include font-medium
+  font-size: 20px
+  color: $error-color
+  transform: translateX(-100%)
+  span
+    margin-right: 10px
+  &__closeBtn  
+    position: absolute
+    display: flex
+    align-items: center
+    right: -15px
+    top: 50%
+    @include transition
+    transform: translateY(-50%)
+    color: $main-color
+    &:hover
+      transform: scale(1.1) translateY(-50%)
+.active
+  @include transition
+  transform: translateX(0%)
+
+

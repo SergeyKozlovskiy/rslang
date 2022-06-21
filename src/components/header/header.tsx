@@ -10,14 +10,16 @@ import {
 } from '@ant-design/icons/lib/icons';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { menuSlice } from '../../store/reducers/menuSlice';
-import './header.sass';
 import { useCookies } from 'react-cookie';
+import './header.sass';
+import { authSlice } from '../../store/asyncReducers/authSlice';
 
 export const Header: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [cookie, , removeCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
   const { isShowMenu } = useAppSelector((state) => state.menuSlice);
   const { user } = useAppSelector((state) => state.authSlice);
+  const { deleteUser } = authSlice.actions;
   const dispatch = useAppDispatch();
   const handleShowMenu = () => {
     dispatch(menuSlice.actions.toggleMenu());
@@ -26,6 +28,8 @@ export const Header: React.FC = () => {
   const authCheck = () => {
     if (cookie.name && cookie.token && cookie.refreshToken && cookie.userId) {
       setIsLogin(true);
+    } else {
+      setIsLogin(false);
     }
   };
 
@@ -34,6 +38,7 @@ export const Header: React.FC = () => {
     removeCookie('token');
     removeCookie('refreshToken');
     removeCookie('userId');
+    dispatch(deleteUser());
     setIsLogin(false);
   };
 
@@ -60,7 +65,7 @@ export const Header: React.FC = () => {
       <div className="header__buttons">
         {isLogin && user ? (
           <>
-            <p>
+            <p className="header__buttons-title">
               Здравствуйте <span>{user.name}</span>
             </p>
             <Button
@@ -68,7 +73,7 @@ export const Header: React.FC = () => {
               type="primary"
               icon={<LogoutOutlined />}
               size="middle"
-              onSubmit={logOut}
+              onClick={logOut}
             >
               Выйти
             </Button>
