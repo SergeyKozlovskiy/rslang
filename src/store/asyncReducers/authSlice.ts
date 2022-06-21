@@ -31,7 +31,6 @@ export const signUp = createAsyncThunk(
         email: email,
         password: password,
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -48,7 +47,6 @@ export const signIn = createAsyncThunk(
         email: email,
         password: password,
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -63,7 +61,7 @@ export const authSlice = createSlice({
     clearMessage: (state) => {
       state.message = null;
     },
-    logOut: (state) => {
+    deleteUser: (state) => {
       state.user = null;
     },
   },
@@ -86,6 +84,7 @@ export const authSlice = createSlice({
     },
     [signIn.fulfilled.type]: (state, action: PayloadAction<User>) => {
       state.isLoading = false;
+      console.log(action.payload);
       state.user = action.payload;
     },
     [signIn.rejected.type]: (state) => {

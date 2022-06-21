@@ -8,6 +8,7 @@ import { signIn, signUp, authSlice } from '../../store/asyncReducers/authSlice';
 import preloader from '../../assets/preloader/preloader.svg';
 import { useCookies } from 'react-cookie';
 import { CaretLeftOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Time } from '../../types/enums';
 import './authorizationForm.sass';
 
 interface IFormInputs {
@@ -22,7 +23,7 @@ const AuthorizationForm: React.FC = () => {
   const navigate = useNavigate();
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [, setCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
-  const { isLoading, user, message } = useAppSelector((state) => state.authSlice);
+  const { isLoading, message } = useAppSelector((state) => state.authSlice);
   const { clearMessage } = authSlice.actions;
   const {
     handleSubmit,
@@ -45,22 +46,34 @@ const AuthorizationForm: React.FC = () => {
     }, 500);
   };
 
-  const onSubmit: SubmitHandler<IFormInputs> = async ({ name, email, password }) => {
-    const result = await dispatch(signUp({ name, email, password }));
+  const handleSignIn = async (email: string, password: string) => {
+    const result = await dispatch(signIn({ email, password }));
     if (result.meta.requestStatus === 'fulfilled') {
-      const result = await dispatch(signIn({ email, password }));
-      if (result.meta.requestStatus === 'fulfilled' && user) {
-        setCookie('name', user.name, { path: '/', maxAge: 14400 });
-        setCookie('token', user.token, { path: '/', maxAge: 14400 });
-        setCookie('refreshToken', user.refreshToken, { path: '/', maxAge: 16200 });
-        setCookie('userId', user.userId, { path: '/', maxAge: 14400 });
-        reset();
-        navigate('/');
+      setCookie('name', result.payload.name, { path: '/', maxAge: Time.FOUR_OCLOCK });
+      setCookie('token', result.payload.token, { path: '/', maxAge: Time.FOUR_OCLOCK });
+      setCookie('refreshToken', result.payload.refreshToken, {
+        path: '/',
+        maxAge: Time.FOUR_AND_HALF_HOURS,
+      });
+      setCookie('userId', result.payload.userId, { path: '/', maxAge: Time.FOUR_AND_HALF_HOURS });
+      reset();
+      navigate('/');
+    } else {
+      setIsShowMessage(true);
+    }
+  };
+
+  const onSubmit: SubmitHandler<IFormInputs> = async ({ name, email, password }) => {
+    if (isRegistration) {
+      const result = await dispatch(signUp({ name, email, password }));
+      console.log('регистрация');
+      if (result.meta.requestStatus === 'fulfilled') {
+        handleSignIn(email, password);
       } else {
         setIsShowMessage(true);
       }
     } else {
-      setIsShowMessage(true);
+      handleSignIn(email, password);
     }
   };
 
@@ -68,41 +81,44 @@ const AuthorizationForm: React.FC = () => {
     <>
       <h2 className="title">{isRegistration ? 'Регистрация' : 'Вход'}</h2>
       <form className="form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <Controller
-          name="name"
-          control={control}
-          rules={{
-            required: 'Поле обязательно к заполнению',
-            minLength: {
-              value: 2,
-              message: 'Длинна имени должна быть от 2 до 8 символов',
-            },
-            maxLength: {
-              value: 8,
-              message: 'Длинна имени должна быть от 2 до 8 символов',
-            },
-            pattern: {
-              value: /^([А-Я]{1}[а-яё]{1,}|[A-Z]{1}[a-z]{1,})$/,
-              message:
-                'Имя должно: начинаться с большой буквы, состоять из букв кирриллицы или латинского алфавита, содержать только буквенные символы',
-            },
-          }}
-          render={({ field }) => {
-            return (
-              <label>
-                Имя
-                <Input
-                  placeholder="Введите имя"
-                  {...field}
-                  status={errors.name ? 'error' : undefined}
-                />
-                <div className="form-error">
-                  {errors.name && <span>{errors.name.message || 'Ошибка'}</span>}
-                </div>
-              </label>
-            );
-          }}
-        />
+        {isRegistration ? (
+          <Controller
+            name="name"
+            control={control}
+            rules={{
+              required: 'Поле обязательно к заполнению',
+              minLength: {
+                value: 2,
+                message: 'Длинна имени должна быть от 2 до 16 символов',
+              },
+              maxLength: {
+                value: 16,
+                message: 'Длинна имени должна быть от 2 до 16 символов',
+              },
+              pattern: {
+                value: /^([А-Я]{1}[а-яё]{1,}|[A-Z]{1}[a-z]{1,})$/,
+                message:
+                  'Имя должно: начинаться с большой буквы, состоять из букв кирриллицы или латинского алфавита, содержать только буквенные символы',
+              },
+            }}
+            render={({ field }) => {
+              return (
+                <label>
+                  Имя
+                  <Input
+                    placeholder="Введите имя"
+                    {...field}
+                    status={errors.name ? 'error' : undefined}
+                  />
+                  <div className="form-error">
+                    {errors.name && <span>{errors.name.message || 'Ошибка'}</span>}
+                  </div>
+                </label>
+              );
+            }}
+          />
+        ) : null}
+
         <Controller
           name="email"
           control={control}

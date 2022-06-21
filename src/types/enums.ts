@@ -1,3 +1,8 @@
+export enum Time {
+  FOUR_OCLOCK = 14400,
+  FOUR_AND_HALF_HOURS = 16200,
+}
+
 export enum Text {
   HeaderSprintPopUp = 'Спринт',
   HeaderAudioChallengePopUp = 'Аудио вызов',

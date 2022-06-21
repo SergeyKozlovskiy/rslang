@@ -11,8 +11,8 @@ import {
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { menuSlice } from '../../store/reducers/menuSlice';
 import { useCookies } from 'react-cookie';
-import './header.sass';
 import { authSlice } from '../../store/asyncReducers/authSlice';
+import './header.sass';
 
 export const Header: React.FC = () => {
   const [isLogin, setIsLogin] = useState(false);
