@@ -1,13 +1,13 @@
 import React from 'react';
-import { API, MagicNumbers } from '../../types/enums';
+import { MagicNumbers } from '../../types/enums';
 import './audioPlayBtn.css';
 import { AudioBtnPropsType } from '../../types/types';
 
 export const AudioPlayBtn: React.FC<AudioBtnPropsType> = (props: AudioBtnPropsType) => {
   const audioPathArray: Array<string> = [
-    `${API.URL}${props.audioUrl}`,
-    `${API.URL}${props.audioMeaningUrl}`,
-    `${API.URL}${props.audioExempleUrl}`,
+    // `${API.URL}${props.audioUrl}`,
+    // `${API.URL}${props.audioMeaningUrl}`,
+    // `${API.URL}${props.audioExempleUrl}`,
   ];
 
   const startAudio = (num: number): void => {

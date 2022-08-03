@@ -188,7 +188,7 @@ const AuthorizationForm: React.FC = () => {
             );
           }}
         />
-        <Button type="link" onClick={hendleClickEnter}>
+        <Button className="form-link" type="link" onClick={hendleClickEnter}>
           {isRegistration ? 'Войти' : 'Зарегестрироваться'}
         </Button>
         <Button disabled={!isValid} type="primary" htmlType="submit" className="form-btn">

@@ -1,15 +1,14 @@
-import { Button } from 'react-bootstrap';
-import { API, Text } from '../../types/enums';
+import { Button } from 'antd';
 import audioImg from '../../assets/svg/audio.svg';
 import { Answers } from '../../types/types';
-import './resultGamePopup.css';
+import './resultGamePopup.sass';
 
 export const ResultGamePopup: React.FC<{
   score: number;
   resultsAllAnswers: Answers;
   closePopUp: () => void;
 }> = ({ score, resultsAllAnswers, closePopUp }) => {
-  const voice = (path: string) => {
+  const soundWord = (path: string) => {
     const audioObj = new Audio(`${path}`);
     audioObj.play();
   };
@@ -27,15 +26,14 @@ export const ResultGamePopup: React.FC<{
             return (
               <div className="results-answers_item" key={answerData.word}>
                 <img
-                  onClick={() => {
-                    voice(`${API.URL}${answerData.audio}`);
-                  }}
+                  // onClick={() => {
+                  //   voice(`${API.URL}${answerData.audio}`);
+                  // }}
                   className="results-answers_icon"
                   src={audioImg}
                   alt="audio-icon"
                 />
-                <strong className="results-answers_word">{answerData.word} </strong>
-                <span>&nbsp;- {answerData.translate}</span>
+                <strong className="results-answers_word">{answerData.word}</strong>
               </div>
             );
           })}
@@ -46,22 +44,22 @@ export const ResultGamePopup: React.FC<{
             return (
               <div className="results-answers_item" key={answerData.word}>
                 <img
-                  onClick={() => {
-                    voice(`${API.URL}${answerData.audio}`);
-                  }}
+                  // onClick={() => {
+                  //   voice(`${API.URL}${answerData.audio}`);
+                  // }}
                   className="results-answers_icon"
                   src={audioImg}
                   alt="audio-icon"
                 />
                 <strong className="results-answers_word">{answerData.word} </strong>
-                <span>&nbsp;- {answerData.translate}</span>
+                {/* <span>&nbsp;- {answerData.translate}</span> */}
               </div>
             );
           })}
         </div>
       </div>
-      <Button className="exit-results" onClick={closePopUp} variant="secondary">
-        {Text.exit}
+      <Button className="exit-results" onClick={closePopUp} type="primary">
+        Закрыть
       </Button>
     </div>
   );

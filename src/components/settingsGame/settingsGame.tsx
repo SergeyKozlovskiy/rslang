@@ -1,63 +1,43 @@
-import { SyntheticEvent } from 'react';
-import { CloseButton, Form } from 'react-bootstrap';
+import { useState } from 'react';
+import { Select } from 'antd';
 import { Link } from 'react-router-dom';
 import fullScreen from '../../assets/svg/fullscreen.svg';
 import fullScreenExit from '../../assets/svg/fullscreen-exit.svg';
-import './settingsGame.css';
-import { EnglishLevels } from '../../types/enums';
+import { levelArr } from '../../constants/arrays';
+import { CloseOutlined } from '@ant-design/icons';
+import './settingsGame.sass';
 
 export const SettingGame: React.FC<{ changeLevel: (level: string) => void }> = ({
   changeLevel,
 }) => {
-  const changeFullScreen = (event: SyntheticEvent) => {
-    const target = event.target as HTMLImageElement;
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-      target.setAttribute('src', fullScreen);
-    } else {
-      document.documentElement.requestFullscreen();
-      target.setAttribute('src', fullScreenExit);
-    }
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const { Option } = Select;
+
+  const changeFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+    isFullScreen ? document.exitFullscreen() : document.documentElement.requestFullscreen();
   };
 
   return (
     <div className="game-settings">
       <button className="game-settings__btn">
         <img
-          onClick={(e) => {
-            changeFullScreen(e);
-          }}
-          src={fullScreen}
+          onClick={changeFullScreen}
+          src={isFullScreen ? fullScreenExit : fullScreen}
           alt={fullScreen}
         />
       </button>
-      <Form.Select
-        className="game-settings_level"
-        onChange={(e) => {
-          changeLevel(e.target.value);
-        }}
-      >
-        <option value="0">
-          {EnglishLevels.A1} {EnglishLevels.ELEMENTARY}
-        </option>
-        <option value="1">
-          {EnglishLevels.A2} {EnglishLevels.PRE_INTERMEDIATE}
-        </option>
-        <option value="2">
-          {EnglishLevels.B1} {EnglishLevels.INTERMEDIATE}
-        </option>
-        <option value="3">
-          {EnglishLevels.B2} {EnglishLevels.UPPER_INTERMEDIATE}
-        </option>
-        <option value="4">
-          {EnglishLevels.C1} {EnglishLevels.ADVANCED}
-        </option>
-        <option value="5">
-          {EnglishLevels.C2} {EnglishLevels.PROFICIENCY}
-        </option>
-      </Form.Select>
+      <Select className="game-settings_level" defaultValue="Elementary" onChange={changeLevel}>
+        {levelArr.map((level, i) => {
+          return (
+            <Option value={level} key={level + i}>
+              {level}
+            </Option>
+          );
+        })}
+      </Select>
       <Link to="/games">
-        <CloseButton className="exit-game" />
+        <CloseOutlined className="exit-game" />
       </Link>
     </div>
   );

@@ -1,178 +1,226 @@
+export type Word = {
+  id: string;
+  _id: string;
+  group: number;
+  page: number;
+  word: string;
+  image: string;
+  audio: string;
+  audioMeaning: string;
+  audioExample: string;
+  textMeaning: string;
+  textExample: string;
+  transcription: string;
+  wordTranslate: string;
+  textMeaningTranslate: string;
+  textExampleTranslate: string;
+};
+
+export type WordUser = {
+  difficulty: string;
+  id: string;
+  wordId: string;
+};
+
+export type AggregatedWords = {
+  paginatedResults: Word[];
+  totalCount: [
+    {
+      count: number;
+    }
+  ];
+};
+
+export type DecodeToken = {
+  exp: number;
+  iat: number;
+  id: string;
+  tokenId: string;
+};
+
+export type Tokens = {
+  refreshToken: string;
+  token: string;
+};
+
+export type Props = {
+  refreshToken: string;
+};
 export interface IAction {
-  type: string,
-  value: IRespSignIn
+  type: string;
+  value: IRespSignIn;
 }
 
-export interface ICreateUser {  
-  name: string,
-  email: string,
-  password: string
+export interface ICreateUser {
+  name: string;
+  email: string;
+  password: string;
 }
 
 export interface IRespPostUser {
-  id: string,
-  email: string,
-  name: string
+  id: string;
+  email: string;
+  name: string;
 }
 
 export interface IPostSignIn {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface IRespSignIn {
-  message: string,
-  token: string,
-  refreshToken: string,
-  userId: string,
-  name: string
+  message: string;
+  token: string;
+  refreshToken: string;
+  userId: string;
+  name: string;
 }
 
 export interface IPopupProps {
-  className: string,
-  text: string
+  className: string;
+  text: string;
 }
 
 export interface IReduxState {
-  userInfo: IRespSignIn,
-  IsLogin: boolean,
-  isWordsLoad: boolean
+  userInfo: IRespSignIn;
+  IsLogin: boolean;
+  isWordsLoad: boolean;
 }
 
 export interface ILevelBtnProps {
-  level: string,
-  title: string,
-  color: string,
-  page: number,
-  group: number
+  level: string;
+  title: string;
+  color: string;
+  page: number;
+  group: number;
 }
 
 export interface IStatistic {
-  learnedWords: number,
+  learnedWords: number;
   optional: {
-    sprint?: IStatisticBody,
-    audioChalange?: IStatisticBody,
-  }
+    sprint?: IStatisticBody;
+    audioChalange?: IStatisticBody;
+  };
 }
 
 export interface IStatisticBody {
-  lastActivity: string,
-  corectAnswers: number,
-  persent: number,
-  wins: number
+  lastActivity: string;
+  corectAnswers: number;
+  persent: number;
+  wins: number;
 }
 
 export type WordsType = {
-  id: string,
-  group:	number,
-  page:	number,
-  word:	string,
-  image:	string,
-  audio:	string,
-  audioMeaning:	string,
-  audioExample:	string,
-  textMeaning:	string,
-  textExample:	string,
-  transcription:	string,
-  wordTranslate:	string,
-  textMeaningTranslate:	string,
-  textExampleTranslate:	string,
-  isAggregated?: boolean,
-  deleteFunc?: Function,
-  getWordsFunc?: Function,
-}
+  id: string;
+  group: number;
+  page: number;
+  word: string;
+  image: string;
+  audio: string;
+  audioMeaning: string;
+  audioExample: string;
+  textMeaning: string;
+  textExample: string;
+  transcription: string;
+  wordTranslate: string;
+  textMeaningTranslate: string;
+  textExampleTranslate: string;
+  isAggregated?: boolean;
+  deleteFunc?: () => void;
+  getWordsFunc?: () => void;
+};
 
 export type WordsActionType = {
-  type: string,
-  value: Array<WordsType>
-}
+  type: string;
+  value: Array<WordsType>;
+};
 
-export type WordData = {
-  id: string,
-  group: number,
-  page: number,
-  word: string,
-  image: string,
-  audio: string,
-  audioMeaning: string,
-  audioExample: string,
-  textMeaning: string,
-  textExample: string,
-  transcription: string,
-  wordTranslate: string,
-  textMeaningTranslate: string,
-  textExampleTranslate: string
-}
+// export type WordData = {
+//   id: string;
+//   group: number;
+//   page: number;
+//   word: string;
+//   image: string;
+//   audio: string;
+//   audioMeaning: string;
+//   audioExample: string;
+//   textMeaning: string;
+//   textExample: string;
+//   transcription: string;
+//   wordTranslate: string;
+//   textMeaningTranslate: string;
+//   textExampleTranslate: string;
+// };
 
-export type Word = {
-word: string,
-audio: string,
-translate: string,
-img?: string
-}
+export type WordGame = {
+  word: string;
+  audio: string;
+  translate: string;
+  img?: string;
+};
 
 export type Question = {
-word: string,
-translate: string, 
-answer: boolean,
-audio: string
-}
+  word: string;
+  translate: string;
+  answer: boolean;
+  audio: string;
+};
 
 export type Answers = {
-rightAnswer: Word[],
-wrongAnswer: Word[]
-}
+  rightAnswer: Word[];
+  wrongAnswer: Word[];
+};
 
 export type SelectProps = {
-  level: number
-}
+  level: number;
+};
 
 export type AudioBtnPropsType = {
-  audioUrl: string, 
-  audioExempleUrl: string, 
-  audioMeaningUrl: string
-}
+  audioUrl: string;
+  audioExempleUrl: string;
+  audioMeaningUrl: string;
+};
 
 export type WordsHardOrLernType = {
-  difficulty: string,
-  optional: WordsType
-}
+  difficulty: string;
+  optional: WordsType;
+};
 
 export type DictionaryStateType = {
-  paginatedResults: Array<DictionaryWordsType>,
-  totalCount: Array<DictionaryTotalCountType>
-}
+  paginatedResults: Array<DictionaryWordsType>;
+  totalCount: Array<DictionaryTotalCountType>;
+};
 
 type DictionaryTotalCountType = {
-  count: number
-}
+  count: number;
+};
 
 export type DictionaryWordsType = {
-  audio: string,
-  audioExample: string,
-  audioMeaning: string,
-  group: number,
-  image: string,
-  page: number,
-  textExample: string,
-  textExampleTranslate: string,
-  textMeaning: string,
-  textMeaningTranslate: string,
-  transcription: string,
-  userWord: WordsHardOrLernType,
-  word: string,
-  wordTranslate: string,
-  _id: string,
-}
+  audio: string;
+  audioExample: string;
+  audioMeaning: string;
+  group: number;
+  image: string;
+  page: number;
+  textExample: string;
+  textExampleTranslate: string;
+  textMeaning: string;
+  textMeaningTranslate: string;
+  transcription: string;
+  userWord: WordsHardOrLernType;
+  word: string;
+  wordTranslate: string;
+  _id: string;
+};
 
 export type StatisticsLocalStateType = {
-  isStatisticLoaded: boolean,
-  statistic: IStatistic | null
-}
+  isStatisticLoaded: boolean;
+  statistic: IStatistic | null;
+};
 
 export type WordsDifficultCardBtn = {
-  aggregatedWordsLoaded: boolean,
-    hardWords: Array<string> | null,
-    lernWords: Array<string> | null,
-    activeWord: string | null
-}
+  aggregatedWordsLoaded: boolean;
+  hardWords: Array<string> | null;
+  lernWords: Array<string> | null;
+  activeWord: string | null;
+};

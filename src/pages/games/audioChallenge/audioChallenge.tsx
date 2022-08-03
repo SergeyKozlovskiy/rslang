@@ -6,9 +6,9 @@ import './audioChallenge.css';
 import { random, shuffle } from 'lodash';
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Answers, IReduxState, Word, WordData } from '../../../types/types';
+import { Answers, IReduxState, Word, WordGame } from '../../../types/types';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
-import { API, MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
+import { MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
 const correctAnswerAudio = '../../../assets/audio/correctAnswer.mp3';
 const incorrectAnswerAudio = '../../../assets/audio/incorrectAnswer.mp3';
 const gameOverAudio = '../../../assets/audio/end.mp3';
@@ -18,12 +18,12 @@ export const AudioChallenge: React.FC = () => {
     rightAnswer: [],
     wrongAnswer: [],
   });
-  const [currectAnswer, setCurrectAnswer] = useState<Word>({
+  const [currectAnswer, setCurrectAnswer] = useState<WordGame>({
     word: '',
     audio: '',
     translate: '',
   });
-  const [wordData, setWordData] = useState<WordData[]>([]);
+  const [wordData, setWordData] = useState<Word[]>([]);
   const [numQuestion, setNumQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<Word[]>([]);
@@ -94,7 +94,7 @@ export const AudioChallenge: React.FC = () => {
         img: wordData[prevnum].image,
       };
       setCurrectAnswer(currectAnswer);
-      createAllAnswers(currectAnswer);
+      // createAllAnswers(currectAnswer);
 
       return prevnum;
     });
@@ -124,11 +124,11 @@ export const AudioChallenge: React.FC = () => {
         translate: wordData[randomNum].wordTranslate,
         img: wordData[randomNum].image,
       };
-      const isEqual = randomAnswers.some((elem) => elem.translate === randomAnswer.translate);
+      // const isEqual = randomAnswers.some((elem) => elem.translate === randomAnswer.translate);
 
-      if (!isEqual) {
-        randomAnswers.push(randomAnswer);
-      }
+      // if (!isEqual) {
+      //   randomAnswers.push(randomAnswer);
+      // }
     }
 
     if (randomAnswers.length === MagicNumbers.NUMBER_OF_RESPONSES) {
@@ -186,7 +186,7 @@ export const AudioChallenge: React.FC = () => {
   const answerCheck = (event: SyntheticEvent) => {
     const target = event.target as HTMLElement;
 
-    const answer: Word = {
+    const answer: WordGame = {
       audio: currectAnswer.audio,
       word: currectAnswer.word,
       translate: target.textContent ? target.textContent : '',
@@ -199,12 +199,12 @@ export const AudioChallenge: React.FC = () => {
       target.textContent === currectAnswer.translate &&
       numQuestion < MagicNumbers.MAX_QUESTION_NUMBER
     ) {
-      setResultsAllAnswers((prevAnswer) => {
-        return {
-          ...prevAnswer,
-          rightAnswer: [...prevAnswer.rightAnswer, answer],
-        };
-      });
+      // setResultsAllAnswers((prevAnswer) => {
+      //   return {
+      //     ...prevAnswer,
+      //     rightAnswer: [...prevAnswer.rightAnswer, answer],
+      //   };
+      // });
       setSeriesOfCorrectAnswers((prev) => prev + 1);
       playSound(correctAnswerAudio);
       setScore((prevScore) => prevScore + MagicNumbers.BASIC_SCORE);
@@ -215,12 +215,12 @@ export const AudioChallenge: React.FC = () => {
         setLongestSeriesCorrectAnswers(seriesOfCorrectAnswers);
       }
       setSeriesOfCorrectAnswers(0);
-      setResultsAllAnswers((prevAnswer) => {
-        return {
-          ...prevAnswer,
-          wrongAnswer: [...prevAnswer.wrongAnswer, answer],
-        };
-      });
+      // setResultsAllAnswers((prevAnswer) => {
+      //   return {
+      //     ...prevAnswer,
+      //     wrongAnswer: [...prevAnswer.wrongAnswer, answer],
+      //   };
+      // });
       changeImg();
       playSound(incorrectAnswerAudio);
       showCurrectAnswerButton();
@@ -234,7 +234,7 @@ export const AudioChallenge: React.FC = () => {
   const changeImg = () => {
     const img = document.querySelector('.audioChallenge-question__img') as HTMLImageElement;
     if (img.getAttribute('alt') === Text.IconAttributeAudioChallenge) {
-      img.setAttribute('src', `${API.URL + currectAnswer.img}`);
+      // img.setAttribute('src', `${API.URL + currectAnswer.img}`);
       img.setAttribute('alt', `${currectAnswer.word}`);
     } else {
       img.setAttribute('src', dynamic);
@@ -265,21 +265,21 @@ export const AudioChallenge: React.FC = () => {
   };
 
   const soundWord = () => {
-    setTimeout(() => {
-      setCurrectAnswer((prevAnswer) => {
-        const audioObj = new Audio(`${API.URL}${prevAnswer.audio}`);
-        if (audioObj.played) {
-          audioObj.play();
-        }
-        return prevAnswer;
-      });
-    }, 100);
+    // setTimeout(() => {
+    //   setCurrectAnswer((prevAnswer) => {
+    //     const audioObj = new Audio(`${API.URL}${prevAnswer.audio}`);
+    //     if (audioObj.played) {
+    //       audioObj.play();
+    //     }
+    //     return prevAnswer;
+    //   });
+    // }, 100);
   };
 
   const handleQuestionButton = (event: SyntheticEvent) => {
     const target = event.target as HTMLButtonElement;
 
-    const answer: Word = {
+    const answer: WordGame = {
       audio: currectAnswer.audio,
       word: currectAnswer.word,
       translate: currectAnswer.translate,
@@ -291,12 +291,12 @@ export const AudioChallenge: React.FC = () => {
       }
       setSeriesOfCorrectAnswers(0);
       showCurrectAnswerButton();
-      setResultsAllAnswers((prevAnswer) => {
-        return {
-          ...prevAnswer,
-          wrongAnswer: [...prevAnswer.wrongAnswer, answer],
-        };
-      });
+      // setResultsAllAnswers((prevAnswer) => {
+      //   return {
+      //     ...prevAnswer,
+      //     wrongAnswer: [...prevAnswer.wrongAnswer, answer],
+      //   };
+      // });
       changeImg();
     } else if (
       target.textContent !== Text.ShowCurrectAnswerButton &&
@@ -346,7 +346,7 @@ export const AudioChallenge: React.FC = () => {
           alt={Text.IconAttributeAudioChallenge}
         />
         <div className="audioChallenge-question__answers">
-          {answers.map((elem) => {
+          {/* {answers.map((elem) => {
             return (
               <button
                 key={elem.word}
@@ -358,7 +358,7 @@ export const AudioChallenge: React.FC = () => {
                 {elem.translate}
               </button>
             );
-          })}
+          })} */}
         </div>
         <Button
           className="audioChallenge-question__button"

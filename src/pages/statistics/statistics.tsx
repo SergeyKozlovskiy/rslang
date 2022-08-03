@@ -8,10 +8,9 @@ import Sonnet from 'react-bootstrap/Tabs';
 import { Text } from '../../types/enums';
 import { Classes } from '../../types/enums';
 import { useSelector, useDispatch } from 'react-redux';
-import { IReduxState, IStatistic, StatisticsLocalStateType } from '../../types/types';
+// import { IReduxState, IStatistic, StatisticsLocalStateType } from '../../types/types';
 
 export const Statistics: React.FC = () => {
-  const state: IReduxState = useSelector((state: IReduxState) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {

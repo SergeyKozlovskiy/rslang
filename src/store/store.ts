@@ -1,10 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import aggregatedWordsSlice from './asyncReducers/aggregatedWordsSlice';
 import authSlice from './asyncReducers/authSlice';
+import wordsSlice from './asyncReducers/wordsBookSlice';
+import userWordsSlice from './asyncReducers/wordsUserSlice';
 import menuSlice from './reducers/menuSlice';
 
 const rootReducer = combineReducers({
   menuSlice,
   authSlice,
+  wordsSlice,
+  userWordsSlice,
+  aggregatedWordsSlice,
 });
 
 export const setupStore = () => {

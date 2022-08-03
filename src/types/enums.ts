@@ -1,5 +1,5 @@
 export enum Time {
-  FOUR_OCLOCK = 14400,
+  FOUR_OCLOCK = 14400, //14 400
   FOUR_AND_HALF_HOURS = 16200,
 }
 
@@ -98,14 +98,11 @@ export enum Text {
   statisticLogInWarning = 'Для просмотра статистики необходимо войти или зарегистрироваться',
 }
 
-export enum API {
-  URL = 'https://rss-lernwords.herokuapp.com/',
-  Words = 'words',
-  Users = 'users',
-  Tokens = 'tokens',
-  Statistics = 'statistics',
-  AggregatedWords = 'aggregatedWords',
-  SignIn = 'signin',
+export enum URLS {
+  USERS = 'https://rslang-v1.herokuapp.com/users',
+  URL = 'https://rslang-v1.herokuapp.com',
+  SIGN_IN = 'https://rslang-v1.herokuapp.com/signin',
+  GET_WORDS = 'https://rslang-v1.herokuapp.com/words',
 }
 
 export enum MagicNumbers {

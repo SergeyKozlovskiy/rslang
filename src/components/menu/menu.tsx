@@ -41,7 +41,7 @@ export const Menu: React.FC = () => {
         </li>
         <li>
           <NavLink
-            to="/dictionary"
+            to="/userWords"
             className={(navData) => (navData.isActive ? 'active-color' : 'default-color')}
           >
             <svg className="menu__list-svg" width="30" height="30" viewBox="0 0 32 32">

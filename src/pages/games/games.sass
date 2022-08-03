@@ -1,0 +1,67 @@
+@import '../../index.sass'
+.games 
+  width: 100% 
+  height: 75vh
+  display: flex
+  align-items: center
+  justify-content: center
+  &-item
+    display: flex
+    position: relative
+    height: 100%
+    align-items: center
+    justify-content: center
+    border-radius: 1px solid black
+    padding: 35px 25px
+    border-radius: 5px
+    list-style-type: none
+    width: 550px
+    height: 100%
+    z-index: 1
+    @include transition
+    &:nth-child(1)
+      margin-right: 50px
+    &:after
+      position: absolute
+      content: ''
+      background-image: url('../../assets/game-page/car.jpg')
+      background-position: center
+      background-repeat: no-repeat
+      width: 100%
+      height: 100%
+      top: 0
+      right: 0
+      left: 0
+      bottom: 0
+      z-index: 10
+      filter: blur(3px)
+      @include transition
+    &:before
+      position: absolute
+      content: 'Спринт'
+      width: fit-content
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      @include font-bold
+      color: $main-color_3
+      font-size: 19px
+      letter-spacing: 1px
+      z-index: 20
+    &:nth-child(2)
+      &:after
+        background-image: url('../../assets/game-page/girl.jpg')
+      &:before
+        content: 'Аудио вызов'
+    &__link
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      right: 0
+      left: 0
+      bottom: 0
+      z-index: 30
+    &:hover
+      &::after
+        filter: none
