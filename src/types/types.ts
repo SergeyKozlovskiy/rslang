@@ -16,6 +16,13 @@ export type Word = {
   textExampleTranslate: string;
 };
 
+export type Statistics = {
+  sumNewWordInDay: number;
+  sumCorrectAnswer: number;
+  seriesCorrectAnswer: number;
+  date: string;
+};
+
 export type WordUser = {
   difficulty: string;
   id: string;

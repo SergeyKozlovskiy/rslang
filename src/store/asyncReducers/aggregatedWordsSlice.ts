@@ -31,7 +31,6 @@ export const getDifficultWords = createAsyncThunk(
           },
         }
       );
-      console.log(`Cложные слова:`, response.data[0]);
       return response.data[0];
     } catch (e) {
       return rejectWithValue(e);
