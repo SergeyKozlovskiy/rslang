@@ -18,9 +18,9 @@ export type Word = {
 
 export type Statistics = {
   sumNewWordInDay: number;
-  sumCorrectAnswer: number;
+  procCorrectAnswer: number;
   seriesCorrectAnswer: number;
-  date: string;
+  date: Date;
 };
 
 export type WordUser = {

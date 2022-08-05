@@ -32,8 +32,7 @@ export class Timer extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.stopTimer();
-    this.props.stopGame();
+    if (this.state.timerInProgress) this.stopTimer();
   }
 
   startTimer() {
@@ -49,7 +48,6 @@ export class Timer extends React.Component<Props, State> {
 
   stopTimer() {
     clearInterval(this.timerID);
-    // this.timerID = null;
     this.setState({
       timerInProgress: false,
     });

@@ -1,6 +1,6 @@
 import { random } from 'lodash';
 import { shuffle } from 'lodash';
-import { Word, Answers } from '../../../types/types';
+import { Word, Answers, Statistics } from '../../../types/types';
 import { StartGame } from '../../../components/startGamePopup/startGame';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
 import { useCallback, useEffect, useState } from 'react';
@@ -11,7 +11,7 @@ import { Timer } from '../../../components/timer/timer';
 import { QuestionCard } from '../../../components/questionCard/questionCard';
 import { useCookies } from 'react-cookie';
 import './sprint.sass';
-import { getStatistics } from '../../../store/asyncReducers/statisticsSlice';
+import { putStatistics } from '../../../store/asyncReducers/statisticsSlice';
 const correctAnswer = '../../../assets/audio/correctAnswer.mp3';
 const incorrectAnswer = '../../../assets/audio/incorrectAnswer.mp3';
 const end = '../../../assets/audio/end.mp3';
@@ -28,10 +28,13 @@ export const Sprint: React.FC = () => {
   const [numQuestion, setNumQuestion] = useState(0);
   const [answer, setAnswer] = useState<string>();
   const [gameWord, setGameWord] = useState<Word[]>();
+  const [seriesCorrectAnswer, setSeriesCorrectAnswer] = useState({ serries: 0, maxSerries: 0 });
+
   const [resultsAllAnswers, setResultsAllAnswers] = useState<Answers>({
     rightAnswer: [],
     wrongAnswer: [],
   });
+
   const [isShowPopUp, setIsShowPopUp] = useState(false);
 
   const resetGame = () => {
@@ -42,6 +45,63 @@ export const Sprint: React.FC = () => {
       rightAnswer: [],
       wrongAnswer: [],
     });
+  };
+
+  const stopGame = () => {
+    setIsGame(false);
+    setIsShowPopUp(true);
+    collectionsForStatistics();
+    audioPlay(end);
+  };
+
+  const updateStatistics = async (statistics: Statistics) => {
+    if (cookies.token && cookies.userId) {
+      dispatch(
+        putStatistics({
+          token: cookies.token,
+          userId: cookies.userId,
+          sumNewWordInDaySprint: statistics.sumNewWordInDay,
+          procCorrectAnswerSprint: statistics.procCorrectAnswer,
+          seriesCorrectAnswerSprint: statistics.seriesCorrectAnswer,
+        })
+      );
+    }
+  };
+
+  const collectionsForStatistics = () => {
+    const statistics = {
+      sumNewWordInDay: resultsAllAnswers.rightAnswer.length,
+      procCorrectAnswer: 0,
+      seriesCorrectAnswer:
+        seriesCorrectAnswer.serries > seriesCorrectAnswer.maxSerries
+          ? seriesCorrectAnswer.serries
+          : seriesCorrectAnswer.maxSerries,
+      date: new Date(),
+    };
+    if (resultsAllAnswers.rightAnswer && resultsAllAnswers.wrongAnswer) {
+      statistics.procCorrectAnswer = Math.round(
+        (resultsAllAnswers.rightAnswer.length /
+          (resultsAllAnswers.rightAnswer.length + resultsAllAnswers.wrongAnswer.length)) *
+          100
+      );
+    }
+    updateStatistics(statistics);
+  };
+
+  const updateSeriesCorrectAnswer = (answer: boolean) => {
+    if (answer) {
+      setSeriesCorrectAnswer((prevState) => {
+        return { serries: prevState.serries + 1, maxSerries: prevState.maxSerries };
+      });
+    } else {
+      setSeriesCorrectAnswer((prevState) => {
+        return {
+          serries: 0,
+          maxSerries:
+            prevState.serries > prevState.maxSerries ? prevState.serries : prevState.maxSerries,
+        };
+      });
+    }
   };
 
   const closePopUp = () => {
@@ -61,18 +121,6 @@ export const Sprint: React.FC = () => {
 
   const start = () => {
     setIsGame(true);
-  };
-
-  const getStatisticsUser = () => {
-    if ((cookies.token, cookies.userId)) {
-      dispatch(getStatistics({ token: cookies.token, userId: cookies.userId }));
-    }
-  };
-
-  const stopGame = () => {
-    setIsGame(false);
-    setIsShowPopUp(true);
-    getStatisticsUser();
   };
 
   const activateIndicator = (current: boolean) => {
@@ -110,25 +158,23 @@ export const Sprint: React.FC = () => {
         writeDownCorrectAnswer(gameWord[numQuestion]);
         changeSumScore(10);
         activateIndicator(true);
+        updateSeriesCorrectAnswer(true);
+        audioPlay(correctAnswer);
       } else if (gameWord[numQuestion].wordTranslate !== answer && !userResponse) {
         writeDownCorrectAnswer(gameWord[numQuestion]);
         changeSumScore(10);
         activateIndicator(true);
+        updateSeriesCorrectAnswer(true);
+        audioPlay(correctAnswer);
       } else {
         writeDownWrongAnswer(gameWord[numQuestion]);
         changeSumScore(-10);
         activateIndicator(false);
+        updateSeriesCorrectAnswer(false);
+        audioPlay(incorrectAnswer);
       }
     }
-
     nextQuestion();
-  };
-
-  const nextQuestion = () => {
-    if (numQuestion <= 20) {
-      setNumQuestion(numQuestion + 1);
-      createAnswer();
-    }
   };
 
   const createAnswer = useCallback(
@@ -142,35 +188,47 @@ export const Sprint: React.FC = () => {
     [gameWord, numQuestion]
   );
 
-  const getGameWords = useCallback(async () => {
-    // Если флаг true использовать слова со страницы учебника с которой перешел пользователь
-    if (isUseBookWords && bookWords) {
-      setGameWord(shuffle(bookWords));
-      createAnswer(bookWords);
-      // Если флаг false, слов пользователя более 20 то использовать их
-    } else if (!isUseBookWords && difficultWords && difficultWords.paginatedResults.length >= 20) {
-      setGameWord(shuffle(difficultWords.paginatedResults));
-      createAnswer(difficultWords.paginatedResults);
-      // Если меньше то взять из учебника того же уровня с рандомной страницы
-    } else if (!isUseBookWords && difficultWords && difficultWords.paginatedResults.length < 20) {
-      let gameWord: Word[] = [];
+  const nextQuestion = async () => {
+    if (numQuestion === 17 || numQuestion === 37) {
       const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
       if (response.meta.requestStatus === 'fulfilled') {
-        gameWord = shuffle(gameWord.concat(response.payload, difficultWords.paginatedResults));
-        setGameWord(gameWord);
-        createAnswer(gameWord);
-      }
-      // В любых других ситуациях использовать слова из книги выбранного уровня, рандомной страницы
-    } else {
-      const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
-      if (response.meta.requestStatus === 'fulfilled') {
-        setGameWord(response.payload);
-        createAnswer(response.payload);
+        setGameWord((prevState) => {
+          return prevState ? [...prevState, ...response.payload] : [...response.payload];
+        });
       }
     }
-  }, [bookWords, createAnswer, difficultWords, dispatch, isUseBookWords, level]);
+    setNumQuestion(numQuestion + 1);
+    createAnswer();
+  };
 
   useEffect(() => {
+    const getGameWords = async () => {
+      if (isUseBookWords && bookWords) {
+        setGameWord(shuffle(bookWords));
+        createAnswer(bookWords);
+      } else if (
+        !isUseBookWords &&
+        difficultWords &&
+        difficultWords.paginatedResults.length >= 20
+      ) {
+        setGameWord(shuffle(difficultWords.paginatedResults));
+        createAnswer(difficultWords.paginatedResults);
+      } else if (!isUseBookWords && difficultWords && difficultWords.paginatedResults.length < 20) {
+        let gameWord: Word[] = [];
+        const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
+        if (response.meta.requestStatus === 'fulfilled') {
+          gameWord = shuffle(gameWord.concat(response.payload, difficultWords.paginatedResults));
+          setGameWord(gameWord);
+          createAnswer(gameWord);
+        }
+      } else {
+        const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
+        if (response.meta.requestStatus === 'fulfilled') {
+          setGameWord(response.payload);
+          createAnswer(response.payload);
+        }
+      }
+    };
     getGameWords();
   }, []);
 

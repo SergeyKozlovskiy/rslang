@@ -6,7 +6,7 @@ type InitialState = {
   isLoading: boolean;
   today: {
     sumNewWordInDay: number;
-    sumCorrectAnswer: number;
+    procCorrectAnswer: number;
     seriesCorrectAnswer: number;
     date: string;
   };
@@ -16,7 +16,7 @@ const initialState: InitialState = {
   isLoading: false,
   today: {
     sumNewWordInDay: 0,
-    sumCorrectAnswer: 0,
+    procCorrectAnswer: 0,
     seriesCorrectAnswer: 0,
     date: '',
   },
@@ -43,32 +43,33 @@ export const getStatistics = createAsyncThunk(
 );
 
 export const putStatistics = createAsyncThunk(
-  'getStatistics',
+  'putStatistics',
   async (
     data: {
       token: string;
       userId: string;
-      sumNewWordInDay: number;
-      sumCorrectAnswer: number;
-      seriesCorrectAnswer: number;
-      date: string;
+      sumNewWordInDaySprint: number;
+      procCorrectAnswerSprint: number;
+      seriesCorrectAnswerSprint: number;
     },
     { rejectWithValue }
   ) => {
-    const { token, userId, sumNewWordInDay, sumCorrectAnswer, seriesCorrectAnswer, date } = data;
+    const {
+      token,
+      userId,
+      sumNewWordInDaySprint,
+      procCorrectAnswerSprint,
+      seriesCorrectAnswerSprint,
+    } = data;
     try {
       const response = await axios.put(
         `${URLS.USERS}/${userId}/statistics`,
         {
           learnedWords: 0,
           optional: {
-            today: {
-              sumNewWordInDay: sumNewWordInDay,
-              sumCorrectAnswer: sumCorrectAnswer,
-              seriesCorrectAnswer: seriesCorrectAnswer,
-              date: date,
-            },
-            allTime: [],
+            sumNewWordInDaySprint: sumNewWordInDaySprint,
+            procCorrectAnswerSprint: procCorrectAnswerSprint,
+            seriesCorrectAnswerSprint: seriesCorrectAnswerSprint,
           },
         },
         {
@@ -99,6 +100,15 @@ export const statisticsSlice = createSlice({
       state.isLoading = false;
     },
     [getStatistics.rejected.type]: (state) => {
+      state.isLoading = false;
+    },
+    [putStatistics.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [putStatistics.fulfilled.type]: (state) => {
+      state.isLoading = false;
+    },
+    [putStatistics.rejected.type]: (state) => {
       state.isLoading = false;
     },
   },
