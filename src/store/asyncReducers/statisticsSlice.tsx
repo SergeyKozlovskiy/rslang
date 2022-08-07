@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { URLS } from '../../types/enums';
 
@@ -8,7 +8,6 @@ type InitialState = {
     sumNewWordInDay: number;
     procCorrectAnswer: number;
     seriesCorrectAnswer: number;
-    date: string;
   };
 };
 
@@ -18,7 +17,6 @@ const initialState: InitialState = {
     sumNewWordInDay: 0,
     procCorrectAnswer: 0,
     seriesCorrectAnswer: 0,
-    date: '',
   },
 };
 
@@ -51,6 +49,9 @@ export const putStatistics = createAsyncThunk(
       sumNewWordInDaySprint: number;
       procCorrectAnswerSprint: number;
       seriesCorrectAnswerSprint: number;
+      sumNewWordInDayAudioChallenge: number;
+      procCorrectAnswerAudioChallenge: number;
+      seriesCorrectAnswerAudioChallenge: number;
     },
     { rejectWithValue }
   ) => {
@@ -60,8 +61,12 @@ export const putStatistics = createAsyncThunk(
       sumNewWordInDaySprint,
       procCorrectAnswerSprint,
       seriesCorrectAnswerSprint,
+      sumNewWordInDayAudioChallenge,
+      procCorrectAnswerAudioChallenge,
+      seriesCorrectAnswerAudioChallenge,
     } = data;
     try {
+      // console.log(data);
       const response = await axios.put(
         `${URLS.USERS}/${userId}/statistics`,
         {
@@ -70,6 +75,9 @@ export const putStatistics = createAsyncThunk(
             sumNewWordInDaySprint: sumNewWordInDaySprint,
             procCorrectAnswerSprint: procCorrectAnswerSprint,
             seriesCorrectAnswerSprint: seriesCorrectAnswerSprint,
+            sumNewWordInDayAudioChallenge: sumNewWordInDayAudioChallenge,
+            procCorrectAnswerAudioChallenge: procCorrectAnswerAudioChallenge,
+            seriesCorrectAnswerAudioChallenge: seriesCorrectAnswerAudioChallenge,
           },
         },
         {

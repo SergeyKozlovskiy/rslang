@@ -2,9 +2,9 @@ import { Button } from 'antd';
 import { useState } from 'react';
 import audioImg from '../../assets/svg/audio.svg';
 import muteImg from '../../assets/svg/mute.svg';
-import './questionCard.sass';
+import './questionCardSprint.sass';
 
-export const QuestionCard: React.FC<{
+export const QuestionCardSprint: React.FC<{
   indicator: boolean | undefined;
   score: number;
   word: string;

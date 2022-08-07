@@ -16,11 +16,40 @@ export type Word = {
   textExampleTranslate: string;
 };
 
-export type Statistics = {
-  sumNewWordInDay: number;
-  procCorrectAnswer: number;
-  seriesCorrectAnswer: number;
-  date: Date;
+// export type Statistics = {
+//   token: string;
+//   userId: string;
+//   sumNewWordInDaySprint: number;
+//   procCorrectAnswerSprint: number;
+//   seriesCorrectAnswerSprint: number;
+//   sumNewWordInDayAudioChallenge: number;
+//   procCorrectAnswerAudioChallenge: number;
+//   seriesCorrectAnswerAudioChallenge: number;
+// };
+
+export type ResponseStatistics = {
+  id: string;
+  learnedWords: number;
+  optional: {
+    procCorrectAnswerAudioChallenge: number;
+    procCorrectAnswerSprint: number;
+    seriesCorrectAnswerAudioChallenge: number;
+    seriesCorrectAnswerSprint: number;
+    sumNewWordInDayAudioChallenge: number;
+    sumNewWordInDaySprint: number;
+  };
+};
+
+export type StatisticsAudioChallenge = {
+  sumNewWordInDayAudioChallenge: number;
+  procCorrectAnswerAudioChallenge: number;
+  seriesCorrectAnswerAudioChallenge: number;
+};
+
+export type StatisticsSprint = {
+  sumNewWordInDaySprint: number;
+  procCorrectAnswerSprint: number;
+  seriesCorrectAnswerSprint: number;
 };
 
 export type WordUser = {

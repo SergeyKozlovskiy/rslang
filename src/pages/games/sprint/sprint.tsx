@@ -1,6 +1,6 @@
 import { random } from 'lodash';
 import { shuffle } from 'lodash';
-import { Word, Answers, Statistics } from '../../../types/types';
+import { Word, Answers, StatisticsSprint, ResponseStatistics } from '../../../types/types';
 import { StartGame } from '../../../components/startGamePopup/startGame';
 import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
 import { useCallback, useEffect, useState } from 'react';
@@ -8,13 +8,14 @@ import { SettingGame } from '../../../components/settingsGame/settingsGame';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { getWords } from '../../../store/asyncReducers/wordsBookSlice';
 import { Timer } from '../../../components/timer/timer';
-import { QuestionCard } from '../../../components/questionCard/questionCard';
+import { QuestionCardSprint } from '../../../components/questionCardSprint/questionCardSprint';
 import { useCookies } from 'react-cookie';
+import { getStatistics, putStatistics } from '../../../store/asyncReducers/statisticsSlice';
+import { audioPlay } from '../../../functions/audioPlay';
 import './sprint.sass';
-import { putStatistics } from '../../../store/asyncReducers/statisticsSlice';
-const correctAnswer = '../../../assets/audio/correctAnswer.mp3';
-const incorrectAnswer = '../../../assets/audio/incorrectAnswer.mp3';
-const end = '../../../assets/audio/end.mp3';
+import correctAnswer from '../../../assets/audio/correctAnswer.mp3';
+import incorrectAnswer from '../../../assets/audio/incorrectAnswer.mp3';
+import end from '../../../assets/audio/end.mp3';
 
 export const Sprint: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -29,18 +30,16 @@ export const Sprint: React.FC = () => {
   const [answer, setAnswer] = useState<string>();
   const [gameWord, setGameWord] = useState<Word[]>();
   const [seriesCorrectAnswer, setSeriesCorrectAnswer] = useState({ serries: 0, maxSerries: 0 });
-
   const [resultsAllAnswers, setResultsAllAnswers] = useState<Answers>({
     rightAnswer: [],
     wrongAnswer: [],
   });
-
   const [isShowPopUp, setIsShowPopUp] = useState(false);
 
   const resetGame = () => {
     setNumQuestion(0);
     setScore(0);
-    //  setSeriesOfCorrectAnswers(0);
+    setSeriesCorrectAnswer({ serries: 0, maxSerries: 0 });
     setResultsAllAnswers({
       rightAnswer: [],
       wrongAnswer: [],
@@ -54,32 +53,44 @@ export const Sprint: React.FC = () => {
     audioPlay(end);
   };
 
-  const updateStatistics = async (statistics: Statistics) => {
+  const updateStatistics = async (statistics: StatisticsSprint) => {
     if (cookies.token && cookies.userId) {
-      dispatch(
-        putStatistics({
-          token: cookies.token,
-          userId: cookies.userId,
-          sumNewWordInDaySprint: statistics.sumNewWordInDay,
-          procCorrectAnswerSprint: statistics.procCorrectAnswer,
-          seriesCorrectAnswerSprint: statistics.seriesCorrectAnswer,
-        })
+      const response = await dispatch(
+        getStatistics({ token: cookies.token, userId: cookies.userId })
       );
+      if (response.meta.requestStatus === 'fulfilled') {
+        const responseStatistics = response.payload as ResponseStatistics;
+        dispatch(
+          putStatistics({
+            token: cookies.token,
+            userId: cookies.userId,
+            sumNewWordInDaySprint: statistics.sumNewWordInDaySprint,
+            procCorrectAnswerSprint: statistics.procCorrectAnswerSprint,
+            seriesCorrectAnswerSprint: statistics.seriesCorrectAnswerSprint,
+            sumNewWordInDayAudioChallenge:
+              responseStatistics.optional.sumNewWordInDayAudioChallenge,
+            procCorrectAnswerAudioChallenge:
+              responseStatistics.optional.procCorrectAnswerAudioChallenge,
+            seriesCorrectAnswerAudioChallenge:
+              responseStatistics.optional.seriesCorrectAnswerAudioChallenge,
+          })
+        );
+      }
     }
   };
 
   const collectionsForStatistics = () => {
     const statistics = {
-      sumNewWordInDay: resultsAllAnswers.rightAnswer.length,
-      procCorrectAnswer: 0,
-      seriesCorrectAnswer:
+      sumNewWordInDaySprint: resultsAllAnswers.rightAnswer.length,
+      procCorrectAnswerSprint: 0,
+      seriesCorrectAnswerSprint:
         seriesCorrectAnswer.serries > seriesCorrectAnswer.maxSerries
           ? seriesCorrectAnswer.serries
           : seriesCorrectAnswer.maxSerries,
       date: new Date(),
     };
     if (resultsAllAnswers.rightAnswer && resultsAllAnswers.wrongAnswer) {
-      statistics.procCorrectAnswer = Math.round(
+      statistics.procCorrectAnswerSprint = Math.round(
         (resultsAllAnswers.rightAnswer.length /
           (resultsAllAnswers.rightAnswer.length + resultsAllAnswers.wrongAnswer.length)) *
           100
@@ -112,11 +123,6 @@ export const Sprint: React.FC = () => {
   const changeLevel = (level: string) => {
     setLevel(Number(level));
     // getData(Number(level));
-  };
-
-  const audioPlay = (path: string) => {
-    const audioObj = new Audio(`${path}`);
-    audioObj.play();
   };
 
   const start = () => {
@@ -182,6 +188,7 @@ export const Sprint: React.FC = () => {
       if (words) {
         setAnswer(words[random(numQuestion, numQuestion + 1)].wordTranslate);
       } else if (!words && gameWord) {
+        console.log(numQuestion);
         setAnswer(gameWord[random(numQuestion, numQuestion + 1)].wordTranslate);
       }
     },
@@ -244,7 +251,7 @@ export const Sprint: React.FC = () => {
         />
       ) : null}
       {isGame && gameWord && answer ? (
-        <QuestionCard
+        <QuestionCardSprint
           indicator={indicator}
           word={gameWord[numQuestion].word}
           translate={answer}

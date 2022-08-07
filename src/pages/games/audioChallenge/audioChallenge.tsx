@@ -1,384 +1,227 @@
-// import { Button } from 'react-bootstrap';
-// import { SettingGame } from '../../../components/settingsGame/settingsGame';
-// import { StartGame } from '../../../components/startGamePopup/startGame';
-// import dynamic from '../../../assets/game-page/speak.png';
-// import './audioChallenge.css';
-// import { random, shuffle } from 'lodash';
-// import { SyntheticEvent, useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { Answers, IReduxState, Word, WordGame } from '../../../types/types';
-// import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
-// import { MagicNumbers, RequestStatistic, Text } from '../../../types/enums';
-// const correctAnswerAudio = '../../../assets/audio/correctAnswer.mp3';
-// const incorrectAnswerAudio = '../../../assets/audio/incorrectAnswer.mp3';
-// const gameOverAudio = '../../../assets/audio/end.mp3';
+import { random, shuffle } from 'lodash';
+import { useEffect, useState } from 'react';
+import { QuestionCardAudioChallenge } from '../../../components/questionCardAudioChallenge/questionCardAudioChallenge';
+import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
+import { SettingGame } from '../../../components/settingsGame/settingsGame';
+import { StartGame } from '../../../components/startGamePopup/startGame';
+import { audioPlay } from '../../../functions/audioPlay';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { getWords } from '../../../store/asyncReducers/wordsBookSlice';
+import { Answers, ResponseStatistics, StatisticsAudioChallenge, Word } from '../../../types/types';
+import end from '../../../assets/audio/end.mp3';
+import './audioChallenge.sass';
+import { useCookies } from 'react-cookie';
+import { getStatistics, putStatistics } from '../../../store/asyncReducers/statisticsSlice';
 
-// export const AudioChallenge: React.FC = () => {
-//   const [resultsAllAnswers, setResultsAllAnswers] = useState<Answers>({
-//     rightAnswer: [],
-//     wrongAnswer: [],
-//   });
-//   const [currectAnswer, setCurrectAnswer] = useState<WordGame>({
-//     word: '',
-//     audio: '',
-//     translate: '',
-//   });
-//   const [wordData, setWordData] = useState<Word[]>([]);
-//   const [numQuestion, setNumQuestion] = useState(0);
-//   const [score, setScore] = useState(0);
-//   const [answers, setAnswers] = useState<Word[]>([]);
-//   const [seriesOfCorrectAnswers, setSeriesOfCorrectAnswers] = useState(0);
-//   const [longestSeriesCorrectAnswers, setLongestSeriesCorrectAnswers] = useState(0);
-//   const state: IReduxState = useSelector((state: IReduxState) => state);
-//   const dispatch = useDispatch();
-
-//   const getDate = () => {
-//     const date = new Date();
-//     let day = String(date.getDate());
-//     if (day.length < 2) day = '0' + day;
-//     let month = String(date.getMonth() + 1);
-//     if (month.length < 2) month = '0' + month;
-//     const year = date.getFullYear();
-//     return `${day}.${month}.${year}`;
-//   };
-
-//   const resetGame = () => {
-//     setNumQuestion(0);
-//     setScore(0);
-//     setSeriesOfCorrectAnswers(0);
-//     setResultsAllAnswers({
-//       rightAnswer: [],
-//       wrongAnswer: [],
-//     });
-//   };
-
-//   const getStatistics = () => {
-//     const statistics = {
-//       lastActivity: '',
-//       corectAnswers: 0,
-//       persent: 0,
-//       wins: 0,
-//     };
-
-//     statistics.lastActivity = getDate();
-
-//     setResultsAllAnswers((prevAnswer) => {
-//       const sumAllAnswers = prevAnswer.rightAnswer.length + prevAnswer.wrongAnswer.length;
-//       const sumAllCurrectAnswers = prevAnswer.rightAnswer.length;
-//       statistics.corectAnswers = sumAllCurrectAnswers;
-//       statistics.persent = Math.round(
-//         (sumAllCurrectAnswers / sumAllAnswers) * MagicNumbers.PERCENT
-//       );
-//       return {
-//         ...prevAnswer,
-//       };
-//     });
-
-//     setLongestSeriesCorrectAnswers((prevValue) => {
-//       statistics.wins = prevValue;
-//       return prevValue;
-//     });
-
-//     if (state.IsLogin === true) {
-//       // putStatistic(statistics, RequestStatistic.audioChalenge, dispatch);
-//     }
-//   };
-
-//   const getCurrectAnswer = () => {
-//     soundWord();
-//     setNumQuestion((prevnum) => {
-//       const currectAnswer = {
-//         audio: wordData[prevnum].audio,
-//         word: wordData[prevnum].word,
-//         translate: wordData[prevnum].wordTranslate,
-//         img: wordData[prevnum].image,
-//       };
-//       setCurrectAnswer(currectAnswer);
-//       // createAllAnswers(currectAnswer);
-
-//       return prevnum;
-//     });
-//   };
-
-//   const createAllAnswers = (currectAnswer: Word) => {
-//     const randomAnswers: Word[] = [];
-//     randomAnswers.push(currectAnswer);
-
-//     while (randomAnswers.length < MagicNumbers.NUMBER_OF_RESPONSES) {
-//       const randIntExcep = (min: number, max: number, exp: number) => {
-//         let n;
-//         while (true) {
-//           if ((n = Math.floor(Math.random() * (max - min + 1)) + min) !== exp) return n;
-//         }
-//       };
-
-//       const randomNum = randIntExcep(
-//         MagicNumbers.MIN_QUESTION_NUMBER,
-//         MagicNumbers.MAX_QUESTION_NUMBER,
-//         numQuestion
-//       );
-
-//       const randomAnswer = {
-//         audio: wordData[randomNum].audio,
-//         word: wordData[randomNum].word,
-//         translate: wordData[randomNum].wordTranslate,
-//         img: wordData[randomNum].image,
-//       };
-//       // const isEqual = randomAnswers.some((elem) => elem.translate === randomAnswer.translate);
-
-//       // if (!isEqual) {
-//       //   randomAnswers.push(randomAnswer);
-//       // }
-//     }
-
-//     if (randomAnswers.length === MagicNumbers.NUMBER_OF_RESPONSES) {
-//       setAnswers(shuffle(randomAnswers));
-//     }
-//   };
-
-//   const getData = async (num?: number) => {
-//     // try {
-//     //   const randomPage = random(MagicNumbers.MIN_PAGE, MagicNumbers.MAX_PAGE);
-//     //   const result = await getWords(num ? num : 0, randomPage).then((value) => value);
-//     //   if (result) {
-//     //     setWordData(result);
-//     //   }
-//     // } catch (error) {
-//     //   console.log(error);
-//     // }
-//   };
-
-//   const startGame = () => {
-//     const startGame = document.querySelector('.startGame-popup') as HTMLElement;
-//     const cardQuestion = document.querySelector('.audioChallenge-question') as HTMLElement;
-//     const selectLevel = document.querySelector('.game-settings_level') as HTMLElement;
-//     cardQuestion.classList.remove('hide-popup');
-//     startGame.classList.add('hide-popup');
-//     selectLevel.setAttribute('disabled', 'true');
-//     getCurrectAnswer();
-//   };
-
-//   const changeLevel = (level: string) => {
-//     getData(Number(level));
-//   };
-
-//   const increaseQuestionNumber = () => {
-//     setNumQuestion((prevValue) => prevValue + 1);
-//   };
-
-//   const showCurrectAnswerButton = () => {
-//     const answers = document.querySelectorAll('.audioChallenge-question__answers-item');
-//     const button = document.querySelector('.audioChallenge-question__button') as HTMLButtonElement;
-//     answers.forEach((elem) => {
-//       if (elem.textContent !== currectAnswer.translate) {
-//         elem.classList.add('wrong-answers');
-//       }
-//       elem.setAttribute('disabled', 'true');
-//     });
-//     button.textContent = Text.NextButton;
-//   };
-
-//   const playSound = (path: string) => {
-//     const audioObj = new Audio(`${path}`);
-//     audioObj.play();
-//   };
-
-//   const answerCheck = (event: SyntheticEvent) => {
-//     const target = event.target as HTMLElement;
-
-//     const answer: WordGame = {
-//       audio: currectAnswer.audio,
-//       word: currectAnswer.word,
-//       translate: target.textContent ? target.textContent : '',
-//     };
-
-//     if (
-//       target &&
-//       answer &&
-//       currectAnswer &&
-//       target.textContent === currectAnswer.translate &&
-//       numQuestion < MagicNumbers.MAX_QUESTION_NUMBER
-//     ) {
-//       // setResultsAllAnswers((prevAnswer) => {
-//       //   return {
-//       //     ...prevAnswer,
-//       //     rightAnswer: [...prevAnswer.rightAnswer, answer],
-//       //   };
-//       // });
-//       setSeriesOfCorrectAnswers((prev) => prev + 1);
-//       playSound(correctAnswerAudio);
-//       setScore((prevScore) => prevScore + MagicNumbers.BASIC_SCORE);
-//       increaseQuestionNumber();
-//       getCurrectAnswer();
-//     } else if (target.textContent !== currectAnswer.translate) {
-//       if (longestSeriesCorrectAnswers < seriesOfCorrectAnswers) {
-//         setLongestSeriesCorrectAnswers(seriesOfCorrectAnswers);
-//       }
-//       setSeriesOfCorrectAnswers(0);
-//       // setResultsAllAnswers((prevAnswer) => {
-//       //   return {
-//       //     ...prevAnswer,
-//       //     wrongAnswer: [...prevAnswer.wrongAnswer, answer],
-//       //   };
-//       // });
-//       changeImg();
-//       playSound(incorrectAnswerAudio);
-//       showCurrectAnswerButton();
-//     }
-
-//     if (numQuestion === MagicNumbers.MAX_QUESTION_NUMBER) {
-//       showResult();
-//     }
-//   };
-
-//   const changeImg = () => {
-//     const img = document.querySelector('.audioChallenge-question__img') as HTMLImageElement;
-//     if (img.getAttribute('alt') === Text.IconAttributeAudioChallenge) {
-//       // img.setAttribute('src', `${API.URL + currectAnswer.img}`);
-//       img.setAttribute('alt', `${currectAnswer.word}`);
-//     } else {
-//       img.setAttribute('src', dynamic);
-//       img.setAttribute('alt', Text.IconAttributeAudioChallenge);
-//     }
-//   };
-
-//   const showResult = () => {
-//     playSound(gameOverAudio);
-//     const audioChallengeQuestion = document.querySelector(
-//       '.audioChallenge-question'
-//     ) as HTMLElement;
-//     const resultPopUp = document.querySelector('.results') as HTMLElement;
-//     audioChallengeQuestion.classList.add('hide-popup');
-//     resultPopUp.classList.remove('hide-popup');
-//     getStatistics();
-//   };
-
-//   const closeResults = () => {
-//     resetGame();
-//     const startGame = document.querySelector('.startGame-popup') as HTMLElement;
-//     const resultPopUp = document.querySelector('.results') as HTMLElement;
-//     const selectLevel = document.querySelector('.game-settings_level') as HTMLElement;
-//     resultPopUp.classList.add('hide-popup');
-//     startGame.classList.remove('hide-popup');
-//     selectLevel.removeAttribute('disabled');
-//     getData();
-//   };
-
-//   const soundWord = () => {
-//     // setTimeout(() => {
-//     //   setCurrectAnswer((prevAnswer) => {
-//     //     const audioObj = new Audio(`${API.URL}${prevAnswer.audio}`);
-//     //     if (audioObj.played) {
-//     //       audioObj.play();
-//     //     }
-//     //     return prevAnswer;
-//     //   });
-//     // }, 100);
-//   };
-
-//   const handleQuestionButton = (event: SyntheticEvent) => {
-//     const target = event.target as HTMLButtonElement;
-
-//     const answer: WordGame = {
-//       audio: currectAnswer.audio,
-//       word: currectAnswer.word,
-//       translate: currectAnswer.translate,
-//     };
-
-//     if (target.textContent === Text.ShowCurrectAnswerButton) {
-//       if (longestSeriesCorrectAnswers < seriesOfCorrectAnswers) {
-//         setLongestSeriesCorrectAnswers(seriesOfCorrectAnswers);
-//       }
-//       setSeriesOfCorrectAnswers(0);
-//       showCurrectAnswerButton();
-//       // setResultsAllAnswers((prevAnswer) => {
-//       //   return {
-//       //     ...prevAnswer,
-//       //     wrongAnswer: [...prevAnswer.wrongAnswer, answer],
-//       //   };
-//       // });
-//       changeImg();
-//     } else if (
-//       target.textContent !== Text.ShowCurrectAnswerButton &&
-//       numQuestion < MagicNumbers.MAX_QUESTION_NUMBER
-//     ) {
-//       const answers = document.querySelectorAll('.audioChallenge-question__answers-item');
-//       const wrongAnswers = document.querySelectorAll('.wrong-answers');
-//       if (wrongAnswers) {
-//         wrongAnswers.forEach((elem) => {
-//           elem.classList.remove('wrong-answers');
-//         });
-//       }
-//       answers.forEach((elem) => {
-//         elem.removeAttribute('disabled');
-//       });
-//       target.textContent = Text.ShowCurrectAnswerButton;
-//       increaseQuestionNumber();
-//       getCurrectAnswer();
-//       changeImg();
-//     } else if (
-//       target.textContent !== Text.ShowCurrectAnswerButton &&
-//       numQuestion === MagicNumbers.MAX_QUESTION_NUMBER
-//     ) {
-//       showResult();
-//     }
-//   };
-
-//   useEffect(() => {
-//     getData();
-//   }, []);
-
-//   return (
-//     <div className="audioChallenge-wrapper">
-//       <SettingGame changeLevel={changeLevel} />
-//       <StartGame
-//         header={Text.HeaderAudioChallengePopUp}
-//         subtitle={Text.SubtitleAudioChallengePopUp}
-//         callback={startGame}
-//       />
-
-//       <div className="audioChallenge-question hide-popup">
-//         <div className="audioChallenge-question__numQuestion">{numQuestion + 1} / 20</div>
-//         <img
-//           onClick={soundWord}
-//           className="audioChallenge-question__img"
-//           src={dynamic}
-//           alt={Text.IconAttributeAudioChallenge}
-//         />
-//         <div className="audioChallenge-question__answers">
-//           {/* {answers.map((elem) => {
-//             return (
-//               <button
-//                 key={elem.word}
-//                 onClick={(e) => {
-//                   answerCheck(e);
-//                 }}
-//                 className="audioChallenge-question__answers-item"
-//               >
-//                 {elem.translate}
-//               </button>
-//             );
-//           })} */}
-//         </div>
-//         <Button
-//           className="audioChallenge-question__button"
-//           onClick={(e) => {
-//             handleQuestionButton(e);
-//           }}
-//           variant="secondary"
-//         >
-//           {Text.ShowCurrectAnswerButton}
-//         </Button>
-//       </div>
-
-//       <ResultGamePopup
-//         score={score}
-//         resultsAllAnswers={resultsAllAnswers}
-//         closePopUp={closeResults}
-//       />
-//     </div>
-//   );
-// };
 export const AudioChallenge: React.FC = () => {
-  return <div className="audioChallenge-wrapper"></div>;
+  const dispatch = useAppDispatch();
+  const [cookies] = useCookies(['token', 'userId']);
+  const [level, setLevel] = useState(0);
+  const [isGame, setIsGame] = useState(false);
+  const [isShowPopUp, setIsShowPopUp] = useState(false);
+  const [score, setScore] = useState(0);
+  const [numQuestion, setNumQuestion] = useState(0);
+  const [seriesCorrectAnswer, setSeriesCorrectAnswer] = useState({ serries: 0, maxSerries: 0 });
+  const [gameWord, setGameWord] = useState<Word[]>();
+  const [answers, setAnswers] = useState<Word[]>();
+  const { difficultWords } = useAppSelector((state) => state.aggregatedWordsSlice);
+  const { bookWords, isUseBookWords } = useAppSelector((state) => state.wordsSlice);
+  const [resultsAllAnswers, setResultsAllAnswers] = useState<Answers>({
+    rightAnswer: [],
+    wrongAnswer: [],
+  });
+
+  const stopGame = () => {
+    setIsGame(false);
+    setIsShowPopUp(true);
+    collectionsForStatistics();
+    audioPlay(end);
+  };
+
+  const resetGame = () => {
+    setNumQuestion(0);
+    setScore(0);
+    setSeriesCorrectAnswer({ serries: 0, maxSerries: 0 });
+    setResultsAllAnswers({
+      rightAnswer: [],
+      wrongAnswer: [],
+    });
+  };
+
+  const closePopUp = () => {
+    setIsShowPopUp(false);
+    resetGame();
+  };
+
+  const updateStatistics = async (statistics: StatisticsAudioChallenge) => {
+    if (cookies.token && cookies.userId) {
+      const response = await dispatch(
+        getStatistics({ token: cookies.token, userId: cookies.userId })
+      );
+      if (response.meta.requestStatus === 'fulfilled') {
+        const responseStatistics = response.payload as ResponseStatistics;
+        console.log(responseStatistics);
+        dispatch(
+          putStatistics({
+            token: cookies.token,
+            userId: cookies.userId,
+            sumNewWordInDaySprint: responseStatistics.optional.sumNewWordInDaySprint,
+            procCorrectAnswerSprint: responseStatistics.optional.procCorrectAnswerSprint,
+            seriesCorrectAnswerSprint: responseStatistics.optional.seriesCorrectAnswerSprint,
+            sumNewWordInDayAudioChallenge: statistics.sumNewWordInDayAudioChallenge,
+            procCorrectAnswerAudioChallenge: statistics.procCorrectAnswerAudioChallenge,
+            seriesCorrectAnswerAudioChallenge: statistics.seriesCorrectAnswerAudioChallenge,
+          })
+        );
+      }
+    }
+  };
+
+  const collectionsForStatistics = () => {
+    const statistics = {
+      sumNewWordInDayAudioChallenge: resultsAllAnswers.rightAnswer.length,
+      procCorrectAnswerAudioChallenge: 0,
+      seriesCorrectAnswerAudioChallenge:
+        seriesCorrectAnswer.serries > seriesCorrectAnswer.maxSerries
+          ? seriesCorrectAnswer.serries
+          : seriesCorrectAnswer.maxSerries,
+    };
+    if (resultsAllAnswers.rightAnswer && resultsAllAnswers.wrongAnswer) {
+      statistics.procCorrectAnswerAudioChallenge = Math.round(
+        (resultsAllAnswers.rightAnswer.length /
+          (resultsAllAnswers.rightAnswer.length + resultsAllAnswers.wrongAnswer.length)) *
+          100
+      );
+    }
+    updateStatistics(statistics);
+  };
+  const start = () => {
+    setIsGame(true);
+  };
+
+  const createAnswers = (words?: Word[]) => {
+    const answers = new Set<Word>();
+    if (words) {
+      answers.add(words[numQuestion]);
+      while (answers.size < 5) {
+        answers.add(words[random(0, 19)]);
+      }
+    } else if (gameWord) {
+      answers.add(gameWord[numQuestion + 1]);
+      while (answers.size < 5) {
+        answers.add(gameWord[random(0, 19)]);
+      }
+    }
+    setAnswers(shuffle(Array.from(answers)));
+  };
+
+  const nextQuestion = () => {
+    if (numQuestion <= 18) {
+      setNumQuestion(numQuestion + 1);
+      createAnswers();
+    } else {
+      stopGame();
+    }
+  };
+
+  const writeDownCorrectAnswer = (word: Word) => {
+    setResultsAllAnswers((prevState) => {
+      return {
+        rightAnswer: [...prevState.rightAnswer, word],
+        wrongAnswer: [...prevState.wrongAnswer],
+      };
+    });
+  };
+
+  const writeDownWrongAnswer = (word: Word) => {
+    setResultsAllAnswers((prevState) => {
+      return {
+        rightAnswer: [...prevState.rightAnswer],
+        wrongAnswer: [...prevState.wrongAnswer, word],
+      };
+    });
+  };
+
+  const changeSumScore = (value: number) => {
+    score + value > 0 ? setScore(score + value) : null;
+  };
+
+  const responseСheck = (id: string) => {
+    if (gameWord) {
+      if (gameWord[numQuestion].id === id) {
+        writeDownCorrectAnswer(gameWord[numQuestion]);
+        changeSumScore(10);
+        nextQuestion();
+      } else {
+        writeDownWrongAnswer(gameWord[numQuestion]);
+        changeSumScore(-10);
+        nextQuestion();
+      }
+    }
+  };
+
+  const changeLevel = (level: string) => {
+    setLevel(Number(level));
+  };
+
+  useEffect(() => {
+    const getGameWords = async () => {
+      if (isUseBookWords && bookWords) {
+        setGameWord(bookWords);
+        createAnswers(bookWords);
+      } else if (
+        !isUseBookWords &&
+        difficultWords &&
+        difficultWords.paginatedResults.length >= 20
+      ) {
+        setGameWord(difficultWords.paginatedResults);
+        createAnswers(difficultWords.paginatedResults);
+      } else if (!isUseBookWords && difficultWords && difficultWords.paginatedResults.length < 20) {
+        let gameWord: Word[] = [];
+        const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
+        if (response.meta.requestStatus === 'fulfilled') {
+          gameWord = gameWord.concat(response.payload, difficultWords.paginatedResults);
+          setGameWord(gameWord);
+          createAnswers(gameWord);
+        }
+      } else {
+        const response = await dispatch(getWords({ group: level, page: random(0, 19) }));
+        if (response.meta.requestStatus === 'fulfilled') {
+          setGameWord(response.payload);
+          createAnswers(response.payload);
+        }
+      }
+    };
+    getGameWords();
+  }, []);
+
+  return (
+    <div className="audioChallenge-wrapper">
+      <SettingGame changeLevel={changeLevel} />
+      {!isGame && !isShowPopUp ? (
+        <StartGame
+          header="Аудиовызов"
+          subtitle="«Аудиовызов» - это тренировка, которая улучшает восприятие речи на слух."
+          callback={start}
+        />
+      ) : null}
+      {isGame && gameWord && answers ? (
+        <QuestionCardAudioChallenge
+          gameWord={gameWord}
+          numQuestion={numQuestion}
+          nextQuestion={nextQuestion}
+          responseСheck={responseСheck}
+          writeDownWrongAnswer={writeDownWrongAnswer}
+          answers={answers}
+        />
+      ) : null}
+      {isShowPopUp ? (
+        <ResultGamePopup
+          score={score}
+          resultsAllAnswers={resultsAllAnswers}
+          closePopUp={closePopUp}
+        />
+      ) : null}
+    </div>
+  );
 };
