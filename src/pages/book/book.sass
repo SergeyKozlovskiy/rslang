@@ -1,0 +1,66 @@
+@import '../../index.sass'
+.book
+  display: flex
+  position: relative
+  align-items: center
+  justify-content: space-between
+  height: 75vh
+  &-levels
+    width: 25%
+    &__list
+      display: block
+      width: fit-content
+      list-style-type: none
+      padding: 0
+      margin: 0 auto
+      &-li
+        @include  font-bold
+        font-size: 20px
+        @include transition
+        color: black
+        margin-bottom: 15px 
+        cursor: pointer 
+        &_link
+          display: block
+          color: white !important
+          background: $main_color
+          padding: 10px 15px
+          border-radius: 7px
+          width: 300px 
+          text-align: left
+          @include transition
+          cursor: pointer 
+          span
+            background: white
+            padding: 5px
+            border-radius: 100%
+            color: $main-color_3 !important
+            margin: 10px
+            @include transition
+          &:hover
+            transform: translateY(-5px)
+            span
+              color: $error-color !important
+  &-info
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 65%
+    &__img
+      display: block
+      width: 20%  
+      margin: 25px auto
+    &__text
+      @include font-medium
+      font-size: 20px
+      span
+        @include font-bold
+        color: $main-color_3
+        
+.wrapper-word
+  display: block
+  width: fit-content
+  margin: 0 auto
+
+  
+ 

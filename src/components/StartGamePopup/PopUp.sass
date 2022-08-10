@@ -1,0 +1,35 @@
+@import '../../index.sass'
+.startGame-popup 
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  justify-content: center
+  flex-direction: column
+  width: 700px
+  height: 200px
+  margin: 0 auto
+  text-align: center
+  padding: 25px 35px
+  background: rgba(255, 255, 255, 0.8)
+  border-radius: 7px
+  transition: 0.3s
+  z-index: 120
+  &__title
+    @include font-bold
+    color: $main-color_3
+    letter-spacing: 2px
+    font-size: 22px
+  &__subtitle 
+    font-size: 18px
+    @include font-medium
+  &__buttons
+    display: flex
+    justify-content: center
+    align-items: center
+    &-item
+      width: fit-content  
+      &:nth-child(1)
+        margin-right: 20px
+

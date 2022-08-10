@@ -5,10 +5,10 @@
   justify-content: space-between
   padding-right: 15px
   padding-left: 15px
-  height: 15vh
+  height: 8vh
   &__logo
     display: block
-    width: 100px
+    width: 85px
     &-svg
       width: 100%
       height: 100%  
@@ -20,24 +20,24 @@
           fill: $main-color
   &__year
     @include font-bold
-    font-size: 26px
+    font-size: 20px
   &__links
     list-style-type: none 
     @include font-medium
-    li
-      margin-bottom: 1px
+    &-link
+      display: flex
+      align-items: center
+      color: black
+      @include transition
+      svg
+        width: 15px
+        height: 15px
+        margin-right: 5px
+    &:hover
       .gitLink
-        color: black
-        @include transition
-        svg
-          width: 20px
-          height: 20px
-          margin-right: 5px
-      &:hover
-        .gitLink
-          color: $main-color
-        .gitlogo-fill  
-          fill:  $main-color
+        color: $main-color
+      .gitlogo-fill  
+        fill:  $main-color
 
 .gitlogo-fill  
   fill: black  

@@ -1,0 +1,17 @@
+@import '../../index.sass'
+.about
+  @include font-medium
+  padding: 20px 25px
+  font-size: 18px
+  &__list
+    list-style: none
+    margin-top: 10px
+    li
+      position: relative
+      &:before
+        position: absolute
+        content: url('../../assets/about/check.png')
+        left: -30px
+        width: 16px
+        height: 14px
+

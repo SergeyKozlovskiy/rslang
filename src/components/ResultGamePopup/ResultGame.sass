@@ -1,0 +1,46 @@
+@import '../../index.sass'
+.results 
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 400px
+  margin: 0 auto
+  padding: 25px 35px
+  border: 2px solid black
+  border-radius: 7px
+  transition: .3s
+  background: white
+  z-index: 100
+  & h3 
+    font-size: 30px
+    @include font-bold
+  & p 
+    font-size: 20px
+    @include font-bold
+  &-score
+    text-decoration: none
+    font-size: 30px
+    color: $main-color_3
+  &-answers 
+    height: 400px
+    overflow-y: auto
+    &_item 
+      display: flex
+      align-items: center
+    &_icon 
+      width: 20px
+      margin-right: 10px
+      cursor: pointer
+      transition: 0.3s
+      &:hover 
+        transform: scale(1.2)
+    &_subtitle 
+      display: block
+      margin-bottom: 10px
+      color: $main-color_3
+    &_word 
+      color: $main-color
+
+.exit-results
+  margin-top: 10px
