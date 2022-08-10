@@ -1,4 +1,4 @@
-import { NavigationWord } from '../navigationWords/navigationWords';
+import { Filter } from '../FilterWords/Filter';
 
 export const NotFoundWord: React.FC<{
   englishLevel: number;
@@ -10,7 +10,7 @@ export const NotFoundWord: React.FC<{
 }> = ({ englishLevel, setEnglishLevel, pageNumber, setPageNumber, total, getNewWords }) => {
   return (
     <div className="notFoundBlock">
-      <NavigationWord
+      <Filter
         englishLevel={englishLevel}
         setEnglishLevel={setEnglishLevel}
         setPageNumber={setPageNumber}

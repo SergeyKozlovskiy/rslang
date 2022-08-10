@@ -7,10 +7,10 @@ import { getLearnedWords } from '../../../store/asyncReducers/aggregatedWordsSli
 import { LEVELS } from '../../../types/constants';
 import { decodeToken } from 'react-jwt';
 import { getNewToken, authSlice } from '../../../store/asyncReducers/authSlice';
-import { Preloader } from '../../../components/preloader/preloader';
-import { WordBlock } from '../../../components/wordBlock/wordBlock';
-import { NotFoundWord } from '../../../components/notFoundWord/notFoundWord';
-import { Title } from '../../../components/title/Title';
+import { Preloader } from '../../../components/Preloader/Preloader';
+import { WordBlock } from '../../../components/WordBlock/WordBlock';
+import { NotFoundWord } from '../../../components/NotFoundWord/NotFoundWord';
+import { Title } from '../../../components/Title/Title';
 
 export const LearnedWords: React.FC = () => {
   const [cookie] = useCookies(['token', 'userId', 'refreshToken']);

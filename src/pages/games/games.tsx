@@ -1,6 +1,6 @@
-import { NavigationPage } from '../../components/navigationPage/NavigationPage';
-import { Title } from '../../components/title/Title';
-import './games.sass';
+import { NavigationPage } from '../../components/NavigationPage/NavigationPage';
+import { Title } from '../../components/Title/Title';
+import './Games.sass';
 
 export const Games: React.FC = () => {
   return (

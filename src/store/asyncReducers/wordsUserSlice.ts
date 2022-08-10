@@ -62,7 +62,6 @@ export const saveWord = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -100,7 +99,6 @@ export const changeWord = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);

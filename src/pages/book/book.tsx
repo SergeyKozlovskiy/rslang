@@ -3,8 +3,8 @@ import bookImg from '../../assets/book/reading.png';
 import preloader from '../../assets/preloader/preloader.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getWords } from '../../store/asyncReducers/wordsBookSlice';
-import { EnglishLevels } from '../../types/enums';
-import './book.sass';
+import { designations, levels } from '../../utils/arrays';
+import './Book.sass';
 
 export const Book: React.FC = () => {
   const { isLoading } = useAppSelector((state) => state.wordsSlice);
@@ -21,66 +21,15 @@ export const Book: React.FC = () => {
     <div className="book">
       <div className="book-levels">
         <ul className="book-levels__list">
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(0);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.A1}</span> {EnglishLevels.ELEMENTARY}
-            </button>
-          </li>
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(1);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.A2}</span> {EnglishLevels.PRE_INTERMEDIATE}
-            </button>
-          </li>
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(2);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.B1}</span> {EnglishLevels.INTERMEDIATE}
-            </button>
-          </li>
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(3);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.B2}</span> {EnglishLevels.UPPER_INTERMEDIATE}
-            </button>
-          </li>
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(4);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.C1}</span> {EnglishLevels.ADVANCED}
-            </button>
-          </li>
-          <li className="book-levels__list-li">
-            <button
-              onClick={() => {
-                handleClickLevel(5);
-              }}
-              className="book-levels__list-li_link"
-            >
-              <span>{EnglishLevels.C2}</span> {EnglishLevels.PROFICIENCY}
-            </button>
-          </li>
+          {levels.map((level, i) => {
+            return (
+              <li key={level + i} className="book-levels__list-li">
+                <button onClick={() => handleClickLevel(i)} className="book-levels__list-li_link">
+                  <span>{designations[i]}</span> {level}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="book-info">

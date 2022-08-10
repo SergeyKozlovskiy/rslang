@@ -2,7 +2,8 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import Button from 'antd/lib/button';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './main.sass';
+import './Main.sass';
+
 export const Main: React.FC = () => (
   <main className="main">
     <div className="main__text">

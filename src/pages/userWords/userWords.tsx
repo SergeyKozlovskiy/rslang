@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavigationPage } from '../../components/navigationPage/NavigationPage';
-import { Title } from '../../components/title/Title';
-import './userWords.sass';
+import { NavigationPage } from '../../components/NavigationPage/NavigationPage';
+import { Title } from '../../components/Title/Title';
+import './UserWords.sass';
 
 export const UserWords: React.FC = () => {
   return (

@@ -1,5 +1,6 @@
 import React, { SyntheticEvent } from 'react';
-import './timer.sass';
+import './Timer.sass';
+
 type Props = {
   value: number;
   stopGame: () => void;

@@ -1,21 +1,21 @@
 import { random } from 'lodash';
 import { shuffle } from 'lodash';
 import { Word, Answers, StatisticsSprint, ResponseStatistics } from '../../../types/types';
-import { StartGame } from '../../../components/startGamePopup/startGame';
-import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
+import { PopUp } from '../../../components/StartGamePopup/PopUp';
+import { ResultGame } from '../../../components/ResultGamePopup/ResultGame';
 import { useCallback, useEffect, useState } from 'react';
-import { SettingGame } from '../../../components/settingsGame/settingsGame';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { getWords } from '../../../store/asyncReducers/wordsBookSlice';
-import { Timer } from '../../../components/timer/timer';
-import { QuestionCardSprint } from '../../../components/questionCardSprint/questionCardSprint';
+import { Timer } from '../../../components/Timer/Timer';
 import { useCookies } from 'react-cookie';
 import { getStatistics, putStatistics } from '../../../store/asyncReducers/statisticsSlice';
-import { audioPlay } from '../../../functions/audioPlay';
-import './sprint.sass';
+import { audioPlay } from '../../../services/audioPlay';
 import correctAnswer from '../../../assets/audio/correctAnswer.mp3';
 import incorrectAnswer from '../../../assets/audio/incorrectAnswer.mp3';
 import end from '../../../assets/audio/end.mp3';
+import { QuestionCard } from '../../../components/QuestionCard/Sprint/QuestionCard';
+import { SettingGame } from '../../../components/SettingsGame/SettingsGame';
+import './Sprint.sass';
 
 export const Sprint: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -188,7 +188,6 @@ export const Sprint: React.FC = () => {
       if (words) {
         setAnswer(words[random(numQuestion, numQuestion + 1)].wordTranslate);
       } else if (!words && gameWord) {
-        console.log(numQuestion);
         setAnswer(gameWord[random(numQuestion, numQuestion + 1)].wordTranslate);
       }
     },
@@ -244,14 +243,14 @@ export const Sprint: React.FC = () => {
       <SettingGame changeLevel={changeLevel} />
       {isGame && gameWord ? <Timer value={60} stopGame={stopGame} /> : null}
       {!isGame && !isShowPopUp ? (
-        <StartGame
+        <PopUp
           header="Спринт"
           subtitle="Выберите соответсвует ли перевод предложенному слову"
           callback={start}
         />
       ) : null}
       {isGame && gameWord && answer ? (
-        <QuestionCardSprint
+        <QuestionCard
           indicator={indicator}
           word={gameWord[numQuestion].word}
           translate={answer}
@@ -260,11 +259,7 @@ export const Sprint: React.FC = () => {
         />
       ) : null}
       {isShowPopUp ? (
-        <ResultGamePopup
-          score={score}
-          resultsAllAnswers={resultsAllAnswers}
-          closePopUp={closePopUp}
-        />
+        <ResultGame score={score} resultsAllAnswers={resultsAllAnswers} closePopUp={closePopUp} />
       ) : null}
     </div>
   );

@@ -3,9 +3,9 @@ import { Select } from 'antd';
 import { Link } from 'react-router-dom';
 import fullScreen from '../../assets/svg/fullscreen.svg';
 import fullScreenExit from '../../assets/svg/fullscreen-exit.svg';
-import { levelArr } from '../../constants/arrays';
+import { levels } from '../../utils/arrays';
 import { CloseOutlined } from '@ant-design/icons';
-import './settingsGame.sass';
+import './SettingsGame.sass';
 
 export const SettingGame: React.FC<{ changeLevel: (level: string) => void }> = ({
   changeLevel,
@@ -28,7 +28,7 @@ export const SettingGame: React.FC<{ changeLevel: (level: string) => void }> = (
         />
       </button>
       <Select className="game-settings_level" defaultValue="Elementary" onChange={changeLevel}>
-        {levelArr.map((level, i) => {
+        {levels.map((level, i) => {
           return (
             <Option value={level} key={level + i}>
               {level}

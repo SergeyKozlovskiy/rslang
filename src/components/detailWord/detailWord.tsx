@@ -3,7 +3,7 @@ import { Word } from '../../types/types';
 import dynamic from '../../assets/svg/audio.svg';
 import { useState } from 'react';
 import preloader from '../../assets/preloader/preloader.svg';
-import { DetailWordButtons } from '../detailWordButtons/detailWordButtons';
+import { DetailWordButtons } from '../DetailWordButtons/Buttons';
 
 export const DetailWord: React.FC<{
   detailWord: Word;

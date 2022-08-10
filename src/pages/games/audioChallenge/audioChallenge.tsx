@@ -1,17 +1,17 @@
 import { random, shuffle } from 'lodash';
 import { useEffect, useState } from 'react';
-import { QuestionCardAudioChallenge } from '../../../components/questionCardAudioChallenge/questionCardAudioChallenge';
-import { ResultGamePopup } from '../../../components/resultGamePopup/resultGamePopup';
-import { SettingGame } from '../../../components/settingsGame/settingsGame';
-import { StartGame } from '../../../components/startGamePopup/startGame';
-import { audioPlay } from '../../../functions/audioPlay';
+import { ResultGame } from '../../../components/ResultGamePopup/ResultGame';
+import { SettingGame } from '../../../components/SettingsGame/SettingsGame';
+import { PopUp } from '../../../components/StartGamePopup/PopUp';
+import { audioPlay } from '../../../services/audioPlay';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { getWords } from '../../../store/asyncReducers/wordsBookSlice';
 import { Answers, ResponseStatistics, StatisticsAudioChallenge, Word } from '../../../types/types';
 import end from '../../../assets/audio/end.mp3';
-import './audioChallenge.sass';
 import { useCookies } from 'react-cookie';
 import { getStatistics, putStatistics } from '../../../store/asyncReducers/statisticsSlice';
+import { QuestionCard } from '../../../components/QuestionCard/AudioChallenge/QuestionCard';
+import './AudioChallenge.sass';
 
 export const AudioChallenge: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -60,7 +60,6 @@ export const AudioChallenge: React.FC = () => {
       );
       if (response.meta.requestStatus === 'fulfilled') {
         const responseStatistics = response.payload as ResponseStatistics;
-        console.log(responseStatistics);
         dispatch(
           putStatistics({
             token: cookies.token,
@@ -199,14 +198,14 @@ export const AudioChallenge: React.FC = () => {
     <div className="audioChallenge-wrapper">
       <SettingGame changeLevel={changeLevel} />
       {!isGame && !isShowPopUp ? (
-        <StartGame
+        <PopUp
           header="Аудиовызов"
           subtitle="«Аудиовызов» - это тренировка, которая улучшает восприятие речи на слух."
           callback={start}
         />
       ) : null}
       {isGame && gameWord && answers ? (
-        <QuestionCardAudioChallenge
+        <QuestionCard
           gameWord={gameWord}
           numQuestion={numQuestion}
           nextQuestion={nextQuestion}
@@ -216,11 +215,7 @@ export const AudioChallenge: React.FC = () => {
         />
       ) : null}
       {isShowPopUp ? (
-        <ResultGamePopup
-          score={score}
-          resultsAllAnswers={resultsAllAnswers}
-          closePopUp={closePopUp}
-        />
+        <ResultGame score={score} resultsAllAnswers={resultsAllAnswers} closePopUp={closePopUp} />
       ) : null}
     </div>
   );

@@ -54,7 +54,6 @@ export const getLearnedWords = createAsyncThunk(
           },
         }
       );
-      console.log(`Изученные слова`, response.data[0]);
       return response.data[0];
     } catch (e) {
       return rejectWithValue(e);
@@ -73,7 +72,6 @@ export const aggregatedWordsSlice = createSlice({
     [getDifficultWords.fulfilled.type]: (state, action: PayloadAction<AggregatedWords>) => {
       state.isLoading = false;
       state.difficultWords = action.payload;
-      console.log(state.difficultWords);
     },
     [getDifficultWords.rejected.type]: (state) => {
       state.isLoading = false;

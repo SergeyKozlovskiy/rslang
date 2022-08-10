@@ -32,7 +32,6 @@ export const getStatistics = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -66,7 +65,6 @@ export const putStatistics = createAsyncThunk(
       seriesCorrectAnswerAudioChallenge,
     } = data;
     try {
-      // console.log(data);
       const response = await axios.put(
         `${URLS.USERS}/${userId}/statistics`,
         {
@@ -88,7 +86,6 @@ export const putStatistics = createAsyncThunk(
           },
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);

@@ -67,7 +67,6 @@ export const signIn = createAsyncThunk(
         email: email,
         password: password,
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -87,7 +86,6 @@ export const getNewToken = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);
@@ -107,7 +105,6 @@ export const getUserById = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       });
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return rejectWithValue(e);

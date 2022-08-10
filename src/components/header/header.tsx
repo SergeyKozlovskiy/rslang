@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { menuSlice } from '../../store/reducers/menuSlice';
 import { useCookies } from 'react-cookie';
 import { authSlice } from '../../store/asyncReducers/authSlice';
-import './header.sass';
+import './Header.sass';
 
 export const Header: React.FC = () => {
   const [, , removeCookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);

@@ -1,0 +1,53 @@
+@import '../../index.sass'
+
+.statistics 
+  display: flex
+  align-items: center
+  justify-content: center
+  background: url('../../assets/statistics/bg.jpeg') center no-repeat
+  background-size: cover
+  height: 100%
+  &-text
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 50%
+    margin-right: 10%
+    height: 100%
+    &__series
+       display: flex
+       align-items: center
+       justify-content: space-between
+       &-item
+        text-align: center
+        span
+          margin-top: 30px
+          @include font-bold
+          font-size: 35px
+          color: white
+  &-pie
+    width: 17%
+    h2
+      color: $main-color_3
+      text-align: center
+      @include font-bold
+      font-size: 20px
+      margin: 0 0 8px 0
+    h3  
+      color: $main-color_3
+      text-align: center
+      @include font-medium
+      margin: 8px 0 8px 0
+      font-size: 20px
+
+
+.header-statistics  
+  color: $main-color_3
+  text-align: center
+  @include font-bold
+  font-size: 20px
+  margin: 0 0 80px 0
+  &:last-child
+    margin: 0 0 8px 0
+
+    

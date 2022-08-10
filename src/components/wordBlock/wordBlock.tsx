@@ -1,9 +1,9 @@
 import Button from 'antd/lib/button';
 import { Word } from '../../types/types';
-import { DetailWord } from '../detailWord/detailWord';
-import { NavigationWord } from '../navigationWords/navigationWords';
-import { Words } from '../words/words';
-import './wordBlock.sass';
+import { DetailWord } from '../DetailWord/DetailWord';
+import { Filter } from '../FilterWords/Filter';
+import { Words } from '../Words/Words';
+import './WordBlock.sass';
 
 export const WordBlock: React.FC<{
   searchCount: number;
@@ -40,7 +40,7 @@ export const WordBlock: React.FC<{
     <div className="wordBlock">
       <div className="words">
         <div className="words-block">
-          <NavigationWord
+          <Filter
             englishLevel={englishLevel}
             setEnglishLevel={setEnglishLevel}
             setPageNumber={setPageNumber}

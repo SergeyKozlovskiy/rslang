@@ -7,10 +7,10 @@ import { LEVELS } from '../../../types/constants';
 import { changeWord } from '../../../store/asyncReducers/wordsUserSlice';
 import { authSlice, getNewToken } from '../../../store/asyncReducers/authSlice';
 import { decodeToken } from 'react-jwt';
-import { NotFoundWord } from '../../../components/notFoundWord/notFoundWord';
-import { Preloader } from '../../../components/preloader/preloader';
-import { WordBlock } from '../../../components/wordBlock/wordBlock';
-import { Title } from '../../../components/title/Title';
+import { NotFoundWord } from '../../../components/NotFoundWord/NotFoundWord';
+import { Preloader } from '../../../components/Preloader/Preloader';
+import { WordBlock } from '../../../components/WordBlock/WordBlock';
+import { Title } from '../../../components/Title/Title';
 import { useNavigate } from 'react-router';
 import { wordsSlice } from '../../../store/asyncReducers/wordsBookSlice';
 
