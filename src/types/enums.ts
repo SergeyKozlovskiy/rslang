@@ -1,5 +1,5 @@
 export enum Time {
-  FOUR_OCLOCK = 14400, //14 400
+  FOUR_OCLOCK = 14400,
   FOUR_AND_HALF_HOURS = 16200,
 }
 
@@ -43,11 +43,4 @@ export enum EnglishLevels {
   UPPER_INTERMEDIATE = 'Upper-Intermediate',
   ADVANCED = 'Advanced',
   PROFICIENCY = 'Proficiency',
-}
-
-export enum RequestResponseCode {
-  USER_WORD_HAS_BEEN_DELETED = 204,
-  NOT_FOUND = 404,
-  ACCESS_TOKEN_IS_MISSING_OR_INVALID = 401,
-  DATA_ALREDY_EXISTS = 417,
 }
