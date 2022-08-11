@@ -122,7 +122,7 @@ export const Sprint: React.FC = () => {
 
   const changeLevel = (level: string) => {
     setLevel(Number(level));
-    // getData(Number(level));
+    dispatch(getWords({ group: Number(level), page: random(0, 19) }));
   };
 
   const start = () => {
@@ -240,7 +240,7 @@ export const Sprint: React.FC = () => {
 
   return (
     <div className="sprint-wrapper">
-      <SettingGame changeLevel={changeLevel} />
+      <SettingGame changeLevel={changeLevel} isGame={isGame} />
       {isGame && gameWord ? <Timer value={60} stopGame={stopGame} /> : null}
       {!isGame && !isShowPopUp ? (
         <PopUp

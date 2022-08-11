@@ -5,12 +5,15 @@ import fullScreen from '../../assets/svg/fullscreen.svg';
 import fullScreenExit from '../../assets/svg/fullscreen-exit.svg';
 import { levels } from '../../utils/arrays';
 import { CloseOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../hooks/redux';
 import './SettingsGame.sass';
 
-export const SettingGame: React.FC<{ changeLevel: (level: string) => void }> = ({
+export const SettingGame: React.FC<{ isGame: boolean; changeLevel: (level: string) => void }> = ({
+  isGame,
   changeLevel,
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const { EnglishLevel } = useAppSelector((state) => state.wordsSlice);
   const { Option } = Select;
 
   const changeFullScreen = () => {
@@ -27,7 +30,12 @@ export const SettingGame: React.FC<{ changeLevel: (level: string) => void }> = (
           alt={fullScreen}
         />
       </button>
-      <Select className="game-settings_level" defaultValue="Elementary" onChange={changeLevel}>
+      <Select
+        className="game-settings_level"
+        defaultValue={levels[EnglishLevel]}
+        onChange={changeLevel}
+        disabled={isGame ? true : false}
+      >
         {levels.map((level, i) => {
           return (
             <Option value={level} key={level + i}>

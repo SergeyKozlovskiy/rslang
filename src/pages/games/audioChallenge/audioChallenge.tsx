@@ -161,6 +161,7 @@ export const AudioChallenge: React.FC = () => {
 
   const changeLevel = (level: string) => {
     setLevel(Number(level));
+    dispatch(getWords({ group: Number(level), page: random(0, 19) }));
   };
 
   useEffect(() => {
@@ -196,7 +197,7 @@ export const AudioChallenge: React.FC = () => {
 
   return (
     <div className="audioChallenge-wrapper">
-      <SettingGame changeLevel={changeLevel} />
+      <SettingGame changeLevel={changeLevel} isGame={isGame} />
       {!isGame && !isShowPopUp ? (
         <PopUp
           header="Аудиовызов"
