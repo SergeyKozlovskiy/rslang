@@ -8,9 +8,9 @@
 
 Вы можете начать изучать иностранный язык прямо сейчас, перейдя по [ссылке](https://rs-lang-ks.netlify.app/)!
 
-> Для использования всех функций приложения вам необходимо [зарегистрироваться](https://rslang-sergeykozlovskiy.netlify.app/authorization/)!
+> Для использования всех функций приложения вам необходимо [зарегистрироваться](https://rs-lang-ks.netlify.app/authorization)!
 
-<h2 style="text-align: center">Использование</h2>
+## Использование
 
  ### [Учебник](https://rs-lang-ks.netlify.app/book)
 
