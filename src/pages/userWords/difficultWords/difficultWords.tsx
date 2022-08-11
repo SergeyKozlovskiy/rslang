@@ -16,10 +16,9 @@ import { wordsSlice } from '../../../store/asyncReducers/wordsBookSlice';
 
 export const DifficultWords: React.FC = () => {
   const [cookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
-  const [pageNumber, setPageNumber] = useState<number>(0);
   const { difficultWords, isLoading } = useAppSelector((state) => state.aggregatedWordsSlice);
+  const { EnglishLevel } = useAppSelector((state) => state.wordsSlice);
   const dispatch = useAppDispatch();
-  const [englishLevel, setEnglishLevel] = useState<number>(0);
   const [detailWord, setDetailWord] = useState<Word>();
   const navigate = useNavigate();
 
@@ -34,7 +33,7 @@ export const DifficultWords: React.FC = () => {
           userId: cookie.userId,
           token: cookie.token,
           wordId: detailWord._id,
-          englishLevel: LEVELS[englishLevel],
+          englishLevel: LEVELS[EnglishLevel],
           isLearned: true,
         })
       );
@@ -51,7 +50,7 @@ export const DifficultWords: React.FC = () => {
           getDifficultWords({
             userId: cookie.userId,
             token: cookie.token,
-            level: level ? level : LEVELS[englishLevel],
+            level: level ? level : LEVELS[EnglishLevel],
           })
         );
         if (response.meta.requestStatus === 'fulfilled') {
@@ -67,7 +66,7 @@ export const DifficultWords: React.FC = () => {
         }
       }
     },
-    [cookie.refreshToken, cookie.token, cookie.userId, dispatch, englishLevel]
+    [cookie.refreshToken, cookie.token, cookie.userId, dispatch, EnglishLevel]
   );
 
   const startGame = () => {
@@ -87,10 +86,6 @@ export const DifficultWords: React.FC = () => {
       ) : difficultWords?.paginatedResults.length ? (
         <WordBlock
           searchCount={difficultWords.totalCount[0].count}
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
           showDetailWord={showDetailWord}
           detailWord={detailWord}
           handleClickButton={addToLearnedWords}
@@ -103,10 +98,6 @@ export const DifficultWords: React.FC = () => {
         />
       ) : (
         <NotFoundWord
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
           total={difficultWords ? difficultWords.paginatedResults.length : 0}
           getNewWords={getUserDifficultWords}
         />

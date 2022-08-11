@@ -13,12 +13,12 @@ import { Preloader } from '../../../components/Preloader/Preloader';
 import './WordsPage.sass';
 
 export const WordsPage: React.FC = () => {
-  const { bookWords, isLoading } = useAppSelector((state) => state.wordsSlice);
+  const { bookWords, isLoading, EnglishLevel, pageBook } = useAppSelector(
+    (state) => state.wordsSlice
+  );
   const [cookie] = useCookies(['name', 'token', 'refreshToken', 'userId']);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [englishLevel, setEnglishLevel] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(6);
   const [detailWord, setDetailWord] = useState<Word>();
 
   const showDetailWord = (word: Word) => {
@@ -32,7 +32,7 @@ export const WordsPage: React.FC = () => {
           userId: cookie.userId,
           token: cookie.token,
           wordId: detailWord.id,
-          englishLevel: LEVELS[englishLevel],
+          englishLevel: LEVELS[EnglishLevel],
           isLearned: false,
         })
       );
@@ -40,15 +40,9 @@ export const WordsPage: React.FC = () => {
 
   const getNewWords = (level: number | null, page: number | null) => {
     if (level !== null) {
-      setPageNumber((page) => {
-        dispatch(getWords({ group: level, page: page }));
-        return page;
-      });
+      dispatch(getWords({ group: level, page: pageBook }));
     } else if (page !== null) {
-      setEnglishLevel((level) => {
-        dispatch(getWords({ group: level, page: page }));
-        return level;
-      });
+      dispatch(getWords({ group: EnglishLevel, page: page }));
     }
   };
 
@@ -79,10 +73,6 @@ export const WordsPage: React.FC = () => {
       ) : bookWords ? (
         <WordBlock
           searchCount={580}
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
           showDetailWord={showDetailWord}
           detailWord={detailWord}
           handleClickButton={addToDictionary}
@@ -94,14 +84,7 @@ export const WordsPage: React.FC = () => {
           startGame={startGame}
         />
       ) : (
-        <NotFoundWord
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
-          total={0}
-          getNewWords={getNewWords}
-        />
+        <NotFoundWord total={0} getNewWords={getNewWords} />
       )}
     </>
   );

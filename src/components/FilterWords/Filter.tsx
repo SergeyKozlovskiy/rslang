@@ -1,24 +1,24 @@
 import { Pagination, Select } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { wordsSlice } from '../../store/asyncReducers/wordsBookSlice';
 import { levels } from '../../utils/arrays';
 const { Option } = Select;
 
 export const Filter: React.FC<{
-  englishLevel: number;
-  setEnglishLevel: (level: number) => void;
-  setPageNumber: (page: number) => void;
-  pageNumber: number;
   total: number;
   getNewWords: (level: number | null, page: number | null) => void;
-}> = ({ englishLevel, setEnglishLevel, pageNumber, setPageNumber, total, getNewWords }) => {
+}> = ({ total, getNewWords }) => {
+  const { EnglishLevel, pageBook } = useAppSelector((state) => state.wordsSlice);
+  const dispatch = useAppDispatch();
   return (
     <div className="words-block__navigation">
       <label className="words-block__navigation-label" htmlFor="levelSelect">
         Уровень
         <Select
           id="levelSelect"
-          value={englishLevel}
+          value={EnglishLevel}
           onChange={(level) => {
-            setEnglishLevel(level);
+            dispatch(wordsSlice.actions.setLevel(level));
             getNewWords(level, null);
           }}
           style={{
@@ -39,9 +39,9 @@ export const Filter: React.FC<{
       <div className="words-block__navigation-label">
         Страница
         <Pagination
-          current={pageNumber}
+          current={pageBook}
           onChange={(page) => {
-            setPageNumber(page);
+            dispatch(wordsSlice.actions.setPage(page));
             getNewWords(null, page);
           }}
           defaultCurrent={0}
