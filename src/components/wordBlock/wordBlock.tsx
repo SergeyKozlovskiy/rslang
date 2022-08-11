@@ -7,10 +7,6 @@ import './WordBlock.sass';
 
 export const WordBlock: React.FC<{
   searchCount: number;
-  englishLevel: number;
-  setEnglishLevel: (level: number) => void;
-  setPageNumber: (page: number) => void;
-  pageNumber: number;
   words: Word[];
   showDetailWord: (word: Word) => void;
   detailWord: Word | undefined;
@@ -22,10 +18,6 @@ export const WordBlock: React.FC<{
   startGame?: () => void;
 }> = ({
   searchCount,
-  englishLevel,
-  setEnglishLevel,
-  pageNumber,
-  setPageNumber,
   words,
   showDetailWord,
   detailWord,
@@ -40,14 +32,7 @@ export const WordBlock: React.FC<{
     <div className="wordBlock">
       <div className="words">
         <div className="words-block">
-          <Filter
-            englishLevel={englishLevel}
-            setEnglishLevel={setEnglishLevel}
-            setPageNumber={setPageNumber}
-            pageNumber={pageNumber}
-            total={searchCount}
-            getNewWords={getNewWords}
-          />
+          <Filter total={searchCount} getNewWords={getNewWords} />
           <Words words={words} showDetailWord={showDetailWord} />
           {startGame ? (
             <Button onClick={startGame} className="startGame" type="primary">

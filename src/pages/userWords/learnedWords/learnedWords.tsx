@@ -15,8 +15,7 @@ import { Title } from '../../../components/Title/Title';
 export const LearnedWords: React.FC = () => {
   const [cookie] = useCookies(['token', 'userId', 'refreshToken']);
   const { learnedWords, isLoading } = useAppSelector((state) => state.aggregatedWordsSlice);
-  const [englishLevel, setEnglishLevel] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(0);
+  const { EnglishLevel } = useAppSelector((state) => state.wordsSlice);
   const [detailWord, setDetailWord] = useState<Word>();
   const dispatch = useAppDispatch();
 
@@ -46,7 +45,7 @@ export const LearnedWords: React.FC = () => {
           getLearnedWords({
             userId: cookie.userId,
             token: cookie.token,
-            level: level ? level : LEVELS[englishLevel],
+            level: level ? level : LEVELS[EnglishLevel],
           })
         );
         if (response.meta.requestStatus === 'fulfilled') {
@@ -62,7 +61,7 @@ export const LearnedWords: React.FC = () => {
         }
       }
     },
-    [cookie.refreshToken, cookie.token, cookie.userId, dispatch, englishLevel]
+    [cookie.refreshToken, cookie.token, cookie.userId, dispatch, EnglishLevel]
   );
 
   useEffect(() => {
@@ -77,10 +76,6 @@ export const LearnedWords: React.FC = () => {
       ) : learnedWords?.totalCount[0].count ? (
         <WordBlock
           searchCount={learnedWords.totalCount[0].count}
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
           showDetailWord={showDetailWord}
           detailWord={detailWord}
           handleClickButton={deleteWord}
@@ -92,10 +87,6 @@ export const LearnedWords: React.FC = () => {
         />
       ) : (
         <NotFoundWord
-          englishLevel={englishLevel}
-          setEnglishLevel={setEnglishLevel}
-          setPageNumber={setPageNumber}
-          pageNumber={pageNumber}
           total={learnedWords ? learnedWords.totalCount[0].count : 0}
           getNewWords={getUserLearnedtWords}
         />

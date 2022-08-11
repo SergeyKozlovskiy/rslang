@@ -7,12 +7,16 @@ type InitialState = {
   isLoading: boolean;
   bookWords: Array<Word> | null;
   isUseBookWords: boolean;
+  EnglishLevel: number;
+  pageBook: number;
 };
 
 const initialState: InitialState = {
   isLoading: false,
   bookWords: null,
   isUseBookWords: false,
+  EnglishLevel: 0,
+  pageBook: 6,
 };
 
 export const getWords = createAsyncThunk(
@@ -34,6 +38,12 @@ export const wordsSlice = createSlice({
   reducers: {
     changeBookWordAccess: (state, action: PayloadAction<boolean>) => {
       state.isUseBookWords = action.payload;
+    },
+    setLevel: (state, action: PayloadAction<number>) => {
+      state.EnglishLevel = action.payload;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.pageBook = action.payload;
     },
   },
   extraReducers: {

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import bookImg from '../../assets/book/reading.png';
 import preloader from '../../assets/preloader/preloader.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { getWords } from '../../store/asyncReducers/wordsBookSlice';
+import { getWords, wordsSlice } from '../../store/asyncReducers/wordsBookSlice';
 import { designations, levels } from '../../utils/arrays';
 import './Book.sass';
 
@@ -10,7 +10,9 @@ export const Book: React.FC = () => {
   const { isLoading } = useAppSelector((state) => state.wordsSlice);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const handleClickLevel = async (group: number) => {
+    dispatch(wordsSlice.actions.setLevel(group));
     const result = await dispatch(getWords({ group: group, page: 6 }));
     if (result.meta.requestStatus === 'fulfilled') {
       navigate('words');
