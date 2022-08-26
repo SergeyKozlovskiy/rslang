@@ -1,3 +1,4 @@
+import React, { RefObject, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import './Menu.sass';
@@ -5,8 +6,50 @@ import './Menu.sass';
 export const Menu: React.FC = () => {
   const { isShowMenu } = useAppSelector((state) => state.menuSlice);
   const { isLogin } = useAppSelector((state) => state.authSlice);
+  const navMenu = React.createRef() as RefObject<HTMLElement>;
+
+  const toggleMenu = () => {
+    let start: null | number = null;
+    const widthWindow = window.innerWidth;
+    if (isShowMenu) {
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        navMenu.current
+          ? (navMenu.current.style.width = `${Math.min(
+              progress + 2,
+              widthWindow < 576 ? 150 : 200
+            )}px`)
+          : null;
+        if (progress < (widthWindow < 576 ? 150 : 200)) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    } else {
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        navMenu.current
+          ? (navMenu.current.style.width = `${Math.min(
+              progress - 2,
+              widthWindow < 576 ? 58 : 80
+            )}px`)
+          : null;
+        if (progress < (widthWindow < 576 ? 58 : 80)) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+  };
+
+  useEffect(() => {
+    toggleMenu();
+  });
+
   return (
-    <nav className={isShowMenu ? 'active-menu menu' : 'menu'}>
+    <nav className="menu" ref={navMenu}>
       <ul className="menu__list">
         <li>
           <NavLink

@@ -6,6 +6,7 @@ import './Main.sass';
 
 export const Main: React.FC = () => (
   <main className="main">
+    <div className="blur-block"></div>
     <div className="main__text">
       <h1 className="main__text-header">
         Добро пожаловать в <br></br>

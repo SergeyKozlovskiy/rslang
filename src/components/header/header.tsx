@@ -20,6 +20,7 @@ export const Header: React.FC = () => {
   const { isLogin, user } = useAppSelector((state) => state.authSlice);
   const { deleteUser } = authSlice.actions;
   const dispatch = useAppDispatch();
+
   const handleShowMenu = () => {
     dispatch(menuSlice.actions.toggleMenu());
   };
@@ -44,7 +45,7 @@ export const Header: React.FC = () => {
           )}
         </button>
         <div className="header__title">
-          <span className="header__title-1">RS</span> •{' '}
+          <span className="header__title-1">RS •</span>
           <span className="header__title-2">Lang</span>
           <Link className="header__title-logo" to="/">
             <img src={UnitedKingdom} alt="United Kingdom" />

@@ -1,5 +1,6 @@
 @import '../../index.sass'
 .main
+  position: relative
   display: flex
   justify-content: center
   align-items: center
@@ -9,6 +10,9 @@
   background-size: 35%
   padding: 0 15px 0 15px
   height: 100%
+  z-index: 0
+  .blur-block
+    display: none
   &__text
     &-header
       margin-bottom: 2.5%
@@ -37,3 +41,86 @@
     @include font-bold 
     
 
+@media (max-width: 1400px)
+  .main
+    &__text
+      &-header
+        font-size: 45px
+        margin-bottom: 1.5%
+      &-subtitle
+        width: 53%
+        font-size: 19px  
+
+@media (max-width: 1200px)
+  .main
+    &__text
+      &-header
+        font-size: 39px
+        margin-bottom: 1%
+        line-height: 1.3
+      &-subtitle
+        font-size: 18px    
+
+@media (max-width: 992px)
+  .main
+    background-position: center
+    background-size: 100%
+    align-items: flex-start
+    .blur-block
+      position: absolute
+      display: block
+      width: 100%
+      height: 100%
+      top: 0
+      bottom: 0
+      right: 0
+      left: 0
+      background: rgba(255, 255, 255, 0.2)
+      backdrop-filter: blur(10px)
+      z-index: 1
+    &__text
+      position: absolute
+      z-index: 1
+      &-header
+        margin-top: 35px
+        margin-bottom: 45px
+      &-header, &-subtitle
+        text-align: center
+        width: 100%
+      &-subtitle
+        font-size: 20px 
+        font-weight: bold  
+        width: 75%
+        line-height: 2
+        margin: 0 auto 45px
+      a
+        display: block
+        width: fit-content
+        margin: 0 auto
+
+@media (max-width: 768px) 
+  .main
+    .blur-block
+    &__text
+      &-header
+        font-size: 26px
+      &-header, &-subtitle
+      &-subtitle
+        font-size: 18px 
+        width: 90%
+        line-height: 1.7
+
+@media (max-width: 576px)    
+  .main
+    .blur-block
+    &__text
+      &-header
+        font-size: 22px
+        margin-bottom: 30px
+      &-header, &-subtitle
+      &-subtitle
+        font-size: 16px 
+        width: 95%
+        line-height: 1.5 
+        margin-bottom: 30px  
+      
